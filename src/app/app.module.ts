@@ -4,18 +4,24 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ClarityModule } from '@clr/angular';
 
-import { HeaderComponent} from "./header/header.component";
 import { AppComponent } from './app.component';
+import { HeaderComponent} from './header/header.component';
+import { Error404Component} from './errors/404.component';
+
+import { appRoutes } from './routes';
+import { RouterModule } from "@angular/router";
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent
+    HeaderComponent,
+    Error404Component
   ],
   imports: [
     BrowserModule,
     ClarityModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [],
   bootstrap: [AppComponent]
