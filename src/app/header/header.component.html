@@ -1,0 +1,34 @@
+<header class="header-6">
+  <div class="branding">
+    <a href="/quiz-learner" class="nav-link">
+      <clr-icon shape="home" class="is-solid"></clr-icon>
+      <span class="title">Quiz Learner</span>
+    </a>
+  </div>
+  <div class="header-nav">
+    <a href="..." class="nav-link nav-icon">
+      <clr-icon shape="world" class="is-solid"></clr-icon>
+    </a>
+    <a href="..." class="active nav-link nav-icon">
+      <clr-icon shape="folder"></clr-icon>
+    </a>
+  </div>
+  <form class="search">
+    <label for="search_input">
+      <input id="search_input" type="text" placeholder="Search for keywords...">
+    </label>
+  </form>
+  <div class="header-actions">
+    <clr-dropdown>
+      <button class="nav-icon" clrDropdownTrigger>
+        <clr-icon shape="user"></clr-icon>
+        <clr-icon shape="caret down"></clr-icon>
+      </button>
+      <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
+        <a href="..." clrDropdownItem>About</a>
+        <a href="..." clrDropdownItem>Preferences</a>
+        <a href="..." clrDropdownItem>Log out</a>
+      </clr-dropdown-menu>
+    </clr-dropdown>
+  </div>
+</header>
