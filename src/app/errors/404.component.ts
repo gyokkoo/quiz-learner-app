@@ -1,18 +1,12 @@
 import { Component } from '@angular/core'
 
 @Component({
-  template: `
-    <h1 class="errorMessage">404, Not Found!</h1>
-  `,
-  styles: [`
-    .errorMessage { 
-      margin-top:150px; 
-      font-size: 100px;
-      text-align: center; 
-    }`]
+  templateUrl: './404.component.html',
+  styleUrls: [
+    './404.component.scss'
+  ],
 })
-export class Error404Component{
-  constructor() {
-
-  }
+export class Error404Component {
+  public navigateToHomeMessage = 'Take Me Home';
 }
+
