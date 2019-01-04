@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { LoginComponent } from './login.component';
+import { RegisterComponent } from "./register.component";
 
 @NgModule({
   imports: [
@@ -11,11 +12,13 @@ import { LoginComponent } from './login.component';
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forChild([
-      { path: 'login', component: LoginComponent }
+      { path: 'login', component: LoginComponent },
+      { path: 'register', component: RegisterComponent }
     ])
   ],
   declarations: [
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
   providers: [
   ]
