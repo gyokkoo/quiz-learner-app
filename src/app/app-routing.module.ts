@@ -1,8 +1,8 @@
-import { RouterModule, Routes } from "@angular/router";
-import { NgModule } from "@angular/core";
+import { RouterModule, Routes } from '@angular/router';
+import { NgModule } from '@angular/core';
 
 import { Error404Component } from './errors/404.component';
-import { HomePageComponent } from "./home/home.page.component";
+import { HomePageComponent } from './home/home.page.component';
 
 export const APP_ROUTES: Routes = [
   {

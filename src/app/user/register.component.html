@@ -5,91 +5,76 @@
     </div>
 
     <div class="card-body">
-      <form novalidate
-            (ngSubmit)="onSubmit()"
-            [formGroup]="registerForm">
+      <form novalidate (ngSubmit)="onSubmit()" [formGroup]="registerForm">
 
         <div class="form-group row mb-2">
-          <label class="col-md-2 col-form-label"
-                 for="firstNameId">First Name</label>
+          <label class="col-md-2 col-form-label" for="usernameId">Username</label>
           <div class="col-md-8">
-            <input class="form-control"
-                   id="firstNameId"
-                   type="text"
-                   placeholder="First Name (required)"
-                   formControlName="firstName"
-                   [ngClass]="{'is-invalid':
+            <input class="form-control" id="usernameId" type="text" placeholder="Username (required)" 
+              formControlName="username"
+              [ngClass]="{'is-invalid':
+                     (registerForm.get('username').touched ||
+                      registerForm.get('username').dirty) &&
+                     !registerForm.get('username').valid}">
+                     <span class="invalid-feedback">
+                      <span *ngIf="registerForm.get('username').errors?.required">
+                        Please enter your username.
+                      </span>
+                      <span *ngIf="registerForm.get('username').errors?.minlength">
+                        The username must be longer than 3 characters.
+                      </span>
+                    </span>         
+          </div>
+        </div>
+
+        <div class="form-group row mb-2">
+          <label class="col-md-2 col-form-label" for="firstNameId">First name</label>
+          <div class="col-md-8">
+            <input class="form-control" id="firstNameId" type="text" placeholder="First name (required)"
+              formControlName="firstName" [ngClass]="{'is-invalid':
                     (registerForm.get('firstName').touched ||
                      registerForm.get('firstName').dirty) &&
                     !registerForm.get('firstName').valid
-                  }"/>
+                  }" />
             <span class="invalid-feedback">
-            <span *ngIf="registerForm.get('firstName').errors?.required">
-              Please enter your first name.
+              <span *ngIf="registerForm.get('firstName').errors?.required">
+                Please enter your first name.
+              </span>
+              <span *ngIf="registerForm.get('firstName').errors?.minlength">
+                The first name must be longer than 3 characters.
+              </span>
             </span>
-            <span *ngIf="registerForm.get('firstName').errors?.minlength">
-              The first name must be longer than 3 characters.
-            </span>
-          </span>
           </div>
         </div>
 
         <div class="form-group row mb-2">
-          <label class="col-md-2 col-form-label"
-                 for="lastNameId">Last Name</label>
+          <label class="col-md-2 col-form-label" for="lastNameId">Last name</label>
           <div class="col-md-8">
-            <input class="form-control"
-                   id="lastNameId"
-                   type="text"
-                   placeholder="Last Name (required)"
-                   formControlName="lastName"
-                   [ngClass]="{'is-invalid':
+            <input class="form-control" id="lastNameId" type="text" placeholder="Last name (required)" 
+              formControlName="lastName"
+              [ngClass]="{'is-invalid':
                     (registerForm.get('lastName').touched ||
                      registerForm.get('lastName').dirty) &&
                     !registerForm.get('lastName').valid
-                  }"/>
+                  }" />
             <span class="invalid-feedback">
-            <span *ngIf="registerForm.get('lastName').errors?.required">
-              Please enter your last name.
+              <span *ngIf="registerForm.get('lastName').errors?.required">
+                Please enter your last name.
+              </span>
+              <span *ngIf="registerForm.get('lastName').errors?.maxlength">
+                The last name must be less than 50 characters.
+              </span>
             </span>
-            <span *ngIf="registerForm.get('lastName').errors?.maxlength">
-              The last name must be less than 50 characters.
-            </span>
-          </span>
           </div>
         </div>
 
-        <!--<div formGroupName="emailGroup">-->
-          <!--<div class="form-group row mb-2">-->
-            <!--<label class="col-md-2 col-form-label"-->
-                   <!--for="emailId">Email</label>-->
-            <!--<div class="col-md-8">-->
-              <!--<input class="form-control"-->
-                     <!--id="emailId"-->
-                     <!--type="email"-->
-                     <!--placeholder="Email (required)"-->
-                     <!--formControlName="email"-->
-                     <!--[ngClass]="{'is-invalid': emailMessage}"/>-->
-              <!--<span class="invalid-feedback">-->
-              <!--{{ emailMessage }}-->
-            <!--</span>-->
-            <!--</div>-->
-          <!--</div>-->
-         <!---->
-        <!--</div>-->
-
         <div class="form-group row mb-2">
           <div class="offset-md-2 col-md-4">
-            <button class="btn btn-primary mr-3"
-                    type="submit"
-                    style="width:80px"
-                    [title]="registerForm.valid ? 'Save your entered data' : 'Disabled until the form data is valid'"
-                    [disabled]="!registerForm.valid">
+            <button class="btn btn-primary mr-3" type="submit" style="width:80px" [title]="registerForm.valid ? 'Save your entered data' : 'Disabled until the form data is valid'"
+              [disabled]="!registerForm.valid">
               Save
             </button>
-            <button class="btn btn-outline-secondary"
-                    type="button"
-                    (click)="populateTestData()">
+            <button class="btn btn-outline-secondary" type="button" (click)="populateTestData()">
               Test Data
             </button>
           </div>
@@ -101,6 +86,5 @@
   <br>Touched: {{ registerForm.touched }}
   <br>Valid: {{ registerForm.valid }}
   <br>Value: {{ registerForm.value | json }}
-  <!--<br>Street: {{ addresses.get('0.street1')?.value }}-->
   <br>&nbsp;
 </div>
