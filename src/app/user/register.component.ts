@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from './auth.service';
 
 @Component({
   templateUrl: 'register.component.html',
@@ -10,7 +11,7 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   isSubmitted = false;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private authService: AuthService) {
   }
 
   ngOnInit() {
@@ -33,6 +34,8 @@ export class RegisterComponent implements OnInit {
     console.log('Todo: send request to server');
     console.log(this.registerForm);
     console.log(this.registerForm.value);
+
+    this.authService.registerUser(this.registerForm.value);
   }
 
   // Only for testing
