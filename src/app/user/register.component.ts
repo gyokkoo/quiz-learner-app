@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from './auth.service';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   templateUrl: 'register.component.html',
@@ -11,7 +13,11 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   isSubmitted = false;
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {
+  constructor(
+    private fb: FormBuilder, 
+    private authService: AuthService,
+    private router: Router,
+    private toastr: ToastrService) {
   }
 
   ngOnInit() {
@@ -21,7 +27,6 @@ export class RegisterComponent implements OnInit {
       lastName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', Validators.required]
-      // confirmPassword: ['', Validators.required]
     });
   }
 
@@ -31,14 +36,20 @@ export class RegisterComponent implements OnInit {
 
   onSubmit() {
     console.log('Form submitted!');
-    console.log('Todo: send request to server');
-    console.log(this.registerForm);
     console.log(this.registerForm.value);
-
-    this.authService.registerUser(this.registerForm.value);
+    this.authService.registerUser(this.registerForm.value).subscribe(
+      data => {
+        console.log(data);
+        if (data.success) {
+          this.toastr.success(data.message);
+          this.router.navigate(['/users/login']);
+        } else {
+          this.toastr.error(data.message);
+        }
+      });
   }
 
-  // Only for testing
+  // Only for development testing
   populateTestData(): void {
     this.registerForm.patchValue({
       username: 'ivancho_1998',
