@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgForm, FormGroup, FormBuilder, Validators } from '@angular/forms';
 
-// import { AuthService } from './auth.service';
-import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from './auth.service';
 
@@ -12,9 +11,8 @@ import { AuthService } from './auth.service';
 export class LoginComponent implements OnInit {
   readonly headerTitle = 'Log In';
 
-loginForm: FormGroup;
+  loginForm: FormGroup;
   errorMessage: string;
-
 
   constructor(
     private fb: FormBuilder,
@@ -31,9 +29,10 @@ loginForm: FormGroup;
 
   onSubmit(): void {
     console.log('Login form subbmited!');
-    console.log(this.loginForm.value);
+    const userData = this.loginForm.value;
     
-    this.toastr.info('Login form submitted');
+    this.authService.loginUser(userData).subscribe(
+      data => this.handleUserLogin(data));
     // this.errorMessage = 'Please enter a user name and password.';
   }
 
@@ -43,5 +42,17 @@ loginForm: FormGroup;
       username: 'ivancho_1998',
       password: '123456',
     });
+  }
+
+  private handleUserLogin(data: any) {
+    if (data.success) {
+      this.authService.storeUserData(data.token, data.user);
+
+      this.toastr.success(data.message);
+      this.router.navigate(['/welcome']);
+    } else {
+      this.errorMessage = data.message;
+      this.toastr.error(data.message);
+    }
   }
 }

@@ -35,16 +35,7 @@ export class RegisterComponent implements OnInit {
   onSubmit() {
     console.log(this.registerForm.value);
     this.authService.registerUser(this.registerForm.value).subscribe(
-      data => {
-        console.log(data);
-        if (data.success) {
-          this.toastr.success(data.message);
-          this.router.navigate(['/users/login']);
-        } else {
-          this.errorMessage = data.message;
-          this.toastr.error(data.message);
-        }
-      });
+      data => this.handleUserRegistration(data));
   }
 
   // Only for development testing
@@ -57,5 +48,15 @@ export class RegisterComponent implements OnInit {
       confirmPassword: '123456',
       // email: 'ivan.petrov@gmail.com'
     });
+  }
+
+  private handleUserRegistration(data: any) {
+    if (data.success) {
+      this.toastr.success(data.message);
+      this.router.navigate(['/users/login']);
+    } else {
+      this.errorMessage = data.message;
+      this.toastr.error(data.message);
+    }
   }
 }
