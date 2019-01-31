@@ -9,7 +9,9 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
   readonly USERNAME_REGEX = new RegExp('^[A-Za-z0-9_\\-\\.]+$');
-  
+  readonly headerTitle = 'Register';
+
+  errorMessage: string;
   registerForm: FormGroup;
   isSubmitted = false;
 
@@ -29,13 +31,8 @@ export class RegisterComponent implements OnInit {
       confirmPassword: ['', Validators.required]
     });
   }
-
-  get formControls() {
-    return this.registerForm.controls;
-  }
-
+  
   onSubmit() {
-    console.log('Form submitted!');
     console.log(this.registerForm.value);
     this.authService.registerUser(this.registerForm.value).subscribe(
       data => {
@@ -44,6 +41,7 @@ export class RegisterComponent implements OnInit {
           this.toastr.success(data.message);
           this.router.navigate(['/users/login']);
         } else {
+          this.errorMessage = data.message;
           this.toastr.error(data.message);
         }
       });

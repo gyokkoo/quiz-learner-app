@@ -1,132 +1,185 @@
 <div class="container">
   <div class="card">
+
     <div class="card-header">
-      Register!
+      {{ headerTitle }}
     </div>
 
     <div class="card-body">
-      <form novalidate (ngSubmit)="onSubmit()" [formGroup]="registerForm">
+      <form novalidate 
+            (ngSubmit)="onSubmit()" 
+            [formGroup]="registerForm">
 
-        <div class="form-group row mb-2">
-          <label class="col-md-2 col-form-label" for="usernameId">Username</label>
-          <div class="col-md-8">
-            <input class="form-control" id="usernameId" type="text" placeholder="Username (required)" formControlName="username"
-              [ngClass]="{'is-invalid':
-                     (registerForm.get('username').touched ||
-                      registerForm.get('username').dirty) &&
-                     !registerForm.get('username').valid}">
-            <span class="invalid-feedback">
-              <span *ngIf="registerForm.get('username').errors?.required">
-                Please enter your username.
-              </span>
-              <span *ngIf="registerForm.get('username').errors?.minlength">
-                The username must be longer than 3 characters.
-              </span>
-              <span *ngIf="registerForm.get('username').errors?.pattern">
-                  The username cannot contains special characters.
-                </span>
-            </span>
-          </div>
-        </div>
+        <fieldset>
+          <div class="form-group row mb-2">
+            <label class="col-md-2 col-form-label" 
+                   for="usernameId">
+              Username
+            </label>
 
-        <div class="form-group row mb-2">
-          <label class="col-md-2 col-form-label" for="firstNameId">First name</label>
-          <div class="col-md-8">
-            <input class="form-control" id="firstNameId" type="text" placeholder="First name (required)"
-              formControlName="firstName" [ngClass]="{'is-invalid':
-                    (registerForm.get('firstName').touched ||
-                     registerForm.get('firstName').dirty) &&
-                    !registerForm.get('firstName').valid
-                  }" />
-            <span class="invalid-feedback">
-              <span *ngIf="registerForm.get('firstName').errors?.required">
-                Please enter your first name.
-              </span>
-              <span *ngIf="registerForm.get('firstName').errors?.minlength">
-                The first name must be longer than 3 characters.
-              </span>
-              <span *ngIf="registerForm.get('firstName').errors?.minlength">
-                The first name must be less than 50 characters.
-              </span>
-            </span>
-          </div>
-        </div>
-
-        <div class="form-group row mb-2">
-          <label class="col-md-2 col-form-label" for="lastNameId">Last name</label>
-          <div class="col-md-8">
-            <input class="form-control" id="lastNameId" type="text" placeholder="Last name (required)" formControlName="lastName"
-              [ngClass]="{'is-invalid':
-                    (registerForm.get('lastName').touched ||
-                     registerForm.get('lastName').dirty) &&
-                    !registerForm.get('lastName').valid
-                  }" />
-            <span class="invalid-feedback">
-              <span *ngIf="registerForm.get('lastName').errors?.required">
-                Please enter your last name.
-              </span>
-              <span *ngIf="registerForm.get('lastName').errors?.maxlength">
-                The last name must be less than 50 characters.
-              </span>
-            </span>
-          </div>
-        </div>
-
-        <div class='form-group row mb-2'>
-          <label class="col-md-2 col-form-label" for="passwordId">Password</label>
-          <div class="col-md-8">
-            <input class="form-control" id="passwordId" type="password" placeholder="Password (required)"
-              formControlName="password" [ngClass]="{ 'is-invalid': 
-                  (registerForm.get('password').touched ||
-                   registerForm.get('password').dirty) &&
-                  !registerForm.get('password').valid }" />
-            <span class="invalid-feedback">
-              <span *ngIf="registerForm.get('password').errors?.required">
-                Password is required
-              </span>
-              <span *ngIf="registerForm.get('password').errors?.minlength">
-                Password must be at least 6 characters
-              </span>
-            </span>
-          </div>
-        </div>
-
-        <div class="form-group row mb-2">
-          <label class="col-md-2 col-form-label" for="confirmPasswordId">Confirm password</label>
-          <div class="col-md-8">
-              <input class="form-control" id="confirmPasswordId" type="password" placeholder="Confirm password (required)"
-                formControlName="confirmPassword" [ngClass]="{ 'is-invalid': 
-                    (registerForm.get('confirmPassword').touched ||
-                     registerForm.get('confirmPassword').dirty) &&
-                    !registerForm.get('confirmPassword').valid }" />
+            <div class="col-md-8">
+              <input class="form-control" 
+                    id="usernameId" 
+                    type="text" 
+                    placeholder="Username (required)" 
+                    formControlName="username"
+                    [ngClass]="{'is-invalid':
+                      (registerForm.get('username').touched ||
+                        registerForm.get('username').dirty) &&
+                      !registerForm.get('username').valid}" />
               <span class="invalid-feedback">
-                <span *ngIf="registerForm.get('confirmPassword').errors?.required">
-                  Confirm password is required
+                <span *ngIf="registerForm.get('username').errors?.required">
+                  Please enter your username.
                 </span>
-                <!-- <span *ngIf="registerForm.get('confirmPassword').errors?.minlength">
-                  Password must be at least 6 characters
-                </span> -->
+                <span *ngIf="registerForm.get('username').errors?.minlength">
+                  The username must be longer than 3 characters.
+                </span>
+                <span *ngIf="registerForm.get('username').errors?.pattern">
+                    The username cannot contains special characters.
+                  </span>
               </span>
             </div>
-        </div>
-
-        <div class="form-group row mb-2">
-          <div class="offset-md-2 col-md-4">
-            <button class="btn btn-primary mr-3" type="submit" style="width:80px" [title]="registerForm.valid ? 'Save your entered data' : 'Disabled until the form data is valid'"
-              [disabled]="!registerForm.valid">
-              Save
-            </button>
-            <button class="btn btn-outline-secondary" type="button" (click)="populateTestData()">
-              Test Data
-            </button>
           </div>
-        </div>
+
+          <div class="form-group row mb-2">
+            <label class="col-md-2 col-form-label" 
+                   for="firstNameId">
+              First name
+            </label>
+
+            <div class="col-md-8">
+              <input class="form-control" 
+                     id="firstNameId" 
+                     type="text" 
+                     placeholder="First name (required)" 
+                     formControlName="firstName" 
+                     [ngClass]="{'is-invalid':
+                      (registerForm.get('firstName').touched ||
+                      registerForm.get('firstName').dirty) &&
+                      !registerForm.get('firstName').valid}" />
+              <span class="invalid-feedback">
+                <span *ngIf="registerForm.get('firstName').errors?.required">
+                  Please enter your first name.
+                </span>
+                <span *ngIf="registerForm.get('firstName').errors?.minlength">
+                  The first name must be longer than 3 characters.
+                </span>
+                <span *ngIf="registerForm.get('firstName').errors?.minlength">
+                  The first name must be less than 50 characters.
+                </span>
+              </span>
+            </div>
+          </div>
+
+          <div class="form-group row mb-2">
+            <label class="col-md-2 col-form-label" 
+                   for="lastNameId">
+              Last name
+            </label>
+
+            <div class="col-md-8">
+              <input class="form-control" 
+                     id="lastNameId" 
+                     type="text" 
+                     placeholder="Last name (required)" 
+                     formControlName="lastName"
+                     [ngClass]="{ 'is-invalid':
+                      (registerForm.get('lastName').touched ||
+                      registerForm.get('lastName').dirty) &&
+                      !registerForm.get('lastName').valid }" />
+              <span class="invalid-feedback">
+                <span *ngIf="registerForm.get('lastName').errors?.required">
+                  Please enter your last name.
+                </span>
+                <span *ngIf="registerForm.get('lastName').errors?.maxlength">
+                  The last name must be less than 50 characters.
+                </span>
+              </span>
+            </div>
+          </div>
+
+          <div class='form-group row mb-2'>
+            <label class="col-md-2 col-form-label" 
+                   for="passwordId">
+              Password
+            </label>
+
+            <div class="col-md-8">
+              <input class="form-control" 
+                     id="passwordId" 
+                     type="password" 
+                     placeholder="Password (required)"
+                     formControlName="password" 
+                     [ngClass]="{ 'is-invalid': 
+                      (registerForm.get('password').touched ||
+                      registerForm.get('password').dirty) &&
+                      !registerForm.get('password').valid }" />
+              <span class="invalid-feedback">
+                <span *ngIf="registerForm.get('password').errors?.required">
+                  Password is required
+                </span>
+                <span *ngIf="registerForm.get('password').errors?.minlength">
+                  Password must be at least 6 characters
+                </span>
+              </span>
+            </div>
+          </div>
+
+          <div class="form-group row mb-2">
+            <label class="col-md-2 col-form-label" 
+                   for="confirmPasswordId">
+              Confirm password
+            </label>
+
+            <div class="col-md-8">
+                <input class="form-control" 
+                       id="confirmPasswordId" 
+                       type="password" 
+                       placeholder="Confirm password (required)"
+                       formControlName="confirmPassword" 
+                       [ngClass]="{ 'is-invalid': 
+                        (registerForm.get('confirmPassword').touched ||
+                        registerForm.get('confirmPassword').dirty) &&
+                        !registerForm.get('confirmPassword').valid }" />
+                <span class="invalid-feedback">
+                  <span *ngIf="registerForm.get('confirmPassword').errors?.required">
+                    Confirm password is required
+                  </span>
+                </span>
+              </div>
+          </div>
+
+          <div class="form-group row mb-2">
+            <div class="offset-md-2 col-md-4">
+              <button class="btn btn-primary mr-3" 
+                      type="submit" 
+                      style="width:100px" 
+                      [title]="registerForm.valid ? 'Register with your entered data' : 'Disabled until the form data is valid'"
+                      [disabled]="!registerForm.valid">
+                Register
+              </button>
+              <button class="btn btn-success"
+                      type="button" 
+                      (click)="populateTestData()">
+                Test Data
+              </button>
+            </div>
+          </div>
+        </fieldset>
       </form>
     </div>
+
+    <div *ngIf="errorMessage"
+         class="alert alert-danger">
+      {{ errorMessage }}
+    </div>
   </div>
-  <br>Dirty: {{ registerForm.dirty }}
-  <br>Touched: {{ registerForm.touched }}
-  <br>Valid: {{ registerForm.valid }}
-  <br>Value: {{ registerForm.value | json }}
-  <br>&nbsp;
+  
+  <div>
+    <br>Dirty: {{ registerForm.dirty }}
+    <br>Touched: {{ registerForm.touched }}
+    <br>Valid: {{ registerForm.valid }}
+    <br>Value: {{ registerForm.value | json }}
+    <br>&nbsp;
+  </div>
 </div>
