@@ -2,6 +2,14 @@
 @import "~bootstrap/dist/css/bootstrap.min.css";
 @import "~font-awesome/css/font-awesome.min.css";
 
+div.card-header {
+    font-size: x-large;
+}
+
 #toast-container > div {
     opacity: 1;
+}
+
+.toast-top-right {
+    padding-top: 60px;
 }

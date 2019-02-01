@@ -24,6 +24,7 @@ import { HomePageComponent } from './home/home.page.component';
     ToastrModule.forRoot({
       // timeOut: 500,
       // positionClass: 'toast-top-right',
+      positionClass: 'toast-top-right',
       preventDuplicates: false,
     }),
     HttpClientModule,

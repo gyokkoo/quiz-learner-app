@@ -16,7 +16,7 @@
 
   <div class="collapse navbar-collapse"
        id="navbarsExampleDefault">
-    <ul class="navbar-nav mr-auto">
+    <ul class="navbar-nav">
       <li class="nav-item">
         <a class="nav-link" 
            routerLinkActive="active" 
@@ -24,35 +24,55 @@
           All Quizzes
         </a>
       </li>
+    
+      <li class="nav-item">
+        <a class="nav-link"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{exact: true}"
+          [routerLink]="['/about']">
+          About
+        </a>
+      </li>
+    </ul>
 
-      <ul class="navbar-nav m1-auto">
-        <li class="nav-item">
-          <a class="nav-link"
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item"
+          *ngIf="!isLoggedIn">
+        <a class="nav-link" 
+            routerLinkActive="active" 
+            [routerLinkActiveOptions]="{exact: true}"
+            [routerLink]="['/users/register']">
+          Register
+        </a>
+      </li>
+
+      <li class="nav-item"
+          *ngIf="!isLoggedIn">
+        <a class="nav-link" 
             routerLinkActive="active"
             [routerLinkActiveOptions]="{exact: true}"
-            [routerLink]="['/about']">
-            About
-          </a>
-        </li>
+            [routerLink]="['/users/login']">
+          Log In
+        </a>
+      </li>
 
-        <li class="nav-item">
-          <a class="nav-link" 
-             routerLinkActive="active" 
-             [routerLinkActiveOptions]="{exact: true}"
-             [routerLink]="['/users/register']">
-            Register
-          </a>
-        </li>
+      <li class="nav-item"
+          *ngIf="isLoggedIn">
+        <a class="nav-link"
+           routerLinkActive="active"
+           [routerLink]="['/users/profile']">
+           Welcome {{ userName }}
+        </a>
+      </li>
 
-        <li class="nav-item">
-          <a class="nav-link" 
-             routerLinkActive="active"
-             [routerLinkActiveOptions]="{exact: true}"
-             [routerLink]="['/users/login']">
-            Login
-          </a>
-        </li>
-      </ul>
+      <li class="nav-item"
+          *ngIf="isLoggedIn">
+        <a class="nav-link"
+           (click)="logOut()" 
+           style="cursor: pointer">
+          Log Out
+        </a>
+      </li>
     </ul>
   </div>
 </nav>

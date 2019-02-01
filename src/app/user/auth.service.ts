@@ -13,7 +13,8 @@ export class AuthService {
   user: any;
 
   constructor(private http: HttpClient) {
-    console.log(typeof this.authToken !== undefined);
+    this.user = JSON.parse(localStorage.getItem('user'));
+    this.authToken = localStorage.getItem('id_token');
   }
 
   registerUser(user: any): Observable<any> {
@@ -46,6 +47,20 @@ export class AuthService {
   }
 
   isAuthenticated() {
+    if (this.authToken === null) {
+      return false;
+    }
+
     return typeof this.authToken !== undefined;
+  }
+
+  getUser() {
+    return this.user;
+  }
+
+  logOut() {
+    this.authToken = null;
+    this.user = null;
+    localStorage.clear();
   }
 }
