@@ -2,12 +2,16 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
-import { CreateQuizComponent } from './create-quiz.component';
+import {
+  CreateQuizComponent,
+  AllQuizzesComponent
+} from './index';
 import { quizzesRoutes } from './quizzes.routes';
 
 @NgModule({
   declarations: [
-    CreateQuizComponent
+    CreateQuizComponent,
+    AllQuizzesComponent
   ],
   imports: [
     CommonModule,

@@ -8,9 +8,13 @@ import { ToastrModule } from 'ngx-toastr';
 import { AppComponent } from './app.component';
 import { NavbarComponent} from './navbar/navbar.component';
 import { Error404Component } from './errors/404.component';
-import { HomePageComponent } from './home/home.page.component';
 import { ErrorsHandler } from './errors/errors-handler';
 import { RouterModule } from '@angular/router';
+
+import {
+  HomePageComponent,
+  AboutPageComponent
+} from './core/index';
 
 import { appRoutes } from './routes';
 
@@ -18,8 +22,9 @@ import { appRoutes } from './routes';
   declarations: [
     AppComponent,
     NavbarComponent,
-    HomePageComponent,
     Error404Component,
+    HomePageComponent,
+    AboutPageComponent
   ],
   imports: [
     BrowserModule,

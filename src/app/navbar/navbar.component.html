@@ -21,6 +21,15 @@
         <a class="nav-link" 
            routerLinkActive="active" 
            [routerLink]="['/welcome']">
+          Home
+        </a>
+      </li>
+
+      <li *ngIf="isLoggedIn"
+          class="navbar-nav">
+        <a class="nav-link"
+           routerLinkActive="active"
+           [routerLink]="['/quizzes/all']">
           All Quizzes
         </a>
       </li>
