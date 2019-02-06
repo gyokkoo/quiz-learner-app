@@ -1,10 +1,9 @@
-import { RouterModule, Routes } from '@angular/router';
-import { NgModule } from '@angular/core';
+import { Routes } from '@angular/router';
 
 import { Error404Component } from './errors/404.component';
 import { HomePageComponent } from './home/home.page.component';
 
-export const APP_ROUTES: Routes = [
+export const appRoutes: Routes = [
   {
     path: 'welcome',
     component: HomePageComponent
@@ -12,6 +11,10 @@ export const APP_ROUTES: Routes = [
   {
     path: 'users',
     loadChildren: './user/user.module#UserModule'
+  },
+  {
+    path: 'quizzes',
+    loadChildren: './quizzes/quizzes.module#QuizzesModule'
   },
   {
     path: '', redirectTo: '/welcome',
@@ -22,14 +25,3 @@ export const APP_ROUTES: Routes = [
     component: Error404Component
   }
 ];
-
-@NgModule({
-  imports: [
-    RouterModule.forRoot(APP_ROUTES, {
-      enableTracing: false
-    })
-  ],
-  exports: [RouterModule]
-})
-export class AppRoutingModule {
-}

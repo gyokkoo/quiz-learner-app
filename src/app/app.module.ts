@@ -7,10 +7,12 @@ import { ToastrModule } from 'ngx-toastr';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent} from './navbar/navbar.component';
-import { AppRoutingModule } from './app-routing.module';
 import { Error404Component } from './errors/404.component';
 import { HomePageComponent } from './home/home.page.component';
 import { ErrorsHandler } from './errors/errors-handler';
+import { RouterModule } from '@angular/router';
+
+import { appRoutes } from './routes';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,7 @@ import { ErrorsHandler } from './errors/errors-handler';
       preventDuplicates: false,
     }),
     HttpClientModule,
-    AppRoutingModule,
+    RouterModule.forRoot(appRoutes),
   ],
   providers: [
     {

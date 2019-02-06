@@ -24,6 +24,15 @@
           All Quizzes
         </a>
       </li>
+
+      <li *ngIf="isLoggedIn"
+          class="navbar-nav">
+        <a class="nav-link"
+           routerLinkActive="active"
+           [routerLink]="['/quizzes/create']">
+          Create Quiz
+        </a>
+      </li>
     
       <li class="nav-item">
         <a class="nav-link"
