@@ -16,7 +16,7 @@ export class RegisterComponent implements OnInit {
   isSubmitted = false;
 
   constructor(
-    private fb: FormBuilder, 
+    private fb: FormBuilder,
     private authService: AuthService,
     private router: Router,
     private toastr: ToastrService) {
@@ -31,7 +31,7 @@ export class RegisterComponent implements OnInit {
       confirmPassword: ['', Validators.required]
     });
   }
-  
+
   onSubmit() {
     console.log(this.registerForm.value);
     this.authService.registerUser(this.registerForm.value).subscribe(

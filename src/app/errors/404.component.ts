@@ -1,4 +1,4 @@
-import { Component } from '@angular/core'
+import { Component } from '@angular/core';
 
 @Component({
   templateUrl: './404.component.html',
@@ -9,4 +9,3 @@ import { Component } from '@angular/core'
 export class Error404Component {
   public navigateToHomeMessage = 'Take Me Home';
 }
-

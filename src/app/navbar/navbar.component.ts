@@ -1,6 +1,6 @@
-import { Component } from "@angular/core";
-import { AuthService } from "../user/auth.service";
-import { ToastrService } from "ngx-toastr";
+import { Component } from '@angular/core';
+import { AuthService } from '../user/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-nav-header',
@@ -27,7 +27,7 @@ export class NavbarComponent {
   }
 
   logOut(): void {
-    this.authService.logOut()
-    this.toastr.success("You have successfully logged out");
+    this.authService.logOut();
+    this.toastr.success('You have successfully logged out');
   }
 }

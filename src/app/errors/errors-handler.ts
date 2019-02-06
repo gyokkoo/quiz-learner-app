@@ -16,23 +16,22 @@ export class ErrorsHandler implements ErrorHandler {
 
   handleError(error: Error | HttpErrorResponse) {
     if (error instanceof HttpErrorResponse) {
-      if (!navigator.onLine) {        
+      if (!navigator.onLine) {
         return this.toastrService.error('No internet connection!');
       } else {
         return this.toastrService.error(
-          `${error.status} - ${error.message}`, 
-          "Error", 
+          `${error.status} - ${error.message}`,
+          'Error',
           {
             onActivateTick: true
           }
-        );      
+        );
       }
     } else {
-      // Handle Client Error (Angular Error, ReferenceError...) 
+      // Handle Client Error (Angular Error, ReferenceError...)
     }
 
     // Log the error anyway
     console.error('Shit happens: ', error);
   }
-  
 }

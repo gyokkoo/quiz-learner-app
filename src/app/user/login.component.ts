@@ -24,13 +24,13 @@ export class LoginComponent implements OnInit {
     this.loginForm = this.fb.group({
       username: ['', [Validators.required, Validators.minLength(3)]],
       password: ['', Validators.required]
-    })
+    });
   }
 
   onSubmit(): void {
     console.log('Login form subbmited!');
     const userData = this.loginForm.value;
-    
+
     this.authService.loginUser(userData).subscribe(
       data => this.handleUserLogin(data));
     // this.errorMessage = 'Please enter a user name and password.';
