@@ -19,11 +19,11 @@
 
             <div class="col-md-8">
               <input class="form-control" 
-                    id="usernameId" 
-                    type="text" 
-                    placeholder="Username (required)" 
-                    formControlName="username"
-                    [ngClass]="{'is-invalid':
+                     id="usernameId" 
+                     type="text" 
+                     placeholder="Username (required)" 
+                     formControlName="username"
+                     [ngClass]="{'is-invalid':
                       (registerForm.get('username').touched ||
                         registerForm.get('username').dirty) &&
                       !registerForm.get('username').valid}" />
