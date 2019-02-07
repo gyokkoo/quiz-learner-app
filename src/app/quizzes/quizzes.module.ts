@@ -5,16 +5,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import {
   CreateQuizComponent,
-  AllQuizzesComponent
+  QuizzesListComponent
 } from './index';
 import { quizzesRoutes } from './quizzes.routes';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
     CreateQuizComponent,
-    AllQuizzesComponent
+    QuizzesListComponent
   ],
   imports: [
+    SharedModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,

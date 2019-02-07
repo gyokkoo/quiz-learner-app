@@ -1,0 +1,14 @@
+div.crop {
+    overflow: hidden;
+    width: 100%;
+    text-align: center;
+
+    > div {
+        width: 86px;
+        display: inline-block;
+    }
+}
+
+div {
+    cursor: pointer;
+}

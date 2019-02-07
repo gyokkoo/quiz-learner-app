@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 
 import {
     CreateQuizComponent,
-    AllQuizzesComponent
+    QuizzesListComponent
 } from './index';
 
 export const quizzesRoutes: Routes = [
@@ -12,6 +12,6 @@ export const quizzesRoutes: Routes = [
     },
     {
         path: 'all',
-        component: AllQuizzesComponent
+        component: QuizzesListComponent
     }
 ];
