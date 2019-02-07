@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
+import { QuizzesService } from '../quizzes.service';
 
 @Component({
   selector: 'app-create-quiz',
@@ -13,7 +16,10 @@ export class CreateQuizComponent implements OnInit {
   createQuizForm: FormGroup;
 
   constructor(private modalService: NgbModal,
-              private fb: FormBuilder) {
+              private fb: FormBuilder,
+              private toastr: ToastrService,
+              private router: Router,
+              private quizzesService: QuizzesService) {
   }
 
   ngOnInit(): void {
@@ -24,7 +30,11 @@ export class CreateQuizComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log(this.createQuizForm.value);
+    const quiz = this.createQuizForm.value;
+    this.quizzesService.createQuiz(quiz)
+      .subscribe(
+        data => this.handleQuizCreation(data),
+        data => this.handleError(data.error));
   }
 
   open(content: any): void {
@@ -35,6 +45,22 @@ export class CreateQuizComponent implements OnInit {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
       console.log(this.closeResult);
     });
+  }
+
+  private handleQuizCreation(data: any) {
+    if (data.success) {
+      console.log(data);
+      this.toastr.success(data.message);
+      this.router.navigate(['/quiz/edit/' + data.quiz._id]);
+    } else {
+      this.toastr.error(data.message);
+    }
+  }
+
+  private handleError(error: any) {
+    if (!error.success) {
+      this.toastr.error(error.message);
+    }
   }
 
   private getDismissReason(reason: any): string {
