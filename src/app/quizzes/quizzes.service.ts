@@ -32,6 +32,18 @@ export class QuizzesService {
       );
   }
 
+  getQuizById(id: string): Observable<ServerResponse> {
+    const url =  `${this.baseUrl}/getQuizById/${id}`;
+    console.log(id);
+
+    const headers = this.getRequestHeaders(false);
+
+    return this.http.get(url, { headers })
+      .pipe(
+        tap((data: ServerResponse) => console.log(data))
+      );
+  }
+
   getAllQuizzes(): Observable<ServerResponse> {
     const url = `${this.baseUrl}/getAllQuizzes`;
     const headers = this.getRequestHeaders(false);

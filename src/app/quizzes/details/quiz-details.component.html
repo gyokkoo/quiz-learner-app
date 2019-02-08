@@ -6,46 +6,29 @@
 
     <div class="card-body">
       <form>
-        <fieldset>
-          <legend>Quiz Information</legend>
-
-          <div class="form-group row">
-            <label class="col-md-2 col-form-label">
-              Quiz Title
-            </label>
-            <div class="col-md-8">
-              <input class="form-control" type="text" placeholder="Name (required)" disabled />
-            </div>
+          <div>
+            Quiz Title : {{ quiz.name }}
           </div>
 
-          <div class="form-group row">
-            <label class="col-md-2 col-form-label">
-              Quiz Description
-            </label>
-            <div class="col-md-8">
-              <textarea class="form-control" id="productCodeId" type="text" placeholder="Code (required)" disabled>
-                            </textarea>
-            </div>
+          <div>
+              Quiz Description : {{ quiz.description }}
           </div>
 
-          <div class="form-group row">
-            <label class="col-md-2 col-form-label">
-              Questions Count
-            </label>
-            <div class="col-md-8">
-              <input class="form-control" type="number" placeholder="0" disabled />
-            </div>
+          <div>
+            Questions count : {{ quiz.questionsCount }}
           </div>
 
-          <div class="form-group row">
-            <label class="col-md-2 col-form-label">
-              Success rate
-            </label>
-            <div class="col-md-8">
-              <input class="form-control" type="number" placeholder="0" disabled />
-            </div>
+          <div>
+              Quiz creator : {{ quiz.creator }}
           </div>
-        </fieldset>
+
+          <div>
+              Success rate : 0
+          </div>
+
+          <div>
+            Created on: {{ quiz.dateCreated?.toLocaleString() }}
+          </div>
       </form>
 
       <div class="mb-2">
@@ -61,6 +44,17 @@
                 type="button"
                 title="Solve the quiz">
             Solve
+        </button>
+      </div>
+
+      <div *ngIf='true'
+           class="mb-2">
+        <button class="btn btn-success mr-3"
+                style="width:80px"
+                type="button"
+                title="Edit"
+                [routerLink]="'/quizzes/' + quiz.id + '/edit'">
+            Edit
         </button>
       </div>
 

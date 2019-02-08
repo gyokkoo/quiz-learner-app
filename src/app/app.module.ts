@@ -18,7 +18,6 @@ import {
 } from './core/index';
 
 import { appRoutes } from './routes';
-import { CreateQuizComponent } from './quizzes';
 
 @NgModule({
   declarations: [

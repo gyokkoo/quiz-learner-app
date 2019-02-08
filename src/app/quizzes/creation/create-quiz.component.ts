@@ -51,7 +51,7 @@ export class CreateQuizComponent implements OnInit {
     if (data.success) {
       console.log(data);
       this.toastr.success(data.message);
-      this.router.navigate(['/quiz/edit/' + data.quiz._id]);
+      this.router.navigate(['/quizzes/' + data.quiz._id + '/edit/questions']);
     } else {
       this.toastr.error(data.message);
     }

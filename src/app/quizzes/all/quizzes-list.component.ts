@@ -32,7 +32,6 @@ export class QuizzesListComponent implements OnInit {
     this.quizzesSerivce.getAllQuizzes()
       .subscribe((res: ServerResponse ) => {
         this.handleQuizzesFetch(res);
-        console.log(res);
       });
   }
 
