@@ -9,7 +9,9 @@ import {
   QuizDetailsComponent,
   QuizEditComponent,
   EditInfoComponent,
-  EditQuestionsComponent
+  EditQuestionsComponent,
+  QuestionsListComponent,
+  QuestionsDetailsComponent
 } from './index';
 import { quizzesRoutes } from './quizzes.routes';
 import { SharedModule } from '../shared/shared.module';
@@ -21,7 +23,9 @@ import { SharedModule } from '../shared/shared.module';
     QuizDetailsComponent,
     QuizEditComponent,
     EditInfoComponent,
-    EditQuestionsComponent
+    EditQuestionsComponent,
+    QuestionsListComponent,
+    QuestionsDetailsComponent
   ],
   imports: [
     SharedModule,
