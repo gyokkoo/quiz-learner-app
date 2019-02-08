@@ -1,18 +1,18 @@
 <div class="container">
   <div class="card">
-    <div class="card-header">
-        Quiz Edit
-    </div>
-  
     <div class="card-body">
         <div class="wizard">
             <a [routerLink]="['info']"
                routerLinkActive="active">
                 Basic Information
             </a>
+            <a [routerLink]="['add']"
+               routerLinkActive="active">
+                Add Questions
+            </a>
             <a [routerLink]="['questions']"
                routerLinkActive="active">
-                Questions
+                Preview Questions
             </a>
         </div>
   
@@ -23,15 +23,9 @@
                 <button class="btn btn-outline-secondary mr-3"
                         type="button"
                         (click)="backClicked()">
-                Back
+                    Back
                 </button>
 
-                <button class="btn btn-primary mr-3"
-                        type="button"
-                        (click)="save()">
-                    Save
-                </button>
-                
                 <button class="btn btn-outline-danger"
                         type="button"
                         title="Delete the quiz"
@@ -41,9 +35,5 @@
             </div>
         </div>
     </div>
-  </div>
-  
-  <div class="alert alert-danger"
-     *ngIf="errorMessage">{{errorMessage}}
   </div>
 </div>

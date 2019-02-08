@@ -1,36 +1,14 @@
 <div class='panel panel-primary'>
     <div class='panel-body'>
         <div class='list-group'>
-            <button type='button'
+            <button *ngFor="let question of questions"
+                    type='button'
                     class='list-group-item'
-                    [ngClass]="{'active': true }"
-                    (click)='onSelected(questions)'>
-                Question 1
-            </button>
-            <button type='button'
-                    class='list-group-item'
-                    [ngClass]="{'active': false }"
-                    (click)='onSelected(questions)'>
-                Question 2
-            </button>
-            <button type='button'
-                    class='list-group-item'
-                    [ngClass]="{'active': false }"
-                    (click)='onSelected(questions)'>
-                Question 3
-            </button>
-            <button type='button'
-                    class='list-group-item'
-                    [ngClass]="{'active': false }"
-                    (click)='onSelected(questions)'>
-                Question 4
+                    [ngClass]="{'active': question?.id === selectedQuestion?.id }"
+                    (click)='onSelected(question)'>
+                {{ question.question }}
             </button>
         </div>
     </div>
 </div>
-
-<div *ngIf='errorMessage' class='alert alert-danger'>
-    Error: {{ errorMessage }}
-</div>
-
     

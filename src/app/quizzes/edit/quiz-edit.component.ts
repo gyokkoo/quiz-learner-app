@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
+import { ActivatedRoute, Router, NavigationStart, NavigationEnd } from '@angular/router';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-quiz-edit',
@@ -8,7 +10,8 @@ import { Location } from '@angular/common';
 })
 export class QuizEditComponent implements OnInit {
 
-  constructor(private location: Location) { }
+  constructor(private location: Location) {
+  }
 
   ngOnInit() {
   }

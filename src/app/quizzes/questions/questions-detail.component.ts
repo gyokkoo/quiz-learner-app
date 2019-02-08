@@ -5,10 +5,9 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
     templateUrl: './questions-detail.component.html'
 })
 export class QuestionsDetailsComponent implements OnInit {
-    
+
     constructor() { }
 
     ngOnInit(): void {
-        
     }
 }

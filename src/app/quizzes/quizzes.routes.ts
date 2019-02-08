@@ -5,9 +5,10 @@ import {
     QuizzesListComponent,
     QuizDetailsComponent,
     EditInfoComponent,
-    EditQuestionsComponent
+    EditQuestionsComponent,
+    QuestionsAddComponent,
+    QuizEditComponent
 } from './index';
-import { QuizEditComponent } from './edit/quiz-edit.component';
 
 export const quizzesRoutes: Routes = [
     {
@@ -19,7 +20,7 @@ export const quizzesRoutes: Routes = [
         component: QuizDetailsComponent,
     },
     {
-        path: ':id/edit',
+        path: 'edit/:id',
         component: QuizEditComponent,
         children: [
             {
@@ -30,6 +31,10 @@ export const quizzesRoutes: Routes = [
             {
                 path: 'info',
                 component: EditInfoComponent
+            },
+            {
+                path: 'add',
+                component: QuestionsAddComponent
             },
             {
                 path: 'questions',

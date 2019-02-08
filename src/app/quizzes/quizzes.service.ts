@@ -16,6 +16,7 @@ export class QuizzesService {
   private readonly baseUrl = environment.apiHost + 'quiz';
 
   quizzes: IQuiz[];
+  lastQuiz: IQuiz;
 
   constructor(private http: HttpClient,
               private authService: AuthService) {

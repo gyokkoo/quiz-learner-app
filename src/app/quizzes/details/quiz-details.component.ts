@@ -25,7 +25,7 @@ export class QuizDetailsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.sub = this.route.params.subscribe(params => {
       this.id = params['id'];
-    })
+    });
 
     if (this.id) {
       this.quizzesService.getQuizById(this.id).subscribe(
@@ -49,6 +49,7 @@ export class QuizDetailsComponent implements OnInit, OnDestroy {
       this.quiz.questionsCount = quizData.questions.length;
       this.quiz.creator = data.creator;
 
+      this.quizzesService.lastQuiz = this.quiz;
       console.log(this.quiz);
 
       this.toastr.success(data.message);
