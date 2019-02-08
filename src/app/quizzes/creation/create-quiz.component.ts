@@ -34,7 +34,7 @@ export class CreateQuizComponent implements OnInit {
     this.quizzesService.createQuiz(quiz)
       .subscribe(
         data => this.handleQuizCreation(data),
-        data => this.handleError(data.error));
+        error => this.handleError(error));
   }
 
   open(content: any): void {
@@ -58,9 +58,9 @@ export class CreateQuizComponent implements OnInit {
   }
 
   private handleError(error: any) {
-    if (!error.success) {
-      this.toastr.error(error.message);
-    }
+    console.log(error);
+
+    this.toastr.error(error.message);
   }
 
   private getDismissReason(reason: any): string {

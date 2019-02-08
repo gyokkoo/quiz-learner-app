@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { QuizzesService } from '../quizzes.service';
+import { ServerResponse } from 'src/app/shared/models/server-response.model';
+import { ToastrService } from 'ngx-toastr';
+import { IQuiz } from 'src/app/shared/models/quiz.model';
 
 @Component({
   templateUrl: './quizzes-list.component.html',
@@ -6,29 +10,39 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QuizzesListComponent implements OnInit {
 
-  quizzes = [
+  quizzes2 = [
     {
+      _id: 123,
       title: 'USI test',
       description: 'test po usi',
       creator: 'ivancho_1998'
     },
-    {
-      title: 'SDA test',
-      description: 'test po SDA',
-      creator: 'Pesho'
-    },
-    {
-      title: 'JS test',
-      description: 'test po JS',
-      creator: 'George'
-    },
   ];
+
+  quizzes: IQuiz[];
 
   listFilter = '';
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor(private quizzesSerivce: QuizzesService,
+              private toastr: ToastrService) {
+    this.quizzes = [];
   }
 
+  ngOnInit() {
+    this.quizzesSerivce.getAllQuizzes()
+      .subscribe((res: ServerResponse ) => {
+        this.handleQuizzesFetch(res);
+        console.log(res);
+      });
+  }
+
+  private handleQuizzesFetch(res: ServerResponse): void {
+    if (res.success) {
+      for (let i = 0; i < res.data.length; i++) {
+        this.quizzes.push(res.data[i]);
+      }
+      console.log(this.quizzes);
+      this.toastr.success(res.message);
+    }
+  }
 }

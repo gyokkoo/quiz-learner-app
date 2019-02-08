@@ -35,7 +35,7 @@
             <tr *ngFor="let quiz of quizzes">
               <td>
                 <div>
-                  {{ quiz.title }}
+                  {{ quiz.name }}
                 </div>
               </td>
               
@@ -57,8 +57,9 @@
               </td>
 
               <td>
-                <button class="btn btn-outline-primary btn-sm">
-                  Solve
+                <button class="btn btn-outline-primary btn-sm"
+                        [routerLink]="'/quizzes/details/' + quiz._id">
+                  Details
                 </button>
               </td>
             </tr>

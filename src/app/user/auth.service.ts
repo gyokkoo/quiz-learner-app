@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
 import { tap, map, catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
@@ -12,7 +13,8 @@ export class AuthService {
   authToken: string;
   user: any;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+              private router: Router) {
     this.user = JSON.parse(localStorage.getItem('user'));
     this.authToken = localStorage.getItem('id_token');
   }
@@ -62,5 +64,6 @@ export class AuthService {
     this.authToken = null;
     this.user = null;
     localStorage.clear();
+    this.router.navigate(['/welcome']);
   }
 }

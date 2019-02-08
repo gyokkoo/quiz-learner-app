@@ -2,13 +2,18 @@ import { Routes } from '@angular/router';
 
 import {
     CreateQuizComponent,
-    QuizzesListComponent
+    QuizzesListComponent,
+    QuizDetailsComponent
 } from './index';
 
 export const quizzesRoutes: Routes = [
     {
         path: 'create',
         component: CreateQuizComponent
+    },
+    {
+        path: 'details/:id',
+        component: QuizDetailsComponent,
     },
     {
         path: 'all',
