@@ -1,4 +1,6 @@
-<div class="card-body">
+<hr />
+
+<div>
     <form novalidate
           (ngSubmit)="onSubmit()"
           [formGroup]="quizInfoForm">
@@ -39,9 +41,6 @@
            (click)="onSave()">
       Save
    </button>
- </div>
- 
- <div class='alert alert-danger'
-      *ngIf='errorMessage'>
-   {{ errorMessage }}
+
+   <hr />
  </div>

@@ -1,3 +1,109 @@
-<div>
-    Add Questions works!
-</div>
+<hr />
+<div class="col-md-12">
+<form novalidate
+      (ngSubmit)="save()"
+      [formGroup]="questionForm">
+  <div>
+    <legend>Add your questions</legend>
+    <div class="form-group row mb-2">
+      <label class="col-md-2 col-form-label"
+              for="questionId">
+      </label>
+      <div class="col-md-8">
+        <textarea class="form-control"
+              id="questionId"
+              placeholder="Question (required)"
+              formControlName="question"
+              row="6"
+              [ngClass]="{'is-invalid':
+                (questionForm.get('question').touched ||
+                questionForm.get('question').dirty) &&
+                !questionForm.get('question').valid
+              }">
+        </textarea>
+        <span class="invalid-feedback">
+          <span *ngIf="questionForm.get('question').errors?.required">
+            Please enter question.
+          </span>
+          <span *ngIf="questionForm.get('question').errors?.minlength">
+            The question be longer than 10 characters.
+          </span>
+        </span>
+      </div>
+    </div>
+
+    <div formArrayName="answers"
+          *ngFor="let answer of answers.controls; let i = index">
+      <div [formGroupName]="i">
+        <div class="form-group row mb-2">
+          <label class="col-md-2 col-form-label"
+                attr.for="{{'answerId' + i }}">
+          </label>
+          <div class="col-md-8">
+            <input class="form-control"
+                    id="{{'answerId' + i }}"
+                    type="text"
+                    placeholder="Provide answer"
+                    formControlName="answer"
+                    [ngClass]="{
+                      'is-correct': (questionForm.get('answers').value[i].isCorrect)
+                    }">
+          </div>
+
+          <div class="checkbox checkbox-success">
+              <input id="{{'checkbox' + i}}" 
+                    formControlName="isCorrect"
+                    type="checkbox">
+
+              <label for="{{'checkbox' + i}}">
+                  Is correct?
+              </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group mb-2">
+        <button class="btn btn-outline-primary"
+                type="button"
+                (click)="addAnswer()">
+          Add answer
+        </button>
+    </div>
+
+    <div class="custom-control custom-checkbox custom-control-inline">
+      <input type="checkbox" 
+            id="shouldShuffleId" 
+            name="shouldShuffle" 
+            formControlName="shouldShuffle"
+            class="custom-control-input">
+
+      <label class="custom-control-label" 
+            for="shouldShuffleId">
+        Shuffle answers
+      </label>
+    </div>
+  </div>
+
+  <hr />
+
+  <div class="form-group row mb-2">
+    <div class="offset-md-2 col-md-8">
+      <button class="btn btn-primary mr-3"
+              type="submit"
+              style="width:80px"
+              [title]="questionForm.valid ? 'Save your question' : 'Disabled until the form data is valid'"
+              [disabled]="!questionForm.valid">
+        Save
+      </button>
+    </div>
+  </div>
+</form>
+
+<br>Dirty: {{ questionForm.dirty }}
+<br>Touched: {{ questionForm.touched }}
+<br>Valid: {{ questionForm.valid }}
+<br>Value: {{ questionForm.value | json }}
+<br>&nbsp;
+  
+<hr />
