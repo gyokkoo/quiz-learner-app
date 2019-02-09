@@ -1,7 +1,7 @@
 <div class='panel panel-primary'>
     <div class='panel-body'>
         <div class='list-group'>
-            <button *ngFor="let question of questions"
+            <button *ngFor="let question of mockedQuestions"
                     type='button'
                     class='list-group-item'
                     [ngClass]="{'active': question?.id === selectedQuestion?.id }"

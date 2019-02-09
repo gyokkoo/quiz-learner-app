@@ -2,6 +2,10 @@
 @import "~bootstrap/dist/css/bootstrap.min.css";
 @import "~font-awesome/css/font-awesome.min.css";
 
+.is-correct {
+    border: 2px solid green;
+}
+
 div.card-header {
     font-size: x-large;
     text-align: center;

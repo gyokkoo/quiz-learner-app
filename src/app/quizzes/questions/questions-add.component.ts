@@ -44,8 +44,8 @@ export class QuestionsAddComponent implements OnInit {
   }
 
   save() {
-    const quizId = this.questionModel.quizId
-    this.questionModel = this.questionForm.value
+    const quizId = this.questionModel.quizId;
+    this.questionModel = this.questionForm.value;
     this.questionModel.quizId = quizId;
 
     this.quizBuilder.createQuestion(this.questionModel)
