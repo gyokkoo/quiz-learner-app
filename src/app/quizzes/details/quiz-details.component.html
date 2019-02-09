@@ -47,8 +47,10 @@
         </button>
       </div>
 
+      <!-- TODO: Only admins and creator can edit and delete quizzes -->
       <div *ngIf='true'
            class="mb-2">
+        <hr />
         <button class="btn btn-success mr-3"
                 style="width:80px"
                 type="button"
@@ -56,8 +58,49 @@
                 [routerLink]="'/quizzes/edit/' + id">
             Edit
         </button>
-      </div>
+        <button class="btn btn-danger mr-3"
+                style="width:80px"
+                type="button"
+                title="delete"
+                (click)="open(content)">
+            Delete
+        </button>
 
+        <hr />
+
+        <div *ngIf="closeResult">
+          {{ closeResult }}
+        </div>
     </div>
   </div>
 </div>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" 
+        id="modal-basic-title-delete">
+      Delete Quiz <span class='text-danger'>/Danger Zone/</span>
+    </h4>
+
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    Are you sure you want to delete the quiz and all questions?
+  </div>
+
+  <div class="modal-footer">
+      <button class="btn btn-danger"
+              type="button"
+              (click)="modal.close('Delete confirmed')">
+        Delete
+      </button>
+      <button class="btn btn-outline-secondary"
+              type="button"
+              (click)="modal.dismiss('Cancel click')">
+        Cancel
+      </button>
+    </div>
+</ng-template>

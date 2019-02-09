@@ -7,7 +7,6 @@ import { AuthService } from 'src/app/user/auth.service';
 import { IQuestion } from 'src/app/shared/models/question.model';
 import { ServerResponse } from 'src/app/shared/models/server-response.model';
 import { tap } from 'rxjs/operators';
-import { IQuiz } from 'src/app/shared/models/quiz.model';
 
 @Injectable({
   providedIn: 'root'
@@ -19,8 +18,8 @@ export class QuizBuilderService {
 
   questionsMock = [
     {
-      quizId: "999999",
-      id: "6534",
+      quizId: '999999',
+      id: '6534',
       question: 'What is asd?',
       answers: [
         { answer: '1', isCorrect: true },
@@ -30,8 +29,8 @@ export class QuizBuilderService {
       shouldShuffle: false,
     },
     {
-      quizId: "999999",
-      id: "123",
+      quizId: '999999',
+      id: '123',
       question: 'What is das?',
       answers: [
         { answer: '4', isCorrect: true },
@@ -41,8 +40,8 @@ export class QuizBuilderService {
       shouldShuffle: false,
     },
     {
-      quizId: "999999",
-      id: "4556",
+      quizId: '999999',
+      id: '455',
       question: 'What is 123?',
       answers: [
         { answer: '7', isCorrect: true },
@@ -51,7 +50,7 @@ export class QuizBuilderService {
       ],
       shouldShuffle: false,
     }];
-  
+
   currentQuestion: IQuestion;
 
   index = 0;
@@ -65,7 +64,7 @@ export class QuizBuilderService {
   }
 
   getSelectedQuestion(): IQuestion {
-    return this.currentQuestion
+    return this.currentQuestion;
   }
 
   createQuestion(question: IQuestion): Observable<ServerResponse> {

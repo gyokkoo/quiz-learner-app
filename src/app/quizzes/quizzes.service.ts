@@ -24,6 +24,7 @@ export class QuizzesService {
 
   createQuiz(quiz: any): Observable<any> {
     quiz.userId = this.authService.user.id;
+    quiz.creator = this.authService.user.name;
     const url = `${this.baseUrl}/create`;
     const headers = this.getRequestHeaders(true);
 
@@ -51,7 +52,17 @@ export class QuizzesService {
 
     return this.http.get(url, { headers })
       .pipe(
-        tap((data: ServerResponse) => console.log(data))
+        tap((res: ServerResponse) => console.log(res))
+      );
+  }
+
+  deleteQuizById(quizId: string): Observable<ServerResponse> {
+    const url = `${this.baseUrl}/deleteQuiz/${quizId}`;
+    const headers = this.getRequestHeaders(true);
+
+    return this.http.delete(url, { headers })
+      .pipe(
+        tap((res: ServerResponse) => console.log(res))
       );
   }
 

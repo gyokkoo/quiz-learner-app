@@ -18,6 +18,7 @@ import {
 } from './core/index';
 
 import { appRoutes } from './routes';
+import { QuizzesModule } from './quizzes/quizzes.module';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { appRoutes } from './routes';
     BrowserModule,
     BrowserAnimationsModule,
     NgbModule,
+    QuizzesModule,
     // NgbModule.forRoot(),
     ToastrModule.forRoot({
       // timeOut: 500,
@@ -46,6 +48,8 @@ import { appRoutes } from './routes';
       provide: ErrorHandler,
       useClass: ErrorsHandler
     }
+  ],
+  entryComponents: [
   ],
   bootstrap: [AppComponent]
 })

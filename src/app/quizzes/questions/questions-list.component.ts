@@ -17,7 +17,7 @@ export class QuestionsListComponent implements OnInit {
     mockedQuestions: any[];
     mockedSelectedQuestion: any;
 
-    constructor(private quizBuilder: QuizBuilderService) {        
+    constructor(private quizBuilder: QuizBuilderService) {
     }
 
     ngOnInit() {
@@ -30,9 +30,9 @@ export class QuestionsListComponent implements OnInit {
         }
 
         this.mockedQuestions = this.quizBuilder.questionsMock;
-        this.selectedQuestion = this.mockedQuestions[0]
+        this.selectedQuestion = this.mockedQuestions[0];
 
-        console.log(this.mockedQuestions)
+        console.log(this.mockedQuestions);
 
         this.selectedQuestion = this.questions[0];
     }

@@ -10,15 +10,6 @@ import { IQuiz } from 'src/app/shared/models/quiz.model';
 })
 export class QuizzesListComponent implements OnInit {
 
-  quizzes2 = [
-    {
-      _id: 123,
-      title: 'USI test',
-      description: 'test po usi',
-      creator: 'ivancho_1998'
-    },
-  ];
-
   quizzes: IQuiz[];
 
   listFilter = '';

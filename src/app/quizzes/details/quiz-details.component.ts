@@ -1,9 +1,11 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 
 import { QuizzesService } from '../quizzes.service';
 import { IQuiz } from 'src/app/shared/models/quiz.model';
+import { ServerResponse } from 'src/app/shared/models/server-response.model';
 
 @Component({
   templateUrl: './quiz-details.component.html',
@@ -12,14 +14,33 @@ import { IQuiz } from 'src/app/shared/models/quiz.model';
 export class QuizDetailsComponent implements OnInit, OnDestroy {
 
   quiz: IQuiz;
+  modalCloseResult: string;
 
   private id: string;
   private sub: any;
 
   constructor(private quizzesService: QuizzesService,
               private toastr: ToastrService,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private router: Router,
+              private modalService: NgbModal) {
     this.quiz = this.getInitialQuizValues();
+  }
+
+  open(content: any): void {
+    this.modalService
+      .open(content, { ariaLabelledBy: 'modal-basic-title-delete' }).result
+      .then(
+        (result) => {
+        // Deletion is confirmed by the user, so do it!
+        // Warning it will delete also all questions attached to the quiz
+        this.quizzesService.deleteQuizById(this.id).subscribe(
+          (res: ServerResponse) => this.handleQuizDeletion(res)
+        );
+        this.modalCloseResult = `Closed with: ${result}`;
+      }, (reason) => {
+        this.modalCloseResult = `Dismissed ${this.getDismissReason(reason)}`;
+      });
   }
 
   ngOnInit(): void {
@@ -29,7 +50,8 @@ export class QuizDetailsComponent implements OnInit, OnDestroy {
 
     if (this.id) {
       this.quizzesService.getQuizById(this.id).subscribe(
-        (data => this.handleQuizDetailsFetching(data))
+        (data => this.handleQuizDetailsFetching(data)),
+        (error => this.handleQuizDetailsError(error)),
       );
     }
   }
@@ -58,6 +80,20 @@ export class QuizDetailsComponent implements OnInit, OnDestroy {
     }
   }
 
+  private handleQuizDeletion(res: ServerResponse): void {
+    if (res.success) {
+      this.toastr.success(res.message);
+      this.router.navigate(['/quizzes/all']);
+    } else {
+      this.toastr.error(res.message);
+    }
+  }
+
+  private handleQuizDetailsError(error): any {
+    // TODO: Handle better
+    this.toastr.error(error.message);
+  }
+
   private getInitialQuizValues(): IQuiz {
     // Return an initialized object
     return {
@@ -69,5 +105,15 @@ export class QuizDetailsComponent implements OnInit, OnDestroy {
       rating: null,
       questionsCount: 0
    };
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return  `with: ${reason}`;
+    }
   }
 }
