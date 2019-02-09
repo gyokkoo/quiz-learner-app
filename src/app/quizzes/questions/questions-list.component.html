@@ -1,10 +1,10 @@
 <div class='panel panel-primary'>
     <div class='panel-body'>
         <div class='list-group'>
-            <button *ngFor="let question of mockedQuestions"
+            <button *ngFor="let question of questions"
                     type='button'
                     class='list-group-item'
-                    [ngClass]="{'active': question?.id === selectedQuestion?.id }"
+                    [ngClass]="{'active': question?._id === selectedQuestion?._id }"
                     (click)='onSelected(question)'>
                 {{ question.question }}
             </button>

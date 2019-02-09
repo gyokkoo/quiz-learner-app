@@ -1,10 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { QuizBuilderService } from './quiz-builder.service';
-
-export interface Question {
-    question: string;
-    id: string;
-}
+import { Router } from '@angular/router';
+import { QuizzesService } from '../quizzes.service';
+import { ServerResponse } from 'src/app/shared/models/server-response.model';
+import { ToastrService } from 'ngx-toastr';
+import { IQuestion } from 'src/app/shared/models/question.model';
 
 @Component({
     selector: 'app-questions-list',
@@ -12,33 +12,50 @@ export interface Question {
 })
 export class QuestionsListComponent implements OnInit {
 
-    questions: Question[];
-    selectedQuestion: Question;
+    questions: IQuestion[];
+    selectedQuestion: IQuestion;
+
     mockedQuestions: any[];
     mockedSelectedQuestion: any;
 
-    constructor(private quizBuilder: QuizBuilderService) {
+    quizId: string;
+
+    constructor(private quizBuilder: QuizBuilderService,
+                private quizzesServce: QuizzesService,
+                private toastr: ToastrService,
+                private router: Router) {
     }
 
     ngOnInit() {
         this.questions = [];
-        for (let i = 1; i <= 10; i++) {
-            this.questions.push({
-                question: `Question ${i}`,
-                id: i.toString()
-            });
-        }
 
-        this.mockedQuestions = this.quizBuilder.questionsMock;
-        this.selectedQuestion = this.mockedQuestions[0];
+        this.quizId = this.router.url.split('/')[3];
 
-        console.log(this.mockedQuestions);
-
-        this.selectedQuestion = this.questions[0];
+        this.quizzesServce.getAllQuestionsByQuizId(this.quizId)
+            .subscribe(
+                ((res: ServerResponse) => this.handleQuestionsFetched(res))
+            );
     }
 
-    onSelected(question): void {
+    onSelected(question: IQuestion): void {
         this.quizBuilder.currentQuestion = question;
         this.selectedQuestion = question;
+    }
+
+    private handleQuestionsFetched(res: ServerResponse) {
+        if (res.success) {
+            const questionsData = res.data;
+            for (let i = 0; i < questionsData.length; i++) {
+                this.questions.push(questionsData[i]);
+            }
+            if (questionsData.length > 0) {
+                this.quizBuilder.currentQuestion = this.questions[0];
+                this.selectedQuestion = this.questions[0];
+            }
+            console.log(this.questions);
+            this.toastr.success(res.message);
+        } else {
+            this.toastr.error('Could not load quiz questions! Check for errors');
+        }
     }
 }

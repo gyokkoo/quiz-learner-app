@@ -28,6 +28,7 @@ export class QuestionsAddComponent implements OnInit {
   ngOnInit() {
     this.questionModel = {
       quizId: this.router.url.split('/')[3],
+      _id: '',
       question: '',
       answers: [{
         answer: '',

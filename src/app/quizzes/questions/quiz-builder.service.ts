@@ -16,51 +16,15 @@ export class QuizBuilderService {
   private readonly baseUrl = environment.apiHost + 'quiz';
   questions: IQuestion[];
 
-  questionsMock = [
-    {
-      quizId: '999999',
-      id: '6534',
-      question: 'What is asd?',
-      answers: [
-        { answer: '1', isCorrect: true },
-        { answer: '2', isCorrect: true },
-        { answer: '3', isCorrect: false },
-      ],
-      shouldShuffle: false,
-    },
-    {
-      quizId: '999999',
-      id: '123',
-      question: 'What is das?',
-      answers: [
-        { answer: '4', isCorrect: true },
-        { answer: '5', isCorrect: true },
-        { answer: '6', isCorrect: false },
-      ],
-      shouldShuffle: false,
-    },
-    {
-      quizId: '999999',
-      id: '455',
-      question: 'What is 123?',
-      answers: [
-        { answer: '7', isCorrect: true },
-        { answer: '233', isCorrect: true },
-        { answer: '6767', isCorrect: false },
-      ],
-      shouldShuffle: false,
-    }];
-
   currentQuestion: IQuestion;
 
   index = 0;
-  questionIndex: number;
+
   quizId: string;
 
   constructor(private http: HttpClient,
               private authService: AuthService) {
     this.questions = [];
-    this.currentQuestion = this.questionsMock[0];
   }
 
   getSelectedQuestion(): IQuestion {

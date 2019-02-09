@@ -56,6 +56,16 @@ export class QuizzesService {
       );
   }
 
+  getAllQuestionsByQuizId(id: string): Observable<ServerResponse> {
+    const url = `${this.baseUrl}/getQuizById/${id}`;
+    const headers = this.getRequestHeaders(false);
+
+    return this.http.get<ServerResponse>(url, { headers })
+      .pipe(
+        tap((res: ServerResponse) => console.log(res))
+      );
+  }
+
   deleteQuizById(quizId: string): Observable<ServerResponse> {
     const url = `${this.baseUrl}/deleteQuiz/${quizId}`;
     const headers = this.getRequestHeaders(true);
