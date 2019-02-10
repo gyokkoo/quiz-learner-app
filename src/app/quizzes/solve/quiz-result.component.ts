@@ -16,4 +16,7 @@ export class QuizResultComponent implements OnInit {
     console.log(this.solvedQuiz);
   }
 
+  reportMistakes() {
+    window.alert('Not implemented yet!');
+  }
 }

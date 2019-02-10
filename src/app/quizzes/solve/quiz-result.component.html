@@ -1,3 +1,37 @@
-<p>
-  quiz-result works!
-</p>
+<div class='panel panel-primary'>
+  <div class='panel-body'>
+      <div *ngIf="solvedQuiz">
+          <div>
+            Your wrong answers:
+          </div>
+
+          <div *ngFor="let question of solvedQuiz"
+                class="col-md-12">
+            <div>
+              <h3> {{ question.question }} </h3>
+              <ul class="list-group">
+                  <li *ngFor="let answer of question.answers"
+                      class="list-group-item"
+                      [ngClass]="{'is-wrong': answer.isSelected && !answer.isCorrect,
+                                  'is-selected': answer.isSelected && answer.isCorrect
+                                 }">
+                    <i *ngIf="answer.isCorrect"
+                       class="fas fa-check"></i>
+                      {{ answer.answer }} 
+                  </li>
+              </ul>
+            </div>
+
+            <hr />
+          </div>
+      </div>
+  </div>
+
+  <div class='panel-footer'>
+      <a class="btn btn-light" 
+          style="width:160px"
+          (click)='reportMistakes()'>
+          Report mistakes
+      </a>
+  </div>
+</div>
