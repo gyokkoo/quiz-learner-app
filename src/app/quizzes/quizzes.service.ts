@@ -7,6 +7,7 @@ import { tap, catchError } from 'rxjs/operators';
 
 import { IQuiz } from '../shared/models/quiz.model';
 import { ServerResponse } from '../shared/models/server-response.model';
+import { ISolvedQuestion } from '../shared/models/question.model';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,7 @@ export class QuizzesService {
 
   private readonly baseUrl = environment.apiHost + 'quiz';
 
+  solvedQuestions: Array<ISolvedQuestion>;
   quizzes: IQuiz[];
   lastQuiz: IQuiz;
 

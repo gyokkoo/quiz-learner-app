@@ -13,7 +13,8 @@ import {
   QuestionsListComponent,
   QuestionsDetailsComponent,
   QuestionsAddComponent,
-  SolveQuizComponent
+  SolveQuizComponent,
+  QuizResultComponent
 } from './index';
 import { quizzesRoutes } from './quizzes.routes';
 import { SharedModule } from '../shared/shared.module';
@@ -29,7 +30,8 @@ import { SharedModule } from '../shared/shared.module';
     QuestionsListComponent,
     QuestionsDetailsComponent,
     QuestionsAddComponent,
-    SolveQuizComponent
+    SolveQuizComponent,
+    QuizResultComponent
   ],
   imports: [
     SharedModule,

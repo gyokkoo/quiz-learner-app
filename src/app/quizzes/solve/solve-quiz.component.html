@@ -5,41 +5,52 @@
     </div>
 
     <div class="card-body">
+        <div *ngIf="question">
+            <div class="col-md-12">
+                <h3> {{ question.question }} </h3>
+                <ul class="list-group">
+                    <li *ngFor="let answer of question.answers; let i = index"
+                        class="list-group-item"
+                        (click)="answerSelected(answer)"
+                        [ngClass]="{'active' : answer.isSelected}">
+                        <span>{{ getQuestionLetter(i) }}) </span>
+                        {{ answer.answer }}
+                    </li>
+                </ul>
+            </div>
+             <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item"
+                        (click)="previousQuestion()"
+                        [ngClass]="{'disabled': isFirstQuestion}">
+                        <a class="page-link">Previous</a>
+                    </li>
+                    <li class="page-item"
+                        (click)="nextQuestion()"
+                        [ngClass]="{'disabled': isLastQuestion}">
+                        <a class="page-link">Next</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
 
-      <div *ngIf="question">
-          <div class="col-md-10">
-              <h3> {{ question.question }} </h3>
-              <ul class="list-group">
-                  <li *ngFor="let answer of question.answers"
-                      class="list-group-item"
-                      (click)="answerSelected(answer)"
-                      [ngClass]="{'is-correct' : answer.isSelected && answer.isCorrect,
-                                  'is-wrong' : answer.isSelected && !answer.isCorrect}"
-                      >
-                      {{ answer.answer }}
-                  </li>
-              </ul>
-          </div>
-      </div>
+        <app-quiz-result *ngIf="isQuizFinished"
+                         [solvedQuiz]="solvedQuestions">
+            
+        </app-quiz-result>
+	</div>
 
-      <div class="mb-2">
-          <button *ngIf="true"
-                  class="btn btn-outline-primary"
-                  style="width:80px"
-                  type="button"
-                  (click)="nextQuestionClicked()"
-                  title="Next">
-              Next
-          </button>
-
-      <div class="mb-2">
+    <div class="mb-2 finish-button-wrapper">
         <button *ngIf="isLastQuestion"
                 class="btn btn-outline-success"
-                style="width:80px"
                 type="button"
-                title="Finish">
+                title="Finish"
+                (click)="onFinished()">
             Finish
         </button>
-      </div>
+    </div>
+
+    <hr />
+
   </div>
 </div>

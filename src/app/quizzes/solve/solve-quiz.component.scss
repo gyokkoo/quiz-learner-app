@@ -5,3 +5,37 @@
 .is-wrong {
     color: red;
 }
+
+div.finish-button-wrapper {
+    text-align: center;
+
+    button {
+        font-size: 1.3rem;
+        width: 100px;
+    }
+}
+
+.disabled {
+    pointer-events: none; // This makes it not clickable
+    opacity: 0.6;         // This grays it out to look disabled
+}
+
+ul.list-group > li.list-group-item {
+    text-align: left;
+}
+
+ul.pagination {
+    padding-top: 10px;
+
+    display: flex;
+    justify-content: center;
+
+    > li.page-item {
+        color: #007bff;
+        padding-left: 10px;
+
+        > a {
+            font-size: 1.1rem;
+        }
+    }
+}

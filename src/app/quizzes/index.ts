@@ -8,3 +8,4 @@ export * from './questions/questions-list.component';
 export * from './questions/questions-detail.component';
 export * from './questions/questions-add.component';
 export * from './solve/solve-quiz.component';
+export * from './solve/quiz-result.component';
