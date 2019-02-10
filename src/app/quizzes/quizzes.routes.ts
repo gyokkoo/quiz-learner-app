@@ -7,7 +7,8 @@ import {
     EditInfoComponent,
     EditQuestionsComponent,
     QuestionsAddComponent,
-    QuizEditComponent
+    QuizEditComponent,
+    SolveQuizComponent
 } from './index';
 
 export const quizzesRoutes: Routes = [
@@ -18,6 +19,10 @@ export const quizzesRoutes: Routes = [
     {
         path: 'details/:id',
         component: QuizDetailsComponent,
+    },
+    {
+        path: 'quizzes/solve/:id',
+        component: SolveQuizComponent
     },
     {
         path: 'edit/:id',

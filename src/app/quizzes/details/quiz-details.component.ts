@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { QuizzesService } from '../quizzes.service';
 import { IQuiz } from 'src/app/shared/models/quiz.model';
 import { ServerResponse } from 'src/app/shared/models/server-response.model';
+import { QuizSolverService } from '../solve/quiz-solver.service';
 
 @Component({
   templateUrl: './quiz-details.component.html',
@@ -20,6 +21,7 @@ export class QuizDetailsComponent implements OnInit, OnDestroy {
   private sub: any;
 
   constructor(private quizzesService: QuizzesService,
+              private quizSolver: QuizSolverService,
               private toastr: ToastrService,
               private route: ActivatedRoute,
               private router: Router,
@@ -60,23 +62,24 @@ export class QuizDetailsComponent implements OnInit, OnDestroy {
     this.sub.unsubscribe();
   }
 
-  private handleQuizDetailsFetching(data): void {
-    if (data.success) {
+  private handleQuizDetailsFetching(res): void {
+    if (res.success) {
       // TODO: map properly the data
-      const quizData = data.quiz;
+      const quizData = res.quiz;
       this.quiz.id = quizData._id;
       this.quiz.name = quizData.name;
       this.quiz.description = quizData.description;
       this.quiz.dateCreated = new Date(quizData.dateCreated);
       this.quiz.questionsCount = quizData.questions.length;
-      this.quiz.creator = data.creator;
+      this.quiz.creator = res.creator;
 
       this.quizzesService.lastQuiz = this.quiz;
       console.log(this.quiz);
+      this.quizSolver.questions = res.data;
 
-      this.toastr.success(data.message);
+      this.toastr.success(res.message);
     } else {
-      this.toastr.error(data.message);
+      this.toastr.error(res.message);
     }
   }
 

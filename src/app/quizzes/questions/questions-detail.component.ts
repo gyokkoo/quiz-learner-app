@@ -18,4 +18,8 @@ export class QuestionsDetailsComponent implements OnInit {
 
     ngOnInit(): void {
     }
+
+    onEditClick(): void {
+        window.alert('Edit question is not yet implemented!');
+    }
 }

@@ -12,11 +12,11 @@ import {
   EditQuestionsComponent,
   QuestionsListComponent,
   QuestionsDetailsComponent,
-  QuestionsAddComponent
+  QuestionsAddComponent,
+  SolveQuizComponent
 } from './index';
 import { quizzesRoutes } from './quizzes.routes';
 import { SharedModule } from '../shared/shared.module';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -28,7 +28,8 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
     EditQuestionsComponent,
     QuestionsListComponent,
     QuestionsDetailsComponent,
-    QuestionsAddComponent
+    QuestionsAddComponent,
+    SolveQuizComponent
   ],
   imports: [
     SharedModule,
