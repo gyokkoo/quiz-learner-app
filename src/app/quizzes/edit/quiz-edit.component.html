@@ -15,25 +15,22 @@
                 Preview Questions
             </a>
         </div>
-  
-        <router-outlet></router-outlet>
-  
-        <div class="mb-2">
+
+        <hr />
+        
+        <div [@slideInAnimation]="o.isActivated ? o.activatedRoute : ''">
+            <router-outlet #o="outlet"></router-outlet>
+        </div>
+
+        <!-- <div class="mb-2">
             <div>
                 <button class="btn btn-outline-secondary mr-3"
                         type="button"
                         (click)="backClicked()">
                     Back
                 </button>
-
-                <button class="btn btn-outline-danger"
-                        type="button"
-                        title="Delete the quiz"
-                        (click)="deleteQuiz()">
-                    Delete
-                </button>
             </div>
-        </div>
+        </div> -->
     </div>
   </div>
 </div>

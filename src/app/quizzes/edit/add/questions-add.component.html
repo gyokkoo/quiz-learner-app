@@ -1,4 +1,3 @@
-<hr />
 <div class="col-md-12">
 <form novalidate
       (ngSubmit)="save()"
@@ -46,8 +45,16 @@
                     placeholder="Provide answer"
                     formControlName="answer"
                     [ngClass]="{
-                      'is-correct': (questionForm.get('answers').value[i].isCorrect)
-                    }">
+                      'is-correct': (questionForm.get('answers').value[i].isCorrect),
+                      'is-invalid':
+                          (questionForm.get('answers').touched ||
+                           questionForm.get('answers').dirty) &&
+                          !questionForm.get('answers').valid}">
+              <span class="invalid-feedback">
+                <span *ngIf="questionForm.get('answers').errors?.required">
+                  Please provide answer.
+                </span>
+              </span>
           </div>
 
           <div class="checkbox checkbox-success">
@@ -63,12 +70,19 @@
       </div>
     </div>
 
-    <div class="form-group mb-2">
-        <button class="btn btn-outline-primary"
-                type="button"
-                (click)="addAnswer()">
-          Add answer
-        </button>
+    <div class="answerControl">
+      <button class="btn btn-outline-primary"
+              type="button"
+              (click)="addAnswer()">
+        Add answer
+      </button>
+
+      <button class="btn btn-outline-primary"
+              type="button"
+              [disabled]="answers.length === 1"
+              (click)="removeLastAnswer()">
+        Remove answer
+      </button>
     </div>
 
     <div class="custom-control custom-checkbox custom-control-inline">

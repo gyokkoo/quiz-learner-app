@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { slideInAnimation } from './app.animation';
+import { slideInAnimation } from './shared/app.animation';
 
 @Component({
   selector: 'app-root',

@@ -1,6 +1,11 @@
 .is-correct {
     border: 2px solid green;
 }
+
+div.answerControl > button {
+    margin: 5px;
+}
+
 .checkbox {
     padding-left: 20px; 
 }

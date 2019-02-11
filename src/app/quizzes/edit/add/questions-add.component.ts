@@ -55,6 +55,11 @@ export class QuestionsAddComponent implements OnInit {
 
   addAnswer(): void {
     this.answers.push(this.buildAnswer());
+    console.log(this.answers.length);
+  }
+
+  removeLastAnswer(): void {
+    this.answers.removeAt(this.answers.length - 1);
   }
 
   private handleQuestionCreation(res: ServerResponse) {
@@ -67,7 +72,7 @@ export class QuestionsAddComponent implements OnInit {
 
   private buildAnswer(): FormGroup {
     return this.formBuilder.group({
-      answer: '',
+      answer: ['', Validators.required],
       isCorrect: false,
     });
   }

@@ -73,7 +73,7 @@ export class QuizDetailsComponent implements OnInit, OnDestroy {
       this.quiz.questionsCount = quizData.questions.length;
       this.quiz.creator = res.creator;
 
-      this.quizzesService.lastQuiz = this.quiz;
+      this.quizzesService.currentQuiz = this.quiz;
       console.log(this.quiz);
       this.quizSolver.questions = res.data;
 

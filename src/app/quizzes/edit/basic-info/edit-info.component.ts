@@ -38,7 +38,7 @@ export class EditInfoComponent implements OnInit {
 
   onSave(): void {
     const newValues = this.quizInfoForm.value;
-    window.alert('Updating quiz info is not implemented yes!');
+    window.alert('Updating quiz info is not implemented yet!');
   }
 
   private handleQuizDetailsFetching(data: any): void {

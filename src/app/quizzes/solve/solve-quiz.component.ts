@@ -7,7 +7,6 @@ import { ToastrService } from 'ngx-toastr';
 import { IQuiz } from 'src/app/shared/models/quiz.model';
 import { IQuestion, ISolvedQuestion } from 'src/app/shared/models/question.model';
 
-
 export interface IAnswer {
   answer: string;
   isCorrect: boolean;
@@ -52,7 +51,6 @@ export class SolveQuizComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.quizId = this.router.url.split('/')[3];
 
-    // If the cached quiz id is not loaded
     if (!this.quizSolver.questions ||
          this.quizSolver.questions[0].quizId !== this.quizId) {
       console.log('Questions are not loaded, loading them');

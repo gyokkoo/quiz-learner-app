@@ -18,7 +18,7 @@ export class QuizzesService {
 
   solvedQuestions: Array<ISolvedQuestion>;
   quizzes: IQuiz[];
-  lastQuiz: IQuiz;
+  currentQuiz: IQuiz;
 
   constructor(private http: HttpClient,
               private authService: AuthService) {
