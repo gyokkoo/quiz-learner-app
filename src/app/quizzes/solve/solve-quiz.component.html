@@ -6,19 +6,11 @@
 
     <div class="card-body">
         <div *ngIf="question && !isQuizFinished">
-            <div class="col-md-12">
-                <h3> {{ question.question }} </h3>
-                <ul class="list-group">
-                    <li *ngFor="let answer of question.answers; let i = index"
-                        class="list-group-item"
-                        (click)="answerSelected(answer)"
-                        [ngClass]="{'active' : answer.isSelected}">
-                        <span>{{ getQuestionLetter(i) }}) </span>
-                        {{ answer.answer }}
-                    </li>
-                </ul>
-            </div>
-             <nav aria-label="Page navigation example">
+            <app-question-answer 
+                [question]="question">
+            </app-question-answer>
+
+            <nav aria-label="Page navigation example">
                 <ul class="pagination">
                     <li class="page-item"
                         (click)="previousQuestion()"

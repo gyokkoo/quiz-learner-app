@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, Validators, AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IQuestion } from 'src/app/shared/models/question.model';
-import { QuizBuilderService } from './quiz-builder.service';
+import { QuizBuilderService } from '../quiz-builder.service';
 import { Toast, ToastrService } from 'ngx-toastr';
 import { ServerResponse } from 'src/app/shared/models/server-response.model';
 

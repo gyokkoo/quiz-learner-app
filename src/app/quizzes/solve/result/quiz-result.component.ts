@@ -8,7 +8,7 @@ import { ISolvedQuestion } from 'src/app/shared/models/question.model';
 })
 export class QuizResultComponent implements OnInit {
 
-  @Input() solvedQuiz: Array<ISolvedQuestion>
+  @Input() solvedQuiz: Array<ISolvedQuestion>;
 
   constructor() { }
 

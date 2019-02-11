@@ -3,7 +3,7 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule } from 'ngx-toastr';
 
 import { AppComponent } from './app.component';
@@ -33,10 +33,7 @@ import { QuizzesModule } from './quizzes/quizzes.module';
     BrowserAnimationsModule,
     NgbModule,
     QuizzesModule,
-    // NgbModule.forRoot(),
     ToastrModule.forRoot({
-      // timeOut: 500,
-      // positionClass: 'toast-top-right',
       positionClass: 'toast-top-right',
       preventDuplicates: false,
     }),

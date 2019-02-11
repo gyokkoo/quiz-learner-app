@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { QuizBuilderService } from './quiz-builder.service';
+import { QuizBuilderService } from '../quiz-builder.service';
 import { Router } from '@angular/router';
-import { QuizzesService } from '../quizzes.service';
+import { QuizzesService } from '../../quizzes.service';
 import { ServerResponse } from 'src/app/shared/models/server-response.model';
 import { ToastrService } from 'ngx-toastr';
 import { IQuestion } from 'src/app/shared/models/question.model';

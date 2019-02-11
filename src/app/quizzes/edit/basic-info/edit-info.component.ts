@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { QuizzesService } from '../quizzes.service';
+import { QuizzesService } from '../../quizzes.service';
 import { ActivatedRoute, Router, RoutesRecognized, ParamMap } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { IQuiz } from 'src/app/shared/models/quiz.model';

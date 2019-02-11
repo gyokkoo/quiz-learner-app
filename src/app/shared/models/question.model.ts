@@ -2,7 +2,7 @@ export interface IQuestion {
     _id: string;
     quizId: string;
     question: string;
-    answers: Array<IAnswer>
+    answers: Array<IAnswer>;
     shouldShuffle: boolean;
 }
 
@@ -15,7 +15,7 @@ export interface ISolvedQuestion {
     _id: string;
     quizId: string;
     question: string;
-    answers: Array<ISolvedAnswer>
+    answers: Array<ISolvedAnswer>;
     shouldShuffle: boolean;
     isWrong: boolean | null;
 }

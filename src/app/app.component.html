@@ -1,5 +1,8 @@
 <div>
   <app-nav-header></app-nav-header>
-  <router-outlet></router-outlet>
+  <div class="container"
+       [@slideInAnimation]="o.isActivated ? o.activatedRoute : ''">
+    <router-outlet #o="outlet"></router-outlet>
+  </div>
 </div>
 

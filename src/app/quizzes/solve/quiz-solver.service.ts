@@ -14,8 +14,8 @@ export class QuizSolverService {
   questions: Array<ISolvedQuestion>;
   index: number;
   isFirstQuestion: boolean;
-  isLastQuestion: boolean
-  
+  isLastQuestion: boolean;
+
   constructor() { }
 
   clearCache(): void {
@@ -25,22 +25,22 @@ export class QuizSolverService {
     this.isLastQuestion = null;
   }
 
-  printQuizState() : void {
+  printQuizState(): void {
     console.log('printing');
     console.log(this.questions);
   }
 
   checkQuiz(): void {
-    let totalPoints = this.questions.length;
+    const totalPoints = this.questions.length;
     let yourPoints = 0;
 
     for (let i = 0; i < this.questions.length; i++) {
-      let answers = this.questions[i].answers;
+      const answers = this.questions[i].answers;
       let isAnswerWrong = false;
       for (let j = 0; j < answers.length; j++) {
-        if (answers[j].isCorrect != answers[j].isSelected) {
-          isAnswerWrong = true
-        } 
+        if (answers[j].isCorrect !== answers[j].isSelected) {
+          isAnswerWrong = true;
+        }
       }
 
       if (isAnswerWrong) {

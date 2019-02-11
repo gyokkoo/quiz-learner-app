@@ -38,7 +38,6 @@ export class QuizzesService {
 
   getQuizById(id: string): Observable<ServerResponse> {
     const url =  `${this.baseUrl}/getQuizById/${id}`;
-    console.log(id);
 
     const headers = this.getRequestHeaders(false);
 

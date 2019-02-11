@@ -15,8 +15,8 @@
                       [ngClass]="{'is-wrong': answer.isSelected && !answer.isCorrect,
                                   'is-selected': answer.isSelected && answer.isCorrect
                                  }">
-                    <i *ngIf="answer.isCorrect"
-                       class="fas fa-check"></i>
+                    <span *ngIf="answer.isCorrect"
+                          class="fa fa-check"></span>
                       {{ answer.answer }} 
                   </li>
               </ul>

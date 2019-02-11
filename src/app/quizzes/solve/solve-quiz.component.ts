@@ -20,8 +20,6 @@ export interface IAnswer {
   styleUrls: ['./solve-quiz.component.scss']
 })
 export class SolveQuizComponent implements OnInit, OnDestroy {
-  answerNumbersArr = Array.from('ABCDEFGHIJKLMNOPQRSTUVCXYZ');
-
   quizId: string;
 
   get question(): IQuestion | null {
@@ -43,7 +41,7 @@ export class SolveQuizComponent implements OnInit, OnDestroy {
   get solvedQuestions(): Array<ISolvedQuestion> {
     return this.quizSolver.questions;
   }
-  
+
   isQuizFinished: boolean;
 
   constructor(private router: Router,
@@ -55,7 +53,7 @@ export class SolveQuizComponent implements OnInit, OnDestroy {
     this.quizId = this.router.url.split('/')[3];
 
     // If the cached quiz id is not loaded
-    if (!this.quizSolver.questions || 
+    if (!this.quizSolver.questions ||
          this.quizSolver.questions[0].quizId !== this.quizId) {
       console.log('Questions are not loaded, loading them');
       this.quizzesService.getAllQuestionsByQuizId(this.quizId)
@@ -68,15 +66,6 @@ export class SolveQuizComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.quizSolver.clearCache();
-  }
-
-  answerSelected(answer: IAnswer): void {
-    if (answer.isSelected) {
-      answer.isSelected = false;  
-    } else {
-      answer.isSelected = true;
-    }
-    console.log(answer);
   }
 
   previousQuestion(): void {
@@ -98,7 +87,7 @@ export class SolveQuizComponent implements OnInit, OnDestroy {
   }
 
   nextQuestion(): void {
-    if (this.quizSolver.index == this.quizSolver.questions.length - 2) {
+    if (this.quizSolver.index === this.quizSolver.questions.length - 2) {
       this.quizSolver.isLastQuestion = true;
     } else {
       this.quizSolver.isLastQuestion = false;
@@ -108,10 +97,6 @@ export class SolveQuizComponent implements OnInit, OnDestroy {
       this.quizSolver.index++;
       this.quizSolver.isFirstQuestion = false;
     }
-  }
-
-  getQuestionLetter(index: number) : string {
-    return this.answerNumbersArr[index];
   }
 
   handleQuestionsFetched(res: ServerResponse): void {
