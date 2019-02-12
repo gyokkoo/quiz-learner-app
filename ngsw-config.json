@@ -1,0 +1,44 @@
+{
+  "index": "/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "resources": {
+        "files": [
+          "/favicon.ico",
+          "/index.html",
+          "/*.css",
+          "/*.js"
+        ],
+        "urls": [
+          "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js",
+          "https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        ]
+      }
+    }, {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "resources": {
+        "files": [
+          "/assets/**"
+        ]
+      }
+    }
+  ],
+  "dataGroup": [
+    {
+      "name": "quizzes",
+      "urls": [
+        "http://localhost:8080/**"
+      ],
+      "cacheConfig": {
+        "maxSize": 20,
+        "mageAge": "6h",
+        "timeout": "8s",
+        "strategy": "performance"
+      }
+    }
+  ]
+}

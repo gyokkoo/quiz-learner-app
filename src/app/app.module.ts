@@ -19,6 +19,8 @@ import {
 
 import { appRoutes } from './routes';
 import { QuizzesModule } from './quizzes/quizzes.module';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,9 @@ import { QuizzesModule } from './quizzes/quizzes.module';
     }),
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production
+    }),
   ],
   providers: [
     {

@@ -17,7 +17,7 @@ export class QuizDetailsComponent implements OnInit, OnDestroy {
   quiz: IQuiz;
   modalCloseResult: string;
 
-  private id: string;
+  id: string;
   private sub: any;
 
   constructor(private quizzesService: QuizzesService,
