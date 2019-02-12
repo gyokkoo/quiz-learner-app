@@ -3,23 +3,31 @@ import { QuizzesService } from '../../quizzes.service';
 import { IQuestion } from 'src/app/shared/models/question.model';
 import { QuizBuilderService } from '../quiz-builder.service';
 
-    @Component({
-        selector: 'app-question-detail',
-        templateUrl: './questions-detail.component.html'
+@Component({
+  selector: 'app-question-detail',
+  templateUrl: './questions-detail.component.html'
 })
 export class QuestionsDetailsComponent implements OnInit {
 
-    get question(): IQuestion {
-        return this.quizBuilder.currentQuestion;
+  get question(): IQuestion {
+    return this.quizBuilder.currentQuestion;
+  }
+
+  get questionId(): string {
+    if (this.question) {
+      return this.question._id;
     }
 
-    constructor(private quizzesServer: QuizzesService,
-                private quizBuilder: QuizBuilderService) { }
+    return null;
+  }
 
-    ngOnInit(): void {
-    }
+  constructor(private quizzesServer: QuizzesService,
+    private quizBuilder: QuizBuilderService) { }
 
-    onEditClick(): void {
-        window.alert('Edit question is not yet implemented!');
-    }
+  ngOnInit(): void {
+  }
+
+  onEditClick(): void {
+    window.alert('Edit question is not yet implemented!');
+  }
 }

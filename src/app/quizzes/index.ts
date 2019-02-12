@@ -10,3 +10,4 @@ export * from './edit/add/questions-add.component';
 export * from './solve/solve-quiz.component';
 export * from './solve/result/quiz-result.component';
 export * from './solve/question/question.component';
+export * from './edit/question/edit-question.component';

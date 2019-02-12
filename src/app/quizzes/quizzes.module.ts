@@ -15,7 +15,8 @@ import {
   QuestionsAddComponent,
   SolveQuizComponent,
   QuizResultComponent,
-  QuestionComponent
+  QuestionComponent,
+  EditQuestionComponent
 } from './index';
 import { quizzesRoutes } from './quizzes.routes';
 import { SharedModule } from '../shared/shared.module';
@@ -33,7 +34,8 @@ import { SharedModule } from '../shared/shared.module';
     QuestionsAddComponent,
     SolveQuizComponent,
     QuizResultComponent,
-    QuestionComponent
+    QuestionComponent,
+    EditQuestionComponent
   ],
   imports: [
     SharedModule,

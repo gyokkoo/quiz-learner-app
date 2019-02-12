@@ -12,50 +12,28 @@ import { IQuestion } from 'src/app/shared/models/question.model';
 })
 export class QuestionsListComponent implements OnInit {
 
-    questions: IQuestion[];
-    selectedQuestion: IQuestion;
-
-    mockedQuestions: any[];
-    mockedSelectedQuestion: any;
-
     quizId: string;
 
+    get questions(): IQuestion[] {
+        return this.quizBuilder.questions;
+    }
+
+    get selectedQuestion(): IQuestion {
+        return this.quizBuilder.currentQuestion;
+    }
+
     constructor(private quizBuilder: QuizBuilderService,
-                private quizzesServce: QuizzesService,
                 private toastr: ToastrService,
                 private router: Router) {
     }
 
     ngOnInit() {
-        this.questions = [];
-
         this.quizId = this.router.url.split('/')[3];
-
-        this.quizzesServce.getAllQuestionsByQuizId(this.quizId)
-            .subscribe(
-                ((res: ServerResponse) => this.handleQuestionsFetched(res))
-            );
+        console.log(this.quizId);
+        this.quizBuilder.loadQuestions(this.quizId);
     }
 
     onSelected(question: IQuestion): void {
         this.quizBuilder.currentQuestion = question;
-        this.selectedQuestion = question;
-    }
-
-    private handleQuestionsFetched(res: ServerResponse) {
-        if (res.success) {
-            const questionsData = res.data;
-            for (let i = 0; i < questionsData.length; i++) {
-                this.questions.push(questionsData[i]);
-            }
-            if (questionsData.length > 0) {
-                this.quizBuilder.currentQuestion = this.questions[0];
-                this.selectedQuestion = this.questions[0];
-            }
-            console.log(this.questions);
-            this.toastr.success(res.message);
-        } else {
-            this.toastr.error('Could not load quiz questions! Check for errors');
-        }
     }
 }

@@ -1,8 +1,8 @@
 <form novalidate
       (ngSubmit)="save()"
-      [formGroup]="questionForm">
+      [formGroup]="editQuestionForm">
   <div>
-    <legend>Add your questions</legend>
+    <legend>Edit this questions</legend>
     <div class="form-group row mb-2">
       <label class="col-md-2 col-form-label"
               for="questionId">
@@ -14,16 +14,16 @@
               formControlName="question"
               row="6"
               [ngClass]="{'is-invalid':
-                (questionForm.get('question').touched ||
-                questionForm.get('question').dirty) &&
-                !questionForm.get('question').valid
+                (editQuestionForm.get('question').touched ||
+                editQuestionForm.get('question').dirty) &&
+                !editQuestionForm.get('question').valid
               }">
         </textarea>
         <span class="invalid-feedback">
-          <span *ngIf="questionForm.get('question').errors?.required">
+          <span *ngIf="editQuestionForm.get('question').errors?.required">
             Please enter question.
           </span>
-          <span *ngIf="questionForm.get('question').errors?.minlength">
+          <span *ngIf="editQuestionForm.get('question').errors?.minlength">
             The question be longer than 10 characters.
           </span>
         </span>
@@ -44,13 +44,13 @@
                     placeholder="Provide answer"
                     formControlName="answer"
                     [ngClass]="{
-                      'is-correct': (questionForm.get('answers').value[i].isCorrect),
+                      'is-correct': (editQuestionForm.get('answers').value[i].isCorrect),
                       'is-invalid':
-                          (questionForm.get('answers').touched ||
-                           questionForm.get('answers').dirty) &&
-                          !questionForm.get('answers').valid}">
+                          (editQuestionForm.get('answers').touched ||
+                          editQuestionForm.get('answers').dirty) &&
+                          !editQuestionForm.get('answers').valid}">
               <span class="invalid-feedback">
-                <span *ngIf="questionForm.get('answers').errors?.required">
+                <span *ngIf="editQuestionForm.get('answers').errors?.required">
                   Please provide answer.
                 </span>
               </span>
@@ -58,7 +58,7 @@
 
           <div class="checkbox checkbox-success">
               <input id="{{'checkbox' + i}}" 
-                    formControlName="isCorrect"
+                    formControlName="(editQuestionForm.get('answers').value[i].isCorrect)"
                     type="checkbox">
 
               <label for="{{'checkbox' + i}}">
@@ -99,24 +99,28 @@
   </div>
 
   <hr />
-
-  <div class="form-group row mb-2">
-    <div class="offset-md-2 col-md-8">
-      <button class="btn btn-primary mr-3"
-              type="submit"
-              style="width:80px"
-              [title]="questionForm.valid ? 'Save your question' : 'Disabled until the form data is valid'"
-              [disabled]="!questionForm.valid">
-        Save
-      </button>
-    </div>
-  </div>
 </form>
 
-<br>Dirty: {{ questionForm.dirty }}
-<br>Touched: {{ questionForm.touched }}
-<br>Valid: {{ questionForm.valid }}
-<br>Value: {{ questionForm.value | json }}
+<button class="btn btn-outline-secondary mr-3"
+        style="width:80px"
+        type="button"
+        title="Go back"
+        [routerLink]="['/quizzes/edit/' + quizId +'/questions']">
+    Back
+</button>
+
+<button class="btn btn-primary mr-3"
+        style="width:80px"
+        type="button"
+        [title]="editQuestionForm.valid ? 'Save your question' : 'Disabled until the form data is valid'"
+        [disabled]="!editQuestionForm.valid"
+        (click)="saveClicked()">
+    Save
+</button>
+
+<br>Dirty: {{ editQuestionForm.dirty }}
+<br>Touched: {{ editQuestionForm.touched }}
+<br>Valid: {{ editQuestionForm.valid }}
+<br>Value: {{ editQuestionForm.value | json }}
 <br>&nbsp;
   
-<hr />

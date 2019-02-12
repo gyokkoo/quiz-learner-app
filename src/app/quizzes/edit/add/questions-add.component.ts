@@ -49,8 +49,10 @@ export class QuestionsAddComponent implements OnInit {
     this.questionModel = this.questionForm.value;
     this.questionModel.quizId = quizId;
 
-    this.quizBuilder.createQuestion(this.questionModel)
-      .subscribe(res => this.handleQuestionCreation(res));
+    this.quizBuilder.createQuestion(this.questionModel);
+
+    // TODO find another way
+    this.questionForm.reset();
   }
 
   addAnswer(): void {
@@ -66,7 +68,6 @@ export class QuestionsAddComponent implements OnInit {
     if (res.success) {
       console.log(res.data);
       this.toastr.success(res.message);
-      this.questionForm.reset();
     }
   }
 

@@ -7,7 +7,7 @@ import { tap, catchError } from 'rxjs/operators';
 
 import { IQuiz } from '../shared/models/quiz.model';
 import { ServerResponse } from '../shared/models/server-response.model';
-import { ISolvedQuestion } from '../shared/models/question.model';
+import { ISolvedQuestion, IQuestion } from '../shared/models/question.model';
 
 @Injectable({
   providedIn: 'root'
@@ -67,6 +67,13 @@ export class QuizzesService {
       );
   }
 
+  getQuestionById(id: string): Observable<ServerResponse> {
+    const url = `${this.baseUrl}/getQuestionById/${id}`;
+    const headers = this.getRequestHeaders(true);
+
+    return this.http.get<ServerResponse>(url, { headers });
+  }
+
   deleteQuizById(quizId: string): Observable<ServerResponse> {
     const url = `${this.baseUrl}/deleteQuiz/${quizId}`;
     const headers = this.getRequestHeaders(true);
@@ -74,6 +81,16 @@ export class QuizzesService {
     return this.http.delete(url, { headers })
       .pipe(
         tap((res: ServerResponse) => console.log(res))
+      );
+  }
+
+  createQuestion(question: IQuestion): Observable<ServerResponse> {
+    const url = `${this.baseUrl}/createQuestion`;
+    const headers = this.getRequestHeaders(true);
+
+    return this.http.post<ServerResponse>(url, question, { headers })
+      .pipe(
+        tap(data => console.log(data))
       );
   }
 
