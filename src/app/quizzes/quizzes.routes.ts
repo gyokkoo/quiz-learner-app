@@ -24,10 +24,6 @@ export const quizzesRoutes: Routes = [
     {
         path: 'quizzes/solve/:id',
         component: SolveQuizComponent,
-        // children: [{
-        //     path: '/question/:id',
-        //     component: QuestionComponent,
-        // }]
     },
     {
         path: 'edit/:id',

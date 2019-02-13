@@ -17,7 +17,7 @@ import {
   QuizResultComponent,
   QuestionComponent,
   EditQuestionComponent
-} from './index';
+} from '.';
 import { quizzesRoutes } from './quizzes.routes';
 import { SharedModule } from '../shared/shared.module';
 

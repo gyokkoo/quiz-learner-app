@@ -1,8 +1,7 @@
 <form novalidate
-      (ngSubmit)="save()"
       [formGroup]="editQuestionForm">
   <div>
-    <legend>Edit this questions</legend>
+    <legend>Add your questions</legend>
     <div class="form-group row mb-2">
       <label class="col-md-2 col-form-label"
               for="questionId">
@@ -58,7 +57,7 @@
 
           <div class="checkbox checkbox-success">
               <input id="{{'checkbox' + i}}" 
-                    formControlName="(editQuestionForm.get('answers').value[i].isCorrect)"
+                    formControlName="isCorrect"
                     type="checkbox">
 
               <label for="{{'checkbox' + i}}">

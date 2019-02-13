@@ -46,16 +46,16 @@ export class EditQuestionComponent implements OnInit {
    
     this.editQuestionForm = this.fb.group({
       question: ['', [Validators.required, Validators.minLength(10)]],
-      answers: this.fb.array([]),
+      answers: this.fb.array([this.initializeAnswer()]),
       shouldShuffle: false
     });
 
-    if (typeof this.quizBuilder.currentQuestion === 'undefined' ||
-        this.quizBuilder.currentQuestion._id !== this.questionId) {
-        this.quizzesService.getQuestionById(this.questionId).subscribe(
-          (res => this.handleQuestionFetching(res))
-        );
-    }
+    // if (typeof this.quizBuilder.currentQuestion === 'undefined' ||
+    //     this.quizBuilder.currentQuestion._id !== this.questionId) {
+    this.quizzesService.getQuestionById(this.questionId).subscribe(
+      (res => this.handleQuestionFetching(res))
+    );
+    // }
   }
 
   saveClicked() {
@@ -97,11 +97,18 @@ export class EditQuestionComponent implements OnInit {
     }
   }
 
+  private initializeAnswer(): FormGroup {
+    return this.fb.group({
+      answer: ['', Validators.required],
+      isCorrect: [false]
+    })
+  }
+
   private buildAnswer(answer: IAnswer): FormGroup {
     console.log(answer === null);
     return this.fb.group({
       answer: [answer === null ? '' : answer.answer, Validators.required],
-      isCorrect: [answer === null ? '': answer.isCorrect]
+      isCorrect: [answer === null ? false : answer.isCorrect]
     });
   }
 }
