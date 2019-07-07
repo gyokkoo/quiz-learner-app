@@ -17,7 +17,7 @@ export class EditQuestionComponent implements OnInit {
   questionModel: IQuestion;
 
   questionId: string;
-  
+
   get answers(): FormArray {
     return <FormArray> this.editQuestionForm.get('answers');
   }
@@ -25,7 +25,7 @@ export class EditQuestionComponent implements OnInit {
   set question(question: IQuestion) {
     this.quizBuilder.currentQuestion = question;
   }
-  
+
   get quizId(): string {
     return this.quizBuilder.quizId;
   }
@@ -43,7 +43,7 @@ export class EditQuestionComponent implements OnInit {
 
   ngOnInit() {
     this.questionId = this.router.url.split('/')[5];
-   
+
     this.editQuestionForm = this.fb.group({
       question: ['', [Validators.required, Validators.minLength(10)]],
       answers: this.fb.array([this.initializeAnswer()]),
@@ -80,7 +80,7 @@ export class EditQuestionComponent implements OnInit {
 
       this.removeLastAnswer();
       this.question.answers.forEach(answer => {
-        this.answers.push(this.buildAnswer(answer))
+        this.answers.push(this.buildAnswer(answer));
       });
 
       this.toastr.success(res.message);
@@ -101,7 +101,7 @@ export class EditQuestionComponent implements OnInit {
     return this.fb.group({
       answer: ['', Validators.required],
       isCorrect: [false]
-    })
+    });
   }
 
   private buildAnswer(answer: IAnswer): FormGroup {

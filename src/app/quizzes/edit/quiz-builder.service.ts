@@ -76,7 +76,7 @@ export class QuizBuilderService {
       this.questions.push(res.data);
     }
   }
-  
+
   private getRequestHeaders(shouldAuthorize: boolean): HttpHeaders {
     if (shouldAuthorize) {
       return new HttpHeaders({
