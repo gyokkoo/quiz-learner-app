@@ -1,0 +1,99 @@
+<mat-sidenav-container class="sidenav-container">
+   <mat-sidenav #drawer
+                class="sidenav"
+                [ngClass]="{ hidden: !(isHandset$ | async)} "
+                fixedInViewport="false"
+                [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+                [mode]="(isHandset$ | async) ? 'over' : 'side'"
+                [opened]="!(isHandset$ | async)">
+      <mat-toolbar>Menu</mat-toolbar>
+      <mat-nav-list>
+         <a mat-list-item href="#">Link 1</a>
+         <a mat-list-item href="#">Link 2</a>
+         <li class="nav-item"
+             *ngIf="isLoggedIn">
+            <a class="nav-link"
+               (click)="logOut()"
+               style="cursor: pointer">
+               Log Out
+            </a>
+         </li>
+      </mat-nav-list>
+   </mat-sidenav>
+
+   <mat-sidenav-content>
+      <mat-toolbar color="primary">
+         <button
+            type="button"
+            aria-label="Toggle sidenav"
+            mat-icon-button
+            (click)="drawer.toggle()"
+            *ngIf="isHandset$ | async">
+            <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+         </button>
+         <span>Quiz Learner App</span>
+
+         <span class="menu-spacer"></span>
+
+         <div fxShow="true" fxHide.lt-sm>
+            <!-- The following menu items will be hidden on both SM screen sizes -->
+            <span
+               routerLinkActive="active"
+               [routerLink]="['/welcome']">
+               Home
+            </span>
+
+            <span
+               routerLinkActive="active"
+               [routerLink]="['/quizzes/all']">
+                  All Quizzes
+               </span>
+
+            <span *ngIf="isLoggedIn"
+                  routerLinkActive="active"
+                  [routerLink]="['/quizzes/create']">
+                  Create Quiz
+               </span>
+
+            <span
+               routerLinkActive="active"
+               [routerLinkActiveOptions]="{exact: true}"
+               [routerLink]="['/about']">
+                  About
+               </span>
+
+            <span *ngIf="!isLoggedIn"
+               routerLinkActive="active"
+               [routerLinkActiveOptions]="{exact: true}"
+               [routerLink]="['/users/register']">
+               Register
+            </span>
+
+            <span *ngIf="!isLoggedIn"
+               routerLinkActive="active"
+               [routerLinkActiveOptions]="{exact: true}"
+               [routerLink]="['/users/login']">
+               Log In
+            </span>
+
+            <span *ngIf="isLoggedIn"
+               routerLinkActive="active"
+               [routerLink]="['/users/profile']">
+               Welcome {{ userName }}
+            </span>
+
+            <span
+               *ngIf="isLoggedIn"
+               (click)="logOut()"
+               style="cursor: pointer">
+               Log Out
+            </span>
+
+         </div>
+      </mat-toolbar>
+
+      <ng-content>
+         <!-- Content Goes Here -->
+      </ng-content>
+   </mat-sidenav-content>
+</mat-sidenav-container>
