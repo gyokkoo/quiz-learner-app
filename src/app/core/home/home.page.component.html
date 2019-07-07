@@ -1,12 +1,22 @@
 <div class="container">
-  <div class="card">
-    <div class="card-header">
-      {{pageTitle}}
-    </div>
-    <div class="card-body">
-      <div class="container-fluid">
-        <div class="text-center">This is home page!</div>
+   <div class="card">
+      <div class="card-header">
+         {{pageTitle}}
       </div>
-    </div>
-  </div>
+      <div class="card-body">
+         <div class="container-fluid">
+            <div>
+               Total quizzes: {{totalQuizzesCount}}
+            </div>
+
+            <div>
+               Total questions {{ totalQuestions }}
+            </div>
+
+            <div>
+               Total users: {{totalUsers}}
+            </div>
+         </div>
+      </div>
+   </div>
 </div>
