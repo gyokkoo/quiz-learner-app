@@ -11,7 +11,7 @@ import { ToastrService } from 'ngx-toastr';
    styleUrls: ['./main-nav.component.scss']
 })
 export class MainNavComponent {
-   brandName = 'Quiz Learner Project';
+   appBrandName = 'Quiz Learner App';
 
    isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
          .pipe(

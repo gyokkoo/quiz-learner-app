@@ -8,16 +8,50 @@
                 [opened]="!(isHandset$ | async)">
       <mat-toolbar>Menu</mat-toolbar>
       <mat-nav-list>
-         <a mat-list-item href="#">Link 1</a>
-         <a mat-list-item href="#">Link 2</a>
-         <li class="nav-item"
-             *ngIf="isLoggedIn">
-            <a class="nav-link"
-               (click)="logOut()"
-               style="cursor: pointer">
-               Log Out
-            </a>
-         </li>
+         <a mat-list-item
+            *ngIf="true"
+            [routerLink]="['/welcome']">
+            <mat-icon [inline]="false" class="icon">home</mat-icon>
+            <span>Home</span>
+         </a>
+         <a mat-list-item
+            [routerLink]="['/quizzes/all']">
+            <mat-icon [inline]="false" class="icon">dashboard</mat-icon>
+            <span>All quizzes</span>
+         </a>
+         <a mat-list-item
+            [routerLink]="['/quizzes/create']">
+            <mat-icon [inline]="false" class="icon">create</mat-icon>
+            <span>Create</span>
+         </a>
+         <a mat-list-item
+            [routerLink]="['/about']">
+            <mat-icon [inline]="false" class="icon">group</mat-icon>
+            <span>About</span>
+         </a>
+         <a mat-list-item
+            *ngIf="true"
+            [routerLink]="['/users/register']">
+            <mat-icon [inline]="false" class="icon">person_add</mat-icon>
+            <span class="nav-label">Register</span>
+         </a>
+         <a mat-list-item
+            *ngIf="true"
+            [routerLink]="['/users/login']">
+            <mat-icon [inline]="true" class="icon">input</mat-icon>
+            <span>Login</span>
+         </a>
+         <a mat-list-item
+            [routerLink]="['/users/profile']">
+            Welcome {{ userName }}
+         </a>
+         <a mat-list-item
+            *ngIf="true"
+            [routerLink]="null"
+            (click)="logOut()">
+            <mat-icon [inline]="true" class="icon">input</mat-icon>
+            <span>Logout</span>
+         </a>
       </mat-nav-list>
    </mat-sidenav>
 
@@ -31,69 +65,82 @@
             *ngIf="isHandset$ | async">
             <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
          </button>
-         <span>Quiz Learner App</span>
+         <div>
+            <a routerLink="/">
+               {{ appBrandName }}
+            </a>
+         </div>
 
          <span class="menu-spacer"></span>
 
-         <div fxShow="true" fxHide.lt-sm>
-            <!-- The following menu items will be hidden on both SM screen sizes -->
-            <span
-               routerLinkActive="active"
-               [routerLink]="['/welcome']">
-               Home
-            </span>
+         <div fxShow="true" fxLayoutAlign="flex-end" fxHide.lt-sm>
+            <ul fxLayout fxLayoutGap="30px" class="navigation-items">
+               <li>
+                  <a *ngIf="true"
+                     [routerLink]="['/welcome']">
+                     <mat-icon [inline]="true" class="icon">home</mat-icon>
+                     <span>Home</span>
+                  </a>
+               </li>
 
-            <span
-               routerLinkActive="active"
-               [routerLink]="['/quizzes/all']">
-                  All Quizzes
-               </span>
+               <li>
+                  <a [routerLink]="['/quizzes/all']">
+                     <mat-icon [inline]="true" class="icon">dashboard</mat-icon>
+                     <span>All quizzes</span>
+                  </a>
+               </li>
 
-            <span *ngIf="isLoggedIn"
-                  routerLinkActive="active"
-                  [routerLink]="['/quizzes/create']">
-                  Create Quiz
-               </span>
+               <li>
+                  <a [routerLink]="['/quizzes/create']">
+                     <mat-icon [inline]="true" class="icon">create</mat-icon>
+                     <span>Create</span>
+                  </a>
+               </li>
 
-            <span
-               routerLinkActive="active"
-               [routerLinkActiveOptions]="{exact: true}"
-               [routerLink]="['/about']">
-                  About
-               </span>
+               <li>
+                  <a [routerLink]="['/about']">
+                     <mat-icon [inline]="true" class="icon">group</mat-icon>
+                     <span>About</span>
+                  </a>
+               </li>
 
-            <span *ngIf="!isLoggedIn"
-               routerLinkActive="active"
-               [routerLinkActiveOptions]="{exact: true}"
-               [routerLink]="['/users/register']">
-               Register
-            </span>
+               <li>
+                  <a *ngIf="true"
+                     [routerLink]="['/users/register']">
+                     <mat-icon [inline]="true" class="icon">person_add
+                     </mat-icon>
+                     <span>Register</span>
+                  </a>
+               </li>
 
-            <span *ngIf="!isLoggedIn"
-               routerLinkActive="active"
-               [routerLinkActiveOptions]="{exact: true}"
-               [routerLink]="['/users/login']">
-               Log In
-            </span>
+               <li>
+                  <a *ngIf="true"
+                     [routerLink]="['/users/login']">
+                     <mat-icon [inline]="true" class="icon">input</mat-icon>
+                     <span>Login</span>
+                  </a>
+               </li>
 
-            <span *ngIf="isLoggedIn"
-               routerLinkActive="active"
-               [routerLink]="['/users/profile']">
-               Welcome {{ userName }}
-            </span>
+               <li *ngIf="isLoggedIn">
+                  <a [routerLink]="['/users/profile']">
+                     Welcome {{ userName }}
+                  </a>
+               </li>
 
-            <span
-               *ngIf="isLoggedIn"
-               (click)="logOut()"
-               style="cursor: pointer">
-               Log Out
-            </span>
-
+               <li>
+                  <a *ngIf="true"
+                     [routerLink]="null"
+                     (click)="logOut()">
+                     <mat-icon [inline]="true" class="icon">input</mat-icon>
+                     <span>Logout</span>
+                  </a>
+               </li>
+            </ul>
          </div>
       </mat-toolbar>
 
-      <ng-content>
-         <!-- Content Goes Here -->
-      </ng-content>
+      <main>
+         <router-outlet></router-outlet>
+      </main>
    </mat-sidenav-content>
 </mat-sidenav-container>
