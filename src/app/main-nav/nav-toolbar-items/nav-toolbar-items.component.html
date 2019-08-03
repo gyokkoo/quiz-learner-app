@@ -1,0 +1,60 @@
+<ul fxLayout fxLayoutGap="30px" class="navigation-items">
+   <li>
+      <a *ngIf="true"
+         [routerLink]="['/welcome']">
+         <mat-icon [inline]="true" class="icon">home</mat-icon>
+         <span>Home</span>
+      </a>
+   </li>
+
+   <li>
+      <a [routerLink]="['/quizzes/all']">
+         <mat-icon [inline]="true" class="icon">dashboard</mat-icon>
+         <span>All quizzes</span>
+      </a>
+   </li>
+
+   <li *ngIf="isLoggedIn">
+      <a [routerLink]="['/quizzes/create']">
+         <mat-icon [inline]="true" class="icon">create</mat-icon>
+         <span>Create</span>
+      </a>
+   </li>
+
+   <li>
+      <a [routerLink]="['/about']">
+         <mat-icon [inline]="true" class="icon">group</mat-icon>
+         <span>About</span>
+      </a>
+   </li>
+
+   <li *ngIf="!isLoggedIn">
+      <a [routerLink]="['/users/register']">
+         <mat-icon [inline]="true" class="icon">person_add
+         </mat-icon>
+         <span>Register</span>
+      </a>
+   </li>
+
+   <li *ngIf="!isLoggedIn">
+      <a [routerLink]="['/users/login']">
+         <mat-icon [inline]="true" class="icon">input</mat-icon>
+         <span>Login</span>
+      </a>
+   </li>
+
+   <li *ngIf="isLoggedIn">
+      <a [routerLink]="['/users/profile']">
+         <mat-icon [inline]="true" class="icon">face</mat-icon>
+         <span>Profile</span>
+      </a>
+   </li>
+
+   <li *ngIf="isLoggedIn">
+      <a [routerLink]="null"
+         (click)="logOut()">
+         <mat-icon [inline]="true" class="icon">input</mat-icon>
+         <span>Logout</span>
+      </a>
+   </li>
+</ul>

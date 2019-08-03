@@ -26,7 +26,15 @@ import { environment } from '../environments/environment';
 import { CustomMaterialModule } from './core/material.module';
 import { MainNavComponent } from './main-nav/main-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
+import {
+   MatToolbarModule,
+   MatButtonModule,
+   MatSidenavModule,
+   MatIconModule,
+   MatListModule
+} from '@angular/material';
+import { NavListItemsComponent } from './main-nav/nav-list-items/nav-list-items.component';
+import { NavToolbarItemsComponent } from './main-nav/nav-toolbar-items/nav-toolbar-items.component';
 
 @NgModule({
    declarations: [
@@ -34,7 +42,9 @@ import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, Mat
       Error404Component,
       HomePageComponent,
       AboutPageComponent,
-      MainNavComponent
+      MainNavComponent,
+      NavListItemsComponent,
+      NavToolbarItemsComponent
    ],
    imports: [
       BrowserModule,
