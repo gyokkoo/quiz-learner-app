@@ -14,8 +14,9 @@ import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import {
-   HomePageComponent,
-   AboutPageComponent
+   WelcomePageComponent,
+   AboutPageComponent,
+   AppInfoComponent
 } from './core';
 
 import { appRoutes } from './routes';
@@ -40,7 +41,8 @@ import { NavToolbarItemsComponent } from './main-nav/nav-toolbar-items/nav-toolb
    declarations: [
       AppComponent,
       Error404Component,
-      HomePageComponent,
+      WelcomePageComponent,
+      AppInfoComponent,
       AboutPageComponent,
       MainNavComponent,
       NavListItemsComponent,

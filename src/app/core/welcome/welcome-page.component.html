@@ -1,0 +1,53 @@
+<div class="container">
+   <div class="card">
+      <div class="card-header">
+         {{ pageTitle }}
+      </div>
+      <div class="card-body">
+         <div class="container-fluid">
+            <h5>
+               Play quizzes and expand your knowledge!
+            </h5>
+
+            <div class="text-center">
+               <img src="./assets/images/quiz-learner-logo.png"
+                    class="img-responsive center-block"/>
+            </div>
+
+            <h5>
+               You have knowledge to share? Great!
+               <div *ngIf="isLoggedIn">
+                  <a [routerLink]="'/quizzes/create'">
+                     Create quiz
+                  </a>
+               </div>
+               <div *ngIf="!isLoggedIn">
+                  Then <a [routerLink]="'/users/register'">register</a> and
+                  share it to the world
+               </div>
+            </h5>
+
+            <app-info [appInfo]="appInfo">
+            </app-info>
+
+            <div class="line-spacer"></div>
+
+            <mat-card>
+               <div class="text-center">Developed by:</div>
+               <div class="text-center">
+                  <h6>Gyokan Syuleymanov</h6>
+               </div>
+               <mat-card-actions>
+                  <div class="github-stars">
+                     <iframe
+                        src="https://ghbtns.com/github-btn.html?user=nezhdetov&repo=quiz-learner-app&type=star&count=true&size=large"
+                        frameborder="0" scrolling="0" width="160px"
+                        height="30px"></iframe>
+                  </div>
+               </mat-card-actions>
+            </mat-card>
+         </div>
+      </div>
+   </div>
+</div>
+

@@ -3,14 +3,14 @@ import { Routes } from '@angular/router';
 import { Error404Component } from './errors/404.component';
 
 import {
-  HomePageComponent,
+  WelcomePageComponent,
   AboutPageComponent
-} from './core/index';
+} from './core';
 
 export const appRoutes: Routes = [
   {
     path: 'welcome',
-    component: HomePageComponent
+    component: WelcomePageComponent
   },
   {
     path: 'about',
