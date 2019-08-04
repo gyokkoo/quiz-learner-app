@@ -1,11 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { QuizzesListComponent } from './quizzes-list.component';
-import { StarComponent } from '../../shared/star.component';
+import { NavListItemsComponent } from './nav-list-items.component';
 import { Component } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
-import { HttpClientModule } from '@angular/common/http';
-import { ToastrModule } from 'ngx-toastr';
+import { MatIconModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // tslint:disable-next-line:component-selector
@@ -13,28 +11,26 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 class RouterOutletStubComponent {
 }
 
-describe('QuizzesListComponent', () => {
-   let component: QuizzesListComponent;
-   let fixture: ComponentFixture<QuizzesListComponent>;
+describe('NavListItemsComponent', () => {
+   let component: NavListItemsComponent;
+   let fixture: ComponentFixture<NavListItemsComponent>;
 
    beforeEach(async(() => {
       TestBed.configureTestingModule({
          declarations: [
-            QuizzesListComponent,
-            StarComponent,
+            NavListItemsComponent,
             RouterOutletStubComponent
          ],
          imports: [
             RouterTestingModule,
-            HttpClientModule,
-            BrowserAnimationsModule,
-            ToastrModule.forRoot()
+            MatIconModule,
+            BrowserAnimationsModule
          ]
       }).compileComponents();
    }));
 
    beforeEach(() => {
-      fixture = TestBed.createComponent(QuizzesListComponent);
+      fixture = TestBed.createComponent(NavListItemsComponent);
       component = fixture.componentInstance;
       fixture.detectChanges();
    });

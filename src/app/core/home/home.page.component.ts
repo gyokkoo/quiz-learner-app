@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { MatCardModule } from '@angular/material/card';
 import { environment } from '../../../environments/environment';
 import { ServerResponse } from '../../shared/models/server-response.model';
 
