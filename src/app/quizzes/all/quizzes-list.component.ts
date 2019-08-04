@@ -31,7 +31,6 @@ export class QuizzesListComponent implements OnInit {
       for (let i = 0; i < res.data.length; i++) {
         this.quizzes.push(res.data[i]);
       }
-      console.log(this.quizzes);
       this.toastr.success(res.message);
     }
   }

@@ -29,16 +29,16 @@ export class MainNavComponent implements OnInit {
    }
 
    ngOnInit(): void {
-      this.breakpointObserver
-            .observe([Breakpoints.Medium, Breakpoints.HandsetPortrait])
-            .subscribe((state: BreakpointState) => {
-               console.log(state);
-               if (state.matches) {
-                  console.log(
-                        'Matches small viewport or handset in portrait mode'
-                  );
-               }
-            });
+      // this.breakpointObserver
+      //       .observe([Breakpoints.Medium, Breakpoints.HandsetPortrait])
+      //       .subscribe((state: BreakpointState) => {
+      //          console.log(state);
+      //          if (state.matches) {
+      //             console.log(
+      //                   'Matches small viewport or handset in portrait mode'
+      //             );
+      //          }
+      //       });
    }
 
    get isLoggedIn(): boolean {

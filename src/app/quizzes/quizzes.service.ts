@@ -51,10 +51,7 @@ export class QuizzesService {
     const url = `${this.baseUrl}/getAllQuizzes`;
     const headers = this.getRequestHeaders(false);
 
-    return this.http.get(url, { headers })
-      .pipe(
-        tap((res: ServerResponse) => console.log(res))
-      );
+    return this.http.get<ServerResponse>(url, { headers });
   }
 
   getAllQuestionsByQuizId(id: string): Observable<ServerResponse> {
