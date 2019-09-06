@@ -1,48 +1,31 @@
 <div class="container">
-  <div class="card">
-    <div class="card-header">
-      <!-- {{  }} -->
-    </div>
+   <div class="card">
+      <div class="card-header">
+      </div>
 
-    <div class="card-body">
-        <div *ngIf="question && !isQuizFinished">
-            <app-question-answer 
-                [question]="question">
-            </app-question-answer>
+      <div class="card-body">
+         <div *ngIf="question && !isQuizFinished">
+            <h3> {{ question.question }} </h3>
 
-            <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                    <li class="page-item"
-                        (click)="previousQuestion()"
-                        [ngClass]="{'disabled': isFirstQuestion}">
-                        <a class="page-link">Previous</a>
-                    </li>
-                    <li class="page-item"
-                        (click)="nextQuestion()"
-                        [ngClass]="{'disabled': isLastQuestion}">
-                        <a class="page-link">Next</a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
+            <app-answers-list
+               [availableAnswers]="question.answers"
+               (answerChange)="onAnswerChange($event)">
+            </app-answers-list>
 
-        <app-quiz-result *ngIf="isQuizFinished"
-                         [solvedQuiz]="solvedQuestions">
-            
-        </app-quiz-result>
-	</div>
+            <div class="btn-container">
+               <button mat-raised-button
+                       class="check-btn"
+                       color="primary"
+                       [disabled]="!isAnswerSelected"
+                       (click)="onCheckClick()">
+                  Check
+               </button>
+            </div>
+         </div>
 
-    <div class="mb-2 finish-button-wrapper">
-        <button *ngIf="isLastQuestion"
-                class="btn btn-outline-success"
-                type="button"
-                title="Finish"
-                (click)="onFinished()">
-            Finish
-        </button>
-    </div>
-
-    <hr />
-
-  </div>
+         <app-quiz-result *ngIf="isQuizFinished"
+                          [solvedQuiz]="solvedQuestions">
+         </app-quiz-result>
+      </div>
+   </div>
 </div>

@@ -1,0 +1,9 @@
+<mat-chip-list class="mat-chip-list-stacked" aria-label="Color selection">
+   <mat-chip *ngFor="let answer of availableAnswers"
+             class="answer-chip"
+             [color]="answerViewColor"
+             (click)="onAnswerClick(answer)"
+             [selected]="selectedAnswer?.answer === answer.answer">
+      {{ answer.answer }}
+   </mat-chip>
+</mat-chip-list>

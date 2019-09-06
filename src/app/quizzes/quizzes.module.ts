@@ -15,11 +15,12 @@ import {
   QuestionsAddComponent,
   SolveQuizComponent,
   QuizResultComponent,
-  QuestionComponent,
   EditQuestionComponent
 } from '.';
 import { quizzesRoutes } from './quizzes.routes';
 import { SharedModule } from '../shared/shared.module';
+import { CustomMaterialModule } from '../core/material.module';
+import { AnswersListComponent } from './solve/answers-list/answers-list.component';
 
 @NgModule({
   declarations: [
@@ -34,14 +35,15 @@ import { SharedModule } from '../shared/shared.module';
     QuestionsAddComponent,
     SolveQuizComponent,
     QuizResultComponent,
-    QuestionComponent,
-    EditQuestionComponent
+    EditQuestionComponent,
+    AnswersListComponent
   ],
   imports: [
     SharedModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    CustomMaterialModule,
     RouterModule.forChild(quizzesRoutes)
   ],
   exports: [

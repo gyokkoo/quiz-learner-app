@@ -15,12 +15,12 @@ export interface ISolvedQuestion {
     _id: string;
     quizId: string;
     question: string;
-    answers: Array<ISolvedAnswer>;
+    answers: Array<Answer>;
     shouldShuffle: boolean;
     isWrong: boolean | null;
 }
 
-export interface ISolvedAnswer {
+export interface Answer {
     answer: string;
     isCorrect: boolean;
     isSelected: boolean | null;

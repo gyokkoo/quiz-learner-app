@@ -43,13 +43,13 @@
                     placeholder="Provide answer"
                     formControlName="answer"
                     [ngClass]="{
-                      'is-correct': (editQuestionForm.get('answers').value[i].isCorrect),
+                      'is-correct': (editQuestionForm.get('availableAnswers').value[i].isCorrect),
                       'is-invalid':
-                          (editQuestionForm.get('answers').touched ||
-                          editQuestionForm.get('answers').dirty) &&
-                          !editQuestionForm.get('answers').valid}">
+                          (editQuestionForm.get('availableAnswers').touched ||
+                          editQuestionForm.get('availableAnswers').dirty) &&
+                          !editQuestionForm.get('availableAnswers').valid}">
               <span class="invalid-feedback">
-                <span *ngIf="editQuestionForm.get('answers').errors?.required">
+                <span *ngIf="editQuestionForm.get('availableAnswers').errors?.required">
                   Please provide answer.
                 </span>
               </span>

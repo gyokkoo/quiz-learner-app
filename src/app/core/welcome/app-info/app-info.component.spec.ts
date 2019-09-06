@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { MatCardModule } from '@angular/material';
 import { AppInfoComponent } from './app-info.component';
-import { MatCardModule } from "@angular/material";
 
 describe('AppInfoComponent', () => {
    let component: AppInfoComponent;

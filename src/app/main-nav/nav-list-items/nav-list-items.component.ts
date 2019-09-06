@@ -20,7 +20,6 @@ export class NavListItemsComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-
   }
 
   logOut(): void {

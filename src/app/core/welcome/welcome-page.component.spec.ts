@@ -1,11 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { WelcomePageComponent } from './welcome-page.component';
-import { Component } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
-import { AppInfoComponent } from './app-info/app-info.component';
+import { Component } from '@angular/core';
 import { MatCardModule } from '@angular/material';
-import { HttpClientModule } from "@angular/common/http";
+import { WelcomePageComponent } from './welcome-page.component';
+import { AppInfoComponent } from './app-info/app-info.component';
 
 // tslint:disable-next-line:component-selector
 @Component({ selector: 'router-outlet', template: '' })

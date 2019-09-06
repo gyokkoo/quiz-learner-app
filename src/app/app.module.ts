@@ -27,13 +27,6 @@ import { environment } from '../environments/environment';
 import { CustomMaterialModule } from './core/material.module';
 import { MainNavComponent } from './main-nav/main-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import {
-   MatToolbarModule,
-   MatButtonModule,
-   MatSidenavModule,
-   MatIconModule,
-   MatListModule
-} from '@angular/material';
 import { NavListItemsComponent } from './main-nav/nav-list-items/nav-list-items.component';
 import { NavToolbarItemsComponent } from './main-nav/nav-toolbar-items/nav-toolbar-items.component';
 
@@ -65,12 +58,7 @@ import { NavToolbarItemsComponent } from './main-nav/nav-toolbar-items/nav-toolb
       ServiceWorkerModule.register('ngsw-worker.js', {
          enabled: environment.production
       }),
-      LayoutModule,
-      MatToolbarModule,
-      MatButtonModule,
-      MatSidenavModule,
-      MatIconModule,
-      MatListModule,
+      LayoutModule
    ],
    providers: [
       {
