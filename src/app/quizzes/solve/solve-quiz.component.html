@@ -8,17 +8,47 @@
             <h3> {{ question.question }} </h3>
 
             <app-answers-list
+               [shouldFreeze]="checkClicked"
                [availableAnswers]="question.answers"
                (answerChange)="onAnswerChange($event)">
             </app-answers-list>
 
-            <div class="btn-container">
+            <button *ngIf="true"
+                    mat-raised-button
+                    class="check-btn"
+                    color="primary"
+                    [disabled]="!isAnswerSelected"
+                    (click)="onCheckClick()">
+               Check
+            </button>
+
+            <div class="btn-container alert"
+                 *ngIf="checkClicked"
+                 [ngClass]="{'alert-success': isAnswerCorrect, 'alert-danger': !isAnswerCorrect}">
+               <div *ngIf="isAnswerCorrect">
+                  <div>
+                     <mat-icon class="success-icon" color="primary">
+                        done
+                     </mat-icon>
+                  </div>
+                  <div class="success-text">You are correct</div>
+               </div>
+               <div *ngIf="!isAnswerCorrect">
+                  <div>
+                     <mat-icon class="success-icon" color="warn">
+                        clear
+                     </mat-icon>
+                  </div>
+                  <div>Correct answer:</div>
+                  <div>{{ correctAnswer }}</div>
+               </div>
+
                <button mat-raised-button
                        class="check-btn"
                        color="primary"
-                       [disabled]="!isAnswerSelected"
-                       (click)="onCheckClick()">
-                  Check
+                       [disabled]="!isAnswerSelected || isLastQuestion"
+                       (click)="onContinueClick()">
+                  Continue
                </button>
             </div>
          </div>

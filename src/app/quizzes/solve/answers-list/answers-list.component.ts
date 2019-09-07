@@ -15,6 +15,8 @@ export class AnswersListComponent implements OnInit {
 
    private readonly answerViewColor: ThemePalette = 'primary';
 
+   @Input() shouldFreeze: boolean;
+
    @Input() availableAnswers: Array<Answer>;
 
    @Output() answerChange: EventEmitter<Answer> = new EventEmitter<Answer>();
@@ -28,6 +30,10 @@ export class AnswersListComponent implements OnInit {
    }
 
    onAnswerClick(answer: Answer): void {
+      if (this.shouldFreeze) {
+         return;
+      }
+
       this.selectedAnswer = answer;
       this.answerChange.emit(answer);
    }

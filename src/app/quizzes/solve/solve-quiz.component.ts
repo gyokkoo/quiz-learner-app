@@ -1,8 +1,6 @@
 import {
    Component,
    OnInit,
-   ViewChildren,
-   ContentChildren,
    OnDestroy
 } from '@angular/core';
 import { Router } from '@angular/router';
@@ -16,12 +14,6 @@ import {
    ISolvedQuestion
 } from 'src/app/shared/models/question.model';
 
-export interface IAnswer {
-   answer: string;
-   isCorrect: boolean;
-   isSelected: boolean;
-}
-
 @Component({
    selector: 'app-solve-quiz',
    templateUrl: './solve-quiz.component.html',
@@ -29,6 +21,11 @@ export interface IAnswer {
 })
 export class SolveQuizComponent implements OnInit, OnDestroy {
    quizId: string;
+
+   isAnswerCorrect: boolean | null;
+   checkClicked: boolean;
+
+   correctAnswer: string | null;
 
    selectedAnswer: Answer;
 
@@ -82,23 +79,34 @@ export class SolveQuizComponent implements OnInit, OnDestroy {
       this.quizSolver.clearCache();
    }
 
-
    onAnswerChange(answer: Answer): void {
       this.selectedAnswer = answer;
    }
-
 
    handleQuestionsFetched(res: any): void {
       if (res.success) {
          this.quizSolver.questions = res.allQuestions;
          this.toastr.success(res.message);
-         console.log(this.quizSolver.index);
-         console.log(this.quizSolver.questions);
-         console.log(this.question);
       }
    }
 
    onCheckClick(): void {
+      this.isAnswerCorrect = this.selectedAnswer.isCorrect;
+      if (!this.isAnswerCorrect) {
+         this.correctAnswer = this.getCorrectAnswer();
+      }
+
+      this.checkClicked = true;
+   }
+
+   onContinueClick(): void {
+      this.isAnswerCorrect = null;
+      this.checkClicked = false;
+
+      if (!this.isLastQuestion) {
+         this.quizSolver.index++;
+      }
+
    }
 
    onFinished(): void {
@@ -106,4 +114,7 @@ export class SolveQuizComponent implements OnInit, OnDestroy {
       this.quizSolver.checkQuiz();
    }
 
+   private getCorrectAnswer(): string {
+      return this.question.answers.filter((answer: Answer) => answer.isCorrect)[0].answer;
+   }
 }

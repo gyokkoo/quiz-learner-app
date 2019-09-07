@@ -5,6 +5,20 @@
       margin: 10px;
       font-size: larger;
    }
+
+   .success-icon {
+      font-size: 50px;
+      margin-right: 20px;
+   }
+
+   .success-text {
+      padding-bottom: 20px;
+   }
+
+}
+
+.check-btn {
+   margin-top: 30px;
 }
 
 .skip-btn {
@@ -30,24 +44,4 @@ div.finish-button-wrapper {
 .disabled {
    pointer-events: none; // This makes it not clickable
    opacity: 0.6; // This grays it out to look disabled
-}
-
-ul.list-group > li.list-group-item {
-   text-align: left;
-}
-
-ul.pagination {
-   padding-top: 10px;
-
-   display: flex;
-   justify-content: center;
-
-   > li.page-item {
-      color: #007bff;
-      padding-left: 10px;
-
-      > a {
-         font-size: 1.1rem;
-      }
-   }
 }
