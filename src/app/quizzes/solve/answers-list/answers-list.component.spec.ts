@@ -1,7 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { MatChipsModule } from '@angular/material/chips';
+import { MatButtonModule } from '@angular/material/button';
+
 import { AnswersListComponent } from './answers-list.component';
-import { MatButtonModule, MatChipsModule } from '@angular/material';
 
 describe('AnswersListComponent', () => {
    let component: AnswersListComponent;
@@ -12,7 +14,7 @@ describe('AnswersListComponent', () => {
          declarations: [AnswersListComponent],
          imports: [
             MatButtonModule,
-            MatChipsModule
+            MatChipsModule,
          ]
       })
             .compileComponents();

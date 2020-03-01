@@ -3,7 +3,7 @@ import {
    Input,
    OnInit, Output
 } from '@angular/core';
-import { ThemePalette } from '@angular/material';
+import { ThemePalette } from '@angular/material/core';
 import { Answer } from '../../../shared/models/question.model';
 
 @Component({

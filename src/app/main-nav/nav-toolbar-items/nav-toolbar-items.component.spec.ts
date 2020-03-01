@@ -3,8 +3,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NavToolbarItemsComponent } from './nav-toolbar-items.component';
 import { Component } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
-import { MatIconModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatIconModule } from '@angular/material/icon';
 
 // tslint:disable-next-line:component-selector
 @Component({ selector: 'router-outlet', template: '' })

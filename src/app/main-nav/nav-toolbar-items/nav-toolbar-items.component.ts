@@ -7,8 +7,8 @@ import {
 
 @Component({
   selector: 'app-toolbar-nav-items',
-  templateUrl: './nav-toolbar-items.component.html',
-  styleUrls: ['./nav-toolbar-items.component.scss'],
+  templateUrl: 'nav-toolbar-items.component.html',
+  styleUrls: ['nav-toolbar-items.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NavToolbarItemsComponent implements OnInit {
