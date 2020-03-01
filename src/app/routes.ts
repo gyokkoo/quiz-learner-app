@@ -18,11 +18,11 @@ export const appRoutes: Routes = [
   },
   {
     path: 'users',
-    loadChildren: './user/user.module#UserModule'
+    loadChildren: () => import('./user/user.module').then(m => m.UserModule)
   },
   {
     path: 'quizzes',
-    loadChildren: './quizzes/quizzes.module#QuizzesModule'
+    loadChildren: () => import('./quizzes/quizzes.module').then(m => m.QuizzesModule)
   },
   {
     path: '', redirectTo: '/welcome',
