@@ -11,8 +11,6 @@ import { Error404Component } from './errors/404.component';
 import { ErrorsHandler } from './errors/errors-handler';
 import { RouterModule } from '@angular/router';
 
-import { FlexLayoutModule } from '@angular/flex-layout';
-
 import {
    WelcomePageComponent,
    AboutPageComponent,
@@ -46,7 +44,6 @@ import { NavToolbarItemsComponent } from './main-nav/nav-toolbar-items/nav-toolb
       BrowserAnimationsModule,
       // NoopAnimationsModule, // <-- Disable animations
       CustomMaterialModule,
-      FlexLayoutModule,
       NgbModule,
       QuizzesModule,
       ToastrModule.forRoot({
