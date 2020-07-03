@@ -9,9 +9,14 @@ a:active {
 }
 
 .navigation-items {
+   display: flex;
    list-style: none;
    padding: 0;
    margin: 0;
+
+   li {
+      padding: 0 0.5rem;
+   }
 }
 
 .nav-label {
@@ -24,7 +29,7 @@ a:active {
 .icon {
    display: inline-block;
    margin: 0 auto;
-   padding-right: 5px;
+   padding-right: 23px;
    text-align: center;
    vertical-align: middle;
    width: 15%;

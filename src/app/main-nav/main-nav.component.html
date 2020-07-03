@@ -36,7 +36,8 @@
          <div fxShow="true"
               fxLayoutAlign="flex-end"
               fxHide.lt-md>
-            <app-toolbar-nav-items [isLoggedIn]="isLoggedIn"
+            <app-toolbar-nav-items *ngIf="!(isCompact$ | async)"
+                                   [isLoggedIn]="isLoggedIn"
                                    (logoutClick)="onLogOut($event)">
             </app-toolbar-nav-items>
          </div>
