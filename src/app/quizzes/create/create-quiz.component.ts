@@ -8,11 +8,6 @@ const minQuizTitleLength = 5;
 const maxQuizTitleLength = 100;
 const maxQuizDescriptionLength = 500;
 
-interface FormData {
-  title: string;
-  description: string;
-}
-
 @Component({
   selector: 'app-create-quiz',
   templateUrl: 'create-quiz.component.html',
@@ -48,7 +43,7 @@ export class CreateQuizComponent implements OnInit {
         '',
         [
           Validators.required,
-          Validators.min(minQuizTitleLength),
+          Validators.minLength(minQuizTitleLength),
           Validators.maxLength(maxQuizTitleLength),
         ],
       ],
@@ -71,7 +66,7 @@ export class CreateQuizComponent implements OnInit {
     );
   }
 
-  private handleQuizCreation(data: any) {
+  private handleQuizCreation(data: any): void {
     if (data.success) {
       this.notificationService.success(data.message);
       this.router.navigate(['/quizzes/edit/' + data.quiz._id + '/add']);
@@ -80,7 +75,7 @@ export class CreateQuizComponent implements OnInit {
     }
   }
 
-  private handleError(error: any) {
+  private handleError(error: any): void {
     this.notificationService.error(error.message);
   }
 }
