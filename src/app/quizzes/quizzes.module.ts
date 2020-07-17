@@ -21,6 +21,7 @@ import { quizzesRoutes } from './quizzes.routes';
 import { SharedModule } from '../shared/shared.module';
 import { CustomMaterialModule } from '../core/material.module';
 import { AnswersListComponent } from './solve/answers-list/answers-list.component';
+import { CoreModule } from '../core/core.module';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { AnswersListComponent } from './solve/answers-list/answers-list.componen
     FormsModule,
     ReactiveFormsModule,
     CustomMaterialModule,
+    CoreModule,
     RouterModule.forChild(quizzesRoutes)
   ],
   exports: [

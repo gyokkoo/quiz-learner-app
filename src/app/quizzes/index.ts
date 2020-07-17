@@ -1,4 +1,4 @@
-export * from './creation/create-quiz.component';
+export * from './create/create-quiz.component';
 export * from './all/quizzes-list.component';
 export * from './details/quiz-details.component';
 export * from './edit/quiz-edit.component';
