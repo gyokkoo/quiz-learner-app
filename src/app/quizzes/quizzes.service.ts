@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { AuthService } from '../user/auth.service';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
-import { tap } from 'rxjs/operators';
+import { tap, map, catchError } from 'rxjs/operators';
 
-import { IQuiz } from '../shared/models/quiz.model';
+import { QuizModel } from '../shared/models/quiz.model';
 import { ServerResponse } from '../shared/models/server-response.model';
 import { ISolvedQuestion, IQuestion } from '../shared/models/question.model';
+import { NotificationService } from '../core/services/notification.service';
 
 export interface CreateQuizData {
   title: string;
@@ -21,10 +22,14 @@ export class QuizzesService {
   private readonly baseUrl = environment.apiHost + 'quiz';
 
   solvedQuestions: Array<ISolvedQuestion>;
-  quizzes: IQuiz[];
-  currentQuiz: IQuiz;
+  quizzes: QuizModel[];
+  currentQuiz: QuizModel;
 
-  constructor(private http: HttpClient, private authService: AuthService) {}
+  constructor(
+    private http: HttpClient,
+    private authService: AuthService,
+    private notificationService: NotificationService
+  ) {}
 
   /**
    * Create a quiz object in the system.
@@ -59,11 +64,32 @@ export class QuizzesService {
       .pipe(tap((data: ServerResponse) => console.log(data)));
   }
 
-  getAllQuizzes(): Observable<ServerResponse> {
-    const url = `${this.baseUrl}/getAllQuizzes`;
+  /**
+   * Fetch all quizzes in the sysmtem and show success message.
+   * Return empty array in case of an error.
+   */
+  getAllQuizzes(): Observable<QuizModel[]> {
+    const url = `${this.baseUrl}/getAll`;
     const headers = this.getRequestHeaders(false);
 
-    return this.http.get<ServerResponse>(url, { headers });
+    return this.httpGetInternal(url, headers).pipe(
+      map((response: ServerResponse) => {
+        if (response.success && response.message) {
+          this.notificationService.success(response.message);
+        }
+
+        return response.data;
+      }),
+      catchError((err) => {
+        console.error(err);
+        const errorMessage = err?.error?.message;
+        if (errorMessage) {
+          this.notificationService.error(errorMessage);
+        }
+
+        return of([]);
+      })
+    );
   }
 
   getAllQuestionsByQuizId(id: string): Observable<ServerResponse> {
@@ -112,5 +138,12 @@ export class QuizzesService {
     return new HttpHeaders({
       'Content-Type': 'application/json',
     });
+  }
+
+  private httpGetInternal(
+    url: string,
+    headers: HttpHeaders
+  ): Observable<ServerResponse> {
+    return this.http.get<ServerResponse>(url, { headers });
   }
 }

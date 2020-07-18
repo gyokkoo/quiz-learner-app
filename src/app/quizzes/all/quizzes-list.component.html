@@ -25,20 +25,19 @@
             <tr>
               <th>Title</th>
               <th>Description</th>
-              <th>5 Star Rating</th>
-              <th>Created by</th>
+              <th>Creator</th>
               <th>Action</th>
             </tr>
           </thead>
 
           <tbody>
-            <tr *ngFor="let quiz of quizzes">
+            <tr *ngFor="let quiz of quizzes$ | async">
               <td>
                 <div>
                   {{ quiz.name }}
                 </div>
               </td>
-              
+
               <td>
                 <div>
                   {{ quiz.description }}
@@ -46,19 +45,13 @@
               </td>
 
               <td>
-                <app-star [rating]="quiz.rating">
-                </app-star>
-              </td>
-
-              <td>
                 <div>
-                  {{ quiz.creator }}
+                  {{ quiz?.creatorUsername }}
                 </div>
               </td>
 
               <td>
-                <button class="btn btn-outline-primary btn-sm"
-                        [routerLink]="'/quizzes/details/' + quiz._id">
+                <button class="btn btn-outline-primary btn-sm" [routerLink]="'/quizzes/details/' + quiz._id">
                   Details
                 </button>
               </td>

@@ -1,5 +1,5 @@
 import { Injectable, OnInit } from '@angular/core';
-import { IQuiz } from 'src/app/shared/models/quiz.model';
+import { QuizModel } from 'src/app/shared/models/quiz.model';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
