@@ -115,6 +115,6 @@ export class SolveQuizComponent implements OnInit, OnDestroy {
    }
 
    private getCorrectAnswer(): string {
-      return this.question.answers.filter((answer: Answer) => answer.isCorrect)[0].answer;
+      return this.question.answers.filter((answer: Answer) => answer.isCorrect)[0]?.answer;
    }
 }

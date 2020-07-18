@@ -4,7 +4,6 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 
 import { QuizzesService } from '../quizzes.service';
-import { IQuiz } from 'src/app/shared/models/quiz.model';
 import { ServerResponse } from 'src/app/shared/models/server-response.model';
 import { QuizSolverService } from '../solve/quiz-solver.service';
 
@@ -14,7 +13,7 @@ import { QuizSolverService } from '../solve/quiz-solver.service';
 })
 export class QuizDetailsComponent implements OnInit, OnDestroy {
 
-  quiz: IQuiz;
+  quiz: any;
   modalCloseResult: string;
 
   id: string;
@@ -97,7 +96,7 @@ export class QuizDetailsComponent implements OnInit, OnDestroy {
     this.toastr.error(error.message);
   }
 
-  private getInitialQuizValues(): IQuiz {
+  private getInitialQuizValues(): any {
     // Return an initialized object
     return {
       id: this.id,

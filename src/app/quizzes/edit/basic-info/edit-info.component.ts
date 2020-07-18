@@ -1,38 +1,38 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { QuizzesService } from '../../quizzes.service';
-import { ActivatedRoute, Router, RoutesRecognized, ParamMap } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { IQuiz } from 'src/app/shared/models/quiz.model';
-import { switchMap } from 'rxjs/operators';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-info',
   templateUrl: './edit-info.component.html',
-  styleUrls: ['./edit-info.component.scss']
+  styleUrls: ['./edit-info.component.scss'],
 })
 export class EditInfoComponent implements OnInit {
-
-  quiz: IQuiz;
+  quiz: any;
 
   quizInfoForm: FormGroup;
 
   private id: string;
 
-  constructor(private fb: FormBuilder,
-              private quizzesService: QuizzesService,
-              private toastr: ToastrService,
-              private route: ActivatedRoute,
-              private router: Router) { }
+  constructor(
+    private fb: FormBuilder,
+    private quizzesService: QuizzesService,
+    private toastr: ToastrService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.id = this.router.url.split('/')[3];
-    this.quizzesService.getQuizById(this.id).subscribe(
-      (data => this.handleQuizDetailsFetching(data)));
-      this.quizInfoForm = this.fb.group({
-        title: [''],
-        description: [''],
-      });
+    this.quizzesService
+      .getQuizById(this.id)
+      .subscribe((data) => this.handleQuizDetailsFetching(data));
+    this.quizInfoForm = this.fb.group({
+      title: [''],
+      description: [''],
+    });
     this.quiz = this.getInitialQuizValues();
   }
 
@@ -67,7 +67,7 @@ export class EditInfoComponent implements OnInit {
     }
   }
 
-  private getInitialQuizValues(): IQuiz {
+  private getInitialQuizValues(): any {
     // Return an initialized object
     return {
       id: this.id,
@@ -76,7 +76,7 @@ export class EditInfoComponent implements OnInit {
       description: null,
       dateCreated: null,
       rating: null,
-      questionsCount: 0
-   };
+      questionsCount: 0,
+    };
   }
 }

@@ -70,9 +70,9 @@ export class EditQuestionComponent implements OnInit {
     this.answers.removeAt(this.answers.length - 1);
   }
 
-  private handleQuestionFetching(res: ServerResponse): void {
+  private handleQuestionFetching(res: any): void {
     if (res.success) {
-      this.quizBuilder.currentQuestion = res.data;
+      this.quizBuilder.currentQuestion = res.questionData;
 
       this.editQuestionForm.patchValue({
         question: this.question.question,

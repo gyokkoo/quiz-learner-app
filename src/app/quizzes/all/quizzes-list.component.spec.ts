@@ -1,45 +1,47 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
+
+import { of } from 'rxjs';
 
 import { QuizzesListComponent } from './quizzes-list.component';
-import { StarComponent } from '../../shared/star.component';
-import { Component } from '@angular/core';
-import { RouterTestingModule } from '@angular/router/testing';
-import { HttpClientModule } from '@angular/common/http';
-import { ToastrModule } from 'ngx-toastr';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-// tslint:disable-next-line:component-selector
-@Component({ selector: 'router-outlet', template: '' })
-class RouterOutletStubComponent {
-}
+import { QuizzesService } from '../quizzes.service';
 
 describe('QuizzesListComponent', () => {
-   let component: QuizzesListComponent;
-   let fixture: ComponentFixture<QuizzesListComponent>;
+  let component: QuizzesListComponent;
+  let fixture: ComponentFixture<QuizzesListComponent>;
 
-   beforeEach(async(() => {
-      TestBed.configureTestingModule({
-         declarations: [
-            QuizzesListComponent,
-            StarComponent,
-            RouterOutletStubComponent
-         ],
-         imports: [
-            RouterTestingModule,
-            HttpClientModule,
-            BrowserAnimationsModule,
-            ToastrModule.forRoot()
-         ]
-      }).compileComponents();
-   }));
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      imports: [RouterTestingModule, HttpClientModule, BrowserAnimationsModule],
+      declarations: [QuizzesListComponent],
+      providers: [
+        {
+          provide: QuizzesService,
+          useValue: { getAllQuizzes: () => of([]) },
+        },
+      ],
+    }).compileComponents();
+  }));
 
-   beforeEach(() => {
-      fixture = TestBed.createComponent(QuizzesListComponent);
-      component = fixture.componentInstance;
-      fixture.detectChanges();
-   });
+  beforeEach(() => {
+    fixture = TestBed.createComponent(QuizzesListComponent);
+    component = fixture.componentInstance;
+  });
 
-   it('should create', () => {
-      expect(component).toBeTruthy();
-   });
+  it('should create properly', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('should request quizzes on init', () => {
+    const quizzesService: QuizzesService = TestBed.inject(QuizzesService);
+    spyOn(quizzesService, 'getAllQuizzes').and.returnValue(of([]));
+
+    expect(component.quizzes$).toBeUndefined();
+    component.ngOnInit();
+
+    expect(quizzesService.getAllQuizzes).toHaveBeenCalledTimes(1);
+    expect(component.quizzes$).toBeDefined();
+  });
 });

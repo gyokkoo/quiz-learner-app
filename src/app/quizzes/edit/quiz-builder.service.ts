@@ -53,9 +53,13 @@ export class QuizBuilderService {
     );
   }
 
-  private handleQuestionsFetched(res: ServerResponse) {
+  private handleQuestionsFetched(res: any) {
     if (res.success) {
-        const questionsData = res.data;
+        const questionsData = res.allQuestions;
+        if (!questionsData?.length) {
+          return;
+        }
+
         for (let i = 0; i < questionsData.length; i++) {
             this.questions.push(questionsData[i]);
         }
