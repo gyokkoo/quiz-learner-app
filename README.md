@@ -1,5 +1,6 @@
 # Quiz Learner App 
 
+![Angular CI](https://github.com/gyokkoo/quiz-learner-app/workflows/Angular%20CI/badge.svg)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
 
