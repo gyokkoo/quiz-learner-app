@@ -27,4 +27,4 @@ jobs:
     - run: npm install
     - run: npm run build -- --prod
     - run: npm run lint
-    - run: npm run test -- --configuration=ci
+    - run: npm run test
