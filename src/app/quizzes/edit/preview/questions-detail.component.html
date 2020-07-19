@@ -4,8 +4,7 @@
             <div class="col-md-12">
                 <h3> {{ question.question }} </h3>
                 <ul class="list-group">
-                    <li *ngFor="let answer of question.answers"
-                        class="list-group-item"
+                    <li *ngFor="let answer of question.answers" class="list-group-item"
                         [ngClass]="{'is-correct': answer.isCorrect }">
                         {{ answer.answer }}
                     </li>
@@ -15,9 +14,7 @@
     </div>
 
     <div class='panel-footer'>
-        <a class="btn btn-primary" 
-            style="width:80px"
-            [routerLink]="questionId">
+        <a class="btn btn-primary" style="width:80px" [routerLink]="questionId">
             Edit
         </a>
     </div>

@@ -1,18 +1,12 @@
-<form novalidate
-      [formGroup]="editQuestionForm">
+<form novalidate [formGroup]="editQuestionForm">
   <div>
     <legend>Add your questions</legend>
     <div class="form-group row mb-2">
-      <label class="col-md-2 col-form-label"
-              for="questionId">
+      <label class="col-md-2 col-form-label" for="questionId">
       </label>
       <div class="col-md-8">
-        <textarea class="form-control"
-              id="questionId"
-              placeholder="Question (required)"
-              formControlName="question"
-              row="6"
-              [ngClass]="{'is-invalid':
+        <textarea class="form-control" id="questionId" placeholder="Question (required)" formControlName="question"
+          row="6" [ngClass]="{'is-invalid':
                 (editQuestionForm.get('question').touched ||
                 editQuestionForm.get('question').dirty) &&
                 !editQuestionForm.get('question').valid
@@ -29,69 +23,53 @@
       </div>
     </div>
 
-    <div formArrayName="answers"
-          *ngFor="let answer of answers.controls; let i = index">
+    <div formArrayName="answers" *ngFor="let answer of answers.controls; let i = index">
       <div [formGroupName]="i">
         <div class="form-group row mb-2">
-          <label class="col-md-2 col-form-label"
-                attr.for="{{'answerId' + i }}">
+          <label class="col-md-2 col-form-label" attr.for="{{'answerId' + i }}">
           </label>
           <div class="col-md-8">
-            <input class="form-control"
-                    id="{{'answerId' + i }}"
-                    type="text"
-                    placeholder="Provide answer"
-                    formControlName="answer"
-                    [ngClass]="{
+            <input class="form-control" id="{{'answerId' + i }}" type="text" placeholder="Provide answer"
+              formControlName="answer" [ngClass]="{
                       'is-correct': (editQuestionForm.get('availableAnswers')?.value[i]?.isCorrect),
                       'is-invalid':
                           (editQuestionForm.get('availableAnswers')?.touched ||
                           editQuestionForm.get('availableAnswers')?.dirty) &&
                           !editQuestionForm.get('availableAnswers')?.valid}">
-              <span class="invalid-feedback">
-                <span *ngIf="editQuestionForm.get('availableAnswers')?.errors?.required">
-                  Please provide answer.
-                </span>
+            <span class="invalid-feedback">
+              <span *ngIf="editQuestionForm.get('availableAnswers')?.errors?.required">
+                Please provide answer.
               </span>
+            </span>
           </div>
 
           <div class="checkbox checkbox-success">
-              <input id="{{'checkbox' + i}}" 
-                    formControlName="isCorrect"
-                    type="checkbox">
+            <input id="{{'checkbox' + i}}" formControlName="isCorrect" type="checkbox">
 
-              <label for="{{'checkbox' + i}}">
-                  Is correct?
-              </label>
+            <label for="{{'checkbox' + i}}">
+              Is correct?
+            </label>
           </div>
         </div>
       </div>
     </div>
 
     <div class="answerControl">
-      <button class="btn btn-outline-primary"
-              type="button"
-              (click)="addAnswer()">
+      <button class="btn btn-outline-primary" type="button" (click)="addAnswer()">
         Add answer
       </button>
 
-      <button class="btn btn-outline-primary"
-              type="button"
-              [disabled]="answers.length === 1"
-              (click)="removeLastAnswer()">
+      <button class="btn btn-outline-primary" type="button" [disabled]="answers.length === 1"
+        (click)="removeLastAnswer()">
         Remove answer
       </button>
     </div>
 
     <div class="custom-control custom-checkbox custom-control-inline">
-      <input type="checkbox" 
-            id="shouldShuffleId" 
-            name="shouldShuffle" 
-            formControlName="shouldShuffle"
-            class="custom-control-input">
+      <input type="checkbox" id="shouldShuffleId" name="shouldShuffle" formControlName="shouldShuffle"
+        class="custom-control-input">
 
-      <label class="custom-control-label" 
-            for="shouldShuffleId">
+      <label class="custom-control-label" for="shouldShuffleId">
         Shuffle answers
       </label>
     </div>
@@ -100,21 +78,15 @@
   <hr />
 </form>
 
-<button class="btn btn-outline-secondary mr-3"
-        style="width:80px"
-        type="button"
-        title="Go back"
-        [routerLink]="['/quizzes/edit/' + quizId +'/questions']">
-    Back
+<button class="btn btn-outline-secondary mr-3" style="width:80px" type="button" title="Go back"
+  [routerLink]="['/quizzes/edit/' + quizId +'/questions']">
+  Back
 </button>
 
-<button class="btn btn-primary mr-3"
-        style="width:80px"
-        type="button"
-        [title]="editQuestionForm.valid ? 'Save your question' : 'Disabled until the form data is valid'"
-        [disabled]="!editQuestionForm.valid"
-        (click)="saveClicked()">
-    Save
+<button class="btn btn-primary mr-3" style="width:80px" type="button"
+  [title]="editQuestionForm.valid ? 'Save your question' : 'Disabled until the form data is valid'"
+  [disabled]="!editQuestionForm.valid" (click)="saveClicked()">
+  Save
 </button>
 
 <br>Dirty: {{ editQuestionForm.dirty }}
@@ -122,4 +94,3 @@
 <br>Valid: {{ editQuestionForm.valid }}
 <br>Value: {{ editQuestionForm.value | json }}
 <br>&nbsp;
-  

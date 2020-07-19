@@ -5,24 +5,17 @@
     </div>
 
     <div class="card-body">
-      <form novalidate 
-            (ngSubmit)="onSubmit()" 
-            [formGroup]="loginForm">
-        
+      <form novalidate (ngSubmit)="onSubmit()" [formGroup]="loginForm">
+
         <fieldset>
           <div class="form-group row mb-2">
-            <label class="col-md-2 col-form-label"
-                   for="usernameId">
+            <label class="col-md-2 col-form-label" for="usernameId">
               Username
             </label>
 
             <div class="col-md-8">
-              <input class="form-control" 
-                     id="usernameId" 
-                     type="text" 
-                     placeholder="Username (required)" 
-                     formControlName="username" 
-                     [ngClass]="{'is-invalid':
+              <input class="form-control" id="usernameId" type="text" placeholder="Username (required)"
+                formControlName="username" [ngClass]="{'is-invalid':
                         (loginForm.get('username').touched || 
                         loginForm.get('username').dirty) && 
                         !loginForm.get('username').valid }" />
@@ -31,25 +24,20 @@
                   Username is required
                 </span>
                 <span *ngIf="loginForm.get('username').errors?.minlength">
-                    The username must be longer than 3 characters.
+                  The username must be longer than 3 characters.
                 </span>
               </span>
             </div>
           </div>
 
           <div class="form-group row mb-2">
-            <label class="col-md-2 col-form-label" 
-                   for="passwordId">
+            <label class="col-md-2 col-form-label" for="passwordId">
               Password
             </label>
 
             <div class="col-md-8">
-              <input class="form-control"
-                     id="passwordId"
-                     type="password"
-                     placeholder="Password (required)"
-                     formControlName="password"
-                     [ngClass]="{'is-invalid': 
+              <input class="form-control" id="passwordId" type="password" placeholder="Password (required)"
+                formControlName="password" [ngClass]="{'is-invalid': 
                      (loginForm.get('password').touched || 
                       loginForm.get('password').dirty) && 
                      !loginForm.get('password').valid }" />
@@ -63,23 +51,17 @@
 
           <div class="row">
             <div class="col-md-4 offset-md-2">
-              <button class="btn btn-primary mr-3" 
-                      type="submit" 
-                      style="width:80px" 
-                      [title]="loginForm.valid ? 'Login with your entered data' : 'Disabled until the form data is valid'"
-                      [disabled]="!loginForm.valid">
+              <button class="btn btn-primary mr-3" type="submit" style="width:80px"
+                [title]="loginForm.valid ? 'Login with your entered data' : 'Disabled until the form data is valid'"
+                [disabled]="!loginForm.valid">
                 Log In
               </button>
-              <button class="btn btn-outline-secondary mr-3" 
-                      type="button" 
-                      style="width:80px" 
-                      [routerLink]="['/welcome']">
+              <button class="btn btn-outline-secondary mr-3" type="button" style="width:80px"
+                [routerLink]="['/welcome']">
                 Cancel
               </button>
 
-              <button class="btn btn-success mr-3"
-                      type="button" 
-                      (click)="populateTestData()">
+              <button class="btn btn-success mr-3" type="button" (click)="populateTestData()">
                 Test Data
               </button>
             </div>
@@ -89,8 +71,7 @@
       </form>
     </div>
 
-    <div *ngIf="errorMessage"
-         class="alert alert-danger">
+    <div *ngIf="errorMessage" class="alert alert-danger">
       {{ errorMessage }}
     </div>
   </div>
@@ -102,5 +83,5 @@
     <br>Value: {{ loginForm.value | json }}
     <br>&nbsp;
   </div> -->
-  
+
 </div>

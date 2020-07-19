@@ -13,15 +13,10 @@ import { RegisterComponent } from './register.component';
     ReactiveFormsModule,
     RouterModule.forChild([
       { path: 'login', component: LoginComponent },
-      { path: 'register', component: RegisterComponent }
-    ])
+      { path: 'register', component: RegisterComponent },
+    ]),
   ],
-  declarations: [
-    LoginComponent,
-    RegisterComponent
-  ],
-  providers: [
-  ]
+  declarations: [LoginComponent, RegisterComponent],
+  providers: [],
 })
-export class UserModule {
-}
+export class UserModule {}

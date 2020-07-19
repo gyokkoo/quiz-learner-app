@@ -12,9 +12,9 @@ import { ErrorsHandler } from './errors/errors-handler';
 import { RouterModule } from '@angular/router';
 
 import {
-   WelcomePageComponent,
-   AboutPageComponent,
-   AppInfoComponent
+  WelcomePageComponent,
+  AboutPageComponent,
+  AppInfoComponent,
 } from './core';
 
 import { appRoutes } from './routes';
@@ -29,42 +29,41 @@ import { NavListItemsComponent } from './main-nav/nav-list-items/nav-list-items.
 import { NavToolbarItemsComponent } from './main-nav/nav-toolbar-items/nav-toolbar-items.component';
 
 @NgModule({
-   declarations: [
-      AppComponent,
-      Error404Component,
-      WelcomePageComponent,
-      AppInfoComponent,
-      AboutPageComponent,
-      MainNavComponent,
-      NavListItemsComponent,
-      NavToolbarItemsComponent
-   ],
-   imports: [
-      BrowserModule,
-      BrowserAnimationsModule,
-      // NoopAnimationsModule, // <-- Disable animations
-      CustomMaterialModule,
-      NgbModule,
-      QuizzesModule,
-      ToastrModule.forRoot({
-         positionClass: 'toast-top-right',
-         preventDuplicates: false,
-      }),
-      HttpClientModule,
-      RouterModule.forRoot(appRoutes),
-      ServiceWorkerModule.register('ngsw-worker.js', {
-         enabled: environment.production
-      }),
-      LayoutModule
-   ],
-   providers: [
-      {
-         provide: ErrorHandler,
-         useClass: ErrorsHandler
-      }
-   ],
-   entryComponents: [],
-   bootstrap: [AppComponent]
+  declarations: [
+    AppComponent,
+    Error404Component,
+    WelcomePageComponent,
+    AppInfoComponent,
+    AboutPageComponent,
+    MainNavComponent,
+    NavListItemsComponent,
+    NavToolbarItemsComponent,
+  ],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    // NoopAnimationsModule, // <-- Disable animations
+    CustomMaterialModule,
+    NgbModule,
+    QuizzesModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-top-right',
+      preventDuplicates: false,
+    }),
+    HttpClientModule,
+    RouterModule.forRoot(appRoutes),
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+    }),
+    LayoutModule,
+  ],
+  providers: [
+    {
+      provide: ErrorHandler,
+      useClass: ErrorsHandler,
+    },
+  ],
+  entryComponents: [],
+  bootstrap: [AppComponent],
 })
-export class AppModule {
-}
+export class AppModule {}

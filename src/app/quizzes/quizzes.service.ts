@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { AuthService } from '../user/auth.service';
-import { Observable, of } from 'rxjs';
+import { Observable, of, Observer } from 'rxjs';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { tap, map, catchError } from 'rxjs/operators';
 
 import { QuizModel } from '../shared/models/quiz.model';
 import { ServerResponse } from '../shared/models/server-response.model';
-import { ISolvedQuestion, IQuestion } from '../shared/models/question.model';
+import { SolvedQuestion, Question } from '../shared/models/question.model';
 import { NotificationService } from '../core/services/notification.service';
 
 export interface CreateQuizData {
@@ -21,7 +21,7 @@ export interface CreateQuizData {
 export class QuizzesService {
   private readonly baseUrl = environment.apiHost + 'quiz';
 
-  solvedQuestions: Array<ISolvedQuestion>;
+  solvedQuestions: Array<SolvedQuestion>;
   quizzes: QuizModel[];
   currentQuiz: QuizModel;
 
@@ -33,10 +33,20 @@ export class QuizzesService {
 
   /**
    * Create a quiz object in the system.
-   * Requires userId and creator to be set.
-   * @param quiz Quiz to create object data
+   * Required authentication.
+   * @return quizId if success, null otherwise
    */
-  createQuiz(quiz: CreateQuizData): Observable<any> {
+  createQuiz(quiz: CreateQuizData): Observable<string | null> {
+    if (!quiz) {
+      this.notificationService.error('Quiz data is required!');
+      return of(null);
+    }
+
+    if (!this.authService.isAuthenticated) {
+      this.notificationService.error('User should be authenticated!');
+      return of(null);
+    }
+
     const userId = this.authService?.user?.id;
     const creator = this.authService?.user?.name;
     const quizData = {
@@ -49,9 +59,24 @@ export class QuizzesService {
     const url = `${this.baseUrl}/create`;
     const headers = this.getRequestHeaders(true);
 
-    return this.http
-      .post(url, quizData, { headers })
-      .pipe(tap((data) => console.log(data)));
+    return this.httpPostInternal(url, quizData, headers).pipe(
+      map((response: ServerResponse) => {
+        if (response.success && response.message) {
+          this.notificationService.success(response.message);
+        }
+
+        const quizId: string = response.data?.quizId || '';
+        return quizId ? quizId : null;
+      }),
+      catchError((err: any) => {
+        const errorMessage = err?.error?.message;
+        if (errorMessage) {
+          this.notificationService.error(errorMessage);
+        }
+
+        return of(null);
+      })
+    );
   }
 
   getQuizById(id: string): Observable<ServerResponse> {
@@ -117,7 +142,7 @@ export class QuizzesService {
       .pipe(tap((res: ServerResponse) => console.log(res)));
   }
 
-  createQuestion(question: IQuestion): Observable<ServerResponse> {
+  createQuestion(question: Question): Observable<ServerResponse> {
     const url = `${this.baseUrl}/createQuestion`;
     const headers = this.getRequestHeaders(true);
 
@@ -145,5 +170,13 @@ export class QuizzesService {
     headers: HttpHeaders
   ): Observable<ServerResponse> {
     return this.http.get<ServerResponse>(url, { headers });
+  }
+
+  private httpPostInternal(
+    url: string,
+    data: any,
+    headers: HttpHeaders
+  ): Observable<ServerResponse> {
+    return this.http.post<ServerResponse>(url, data, { headers });
   }
 }

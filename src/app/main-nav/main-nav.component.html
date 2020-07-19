@@ -1,27 +1,17 @@
 <mat-sidenav-container class="sidenav-container">
-   <mat-sidenav #drawer
-                class="sidenav"
-                (click)="drawer.toggle()"
-                [ngClass]="{ hidden: !(isCompact$ | async)} "
-                fixedInViewport="false"
-                [attr.role]="(isCompact$ | async) ? 'dialog' : 'navigation'"
-                [mode]="(isCompact$ | async) ? 'over' : 'side'"
-                [opened]="!(isCompact$ | async)">
+   <mat-sidenav #drawer class="sidenav" (click)="drawer.toggle()" [ngClass]="{ hidden: !(isCompact$ | async)} "
+      fixedInViewport="false" [attr.role]="(isCompact$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isCompact$ | async) ? 'over' : 'side'" [opened]="!(isCompact$ | async)">
       <mat-toolbar>Menu</mat-toolbar>
       <mat-nav-list>
-         <app-nav-list-items [isLoggedIn]="isLoggedIn"
-                             (logoutClick)="onLogOut($event)">
+         <app-nav-list-items [isLoggedIn]="isLoggedIn" (logoutClick)="onLogOut($event)">
          </app-nav-list-items>
       </mat-nav-list>
    </mat-sidenav>
 
    <mat-sidenav-content>
       <mat-toolbar color="primary">
-         <button
-            type="button"
-            aria-label="Toggle sidenav"
-            mat-icon-button
-            (click)="drawer.toggle()"
+         <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
             *ngIf="isCompact$ | async">
             <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
          </button>
@@ -33,12 +23,9 @@
 
          <span class="menu-spacer"></span>
 
-         <div fxShow="true"
-              fxLayoutAlign="flex-end"
-              fxHide.lt-md>
-            <app-toolbar-nav-items *ngIf="!(isCompact$ | async)"
-                                   [isLoggedIn]="isLoggedIn"
-                                   (logoutClick)="onLogOut($event)">
+         <div fxShow="true" fxLayoutAlign="flex-end" fxHide.lt-md>
+            <app-toolbar-nav-items *ngIf="!(isCompact$ | async)" [isLoggedIn]="isLoggedIn"
+               (logoutClick)="onLogOut($event)">
             </app-toolbar-nav-items>
          </div>
       </mat-toolbar>

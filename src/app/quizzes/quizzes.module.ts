@@ -15,7 +15,7 @@ import {
   QuestionsAddComponent,
   SolveQuizComponent,
   QuizResultComponent,
-  EditQuestionComponent
+  EditQuestionComponent,
 } from '.';
 import { quizzesRoutes } from './quizzes.routes';
 import { SharedModule } from '../shared/shared.module';
@@ -37,7 +37,7 @@ import { CoreModule } from '../core/core.module';
     SolveQuizComponent,
     QuizResultComponent,
     EditQuestionComponent,
-    AnswersListComponent
+    AnswersListComponent,
   ],
   imports: [
     SharedModule,
@@ -46,10 +46,8 @@ import { CoreModule } from '../core/core.module';
     ReactiveFormsModule,
     CustomMaterialModule,
     CoreModule,
-    RouterModule.forChild(quizzesRoutes)
+    RouterModule.forChild(quizzesRoutes),
   ],
-  exports: [
-    ReactiveFormsModule
-  ]
+  exports: [ReactiveFormsModule],
 })
-export class QuizzesModule { }
+export class QuizzesModule {}
