@@ -6,7 +6,7 @@
     "start": "ng serve -o",
     "build": "ng build",
     "test": "ng test",
-    "lint": "ng lint"
+    "lint": "ng lint",
     "README-postinstall": "The chromedriver version must support the chrome version installed via puppeteer. Chromedriver 76.0.3809.68 supports Chrome 76. See https://chromedriver.chromium.org/downloads for version matching.",
     "postinstall": "webdriver-manager update --standalone false --gecko false --versions.chrome 76.0.3809.68"
   },
