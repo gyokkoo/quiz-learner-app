@@ -1,41 +1,33 @@
-import {
-   Component, EventEmitter,
-   Input,
-   OnInit, Output
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
 import { Answer } from '../../../shared/models/question.model';
 
 @Component({
-   selector: 'app-answers-list',
-   templateUrl: './answers-list.component.html',
-   styleUrls: ['./answers-list.component.scss'],
+  selector: 'app-answers-list',
+  templateUrl: 'answers-list.component.html',
+  styleUrls: ['answers-list.component.scss'],
 })
 export class AnswersListComponent implements OnInit {
+  private readonly answerViewColor: ThemePalette = 'primary';
 
-   private readonly answerViewColor: ThemePalette = 'primary';
+  @Input() shouldFreeze: boolean;
 
-   @Input() shouldFreeze: boolean;
+  @Input() availableAnswers: Array<Answer>;
 
-   @Input() availableAnswers: Array<Answer>;
+  @Output() answerChange: EventEmitter<Answer> = new EventEmitter<Answer>();
 
-   @Output() answerChange: EventEmitter<Answer> = new EventEmitter<Answer>();
+  selectedAnswer: Answer;
 
-   selectedAnswer: Answer;
+  constructor() {}
 
-   constructor() {
-   }
+  ngOnInit(): void {}
 
-   ngOnInit(): void {
-   }
+  onAnswerClick(answer: Answer): void {
+    if (this.shouldFreeze) {
+      return;
+    }
 
-   onAnswerClick(answer: Answer): void {
-      if (this.shouldFreeze) {
-         return;
-      }
-
-      this.selectedAnswer = answer;
-      this.answerChange.emit(answer);
-   }
-
+    this.selectedAnswer = answer;
+    this.answerChange.emit(answer);
+  }
 }

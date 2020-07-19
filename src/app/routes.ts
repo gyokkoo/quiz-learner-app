@@ -2,34 +2,33 @@ import { Routes } from '@angular/router';
 
 import { Error404Component } from './errors/404.component';
 
-import {
-  WelcomePageComponent,
-  AboutPageComponent
-} from './core';
+import { WelcomePageComponent, AboutPageComponent } from './core';
 
 export const appRoutes: Routes = [
   {
     path: 'welcome',
-    component: WelcomePageComponent
+    component: WelcomePageComponent,
   },
   {
     path: 'about',
-    component: AboutPageComponent
+    component: AboutPageComponent,
   },
   {
     path: 'users',
-    loadChildren: () => import('./user/user.module').then(m => m.UserModule)
+    loadChildren: () => import('./user/user.module').then((m) => m.UserModule),
   },
   {
     path: 'quizzes',
-    loadChildren: () => import('./quizzes/quizzes.module').then(m => m.QuizzesModule)
+    loadChildren: () =>
+      import('./quizzes/quizzes.module').then((m) => m.QuizzesModule),
   },
   {
-    path: '', redirectTo: '/welcome',
-    pathMatch: 'full'
+    path: '',
+    redirectTo: '/welcome',
+    pathMatch: 'full',
   },
   {
     path: '**',
-    component: Error404Component
-  }
+    component: Error404Component,
+  },
 ];

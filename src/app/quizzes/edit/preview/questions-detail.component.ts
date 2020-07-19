@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { QuizzesService } from '../../quizzes.service';
-import { IQuestion } from 'src/app/shared/models/question.model';
+import { Question } from 'src/app/shared/models/question.model';
 import { QuizBuilderService } from '../quiz-builder.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { QuizBuilderService } from '../quiz-builder.service';
 })
 export class QuestionsDetailsComponent implements OnInit {
 
-  get question(): IQuestion {
+  get question(): Question {
     return this.quizBuilder.currentQuestion;
   }
 

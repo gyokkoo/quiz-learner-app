@@ -19,23 +19,45 @@ export class RegisterComponent implements OnInit {
     private fb: FormBuilder,
     private authService: AuthService,
     private router: Router,
-    private toastr: ToastrService) {
-  }
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit() {
     this.registerForm = this.fb.group({
-      username: ['', [Validators.required, Validators.minLength(3), Validators.pattern(this.USERNAME_REGEX)]],
-      firstName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
-      lastName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
+      username: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.pattern(this.USERNAME_REGEX),
+        ],
+      ],
+      firstName: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(50),
+        ],
+      ],
+      lastName: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(50),
+        ],
+      ],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', Validators.required]
+      confirmPassword: ['', Validators.required],
     });
   }
 
   onSubmit() {
     console.log(this.registerForm.value);
-    this.authService.registerUser(this.registerForm.value).subscribe(
-      data => this.handleUserRegistration(data));
+    this.authService
+      .registerUser(this.registerForm.value)
+      .subscribe((data) => this.handleUserRegistration(data));
   }
 
   // Only for development testing

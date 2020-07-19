@@ -1,24 +1,21 @@
 import {
-   ChangeDetectionStrategy,
-   Component,
-   Input,
-   OnInit
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnInit,
 } from '@angular/core';
 import { AppInfo } from '../welcome-page.component';
 
 @Component({
-   selector: 'app-info',
-   templateUrl: './app-info.component.html',
-   styleUrls: ['./app-info.component.scss'],
-   changeDetection: ChangeDetectionStrategy.OnPush
+  selector: 'app-info',
+  templateUrl: 'app-info.component.html',
+  styleUrls: ['app-info.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppInfoComponent implements OnInit {
+  @Input() appInfo: AppInfo;
 
-   @Input() appInfo: AppInfo;
+  constructor() {}
 
-   constructor() {
-   }
-
-   ngOnInit() {
-   }
+  ngOnInit() {}
 }

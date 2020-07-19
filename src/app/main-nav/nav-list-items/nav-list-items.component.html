@@ -1,53 +1,39 @@
-<a mat-list-item
-   [routerLink]="['/welcome']">
+<a mat-list-item [routerLink]="['/welcome']">
    <mat-icon class="icon">home</mat-icon>
    <span>Home</span>
 </a>
 
-<a mat-list-item
-   [routerLink]="['/quizzes/all']">
+<a mat-list-item [routerLink]="['/quizzes/all']">
    <mat-icon class="icon">dashboard</mat-icon>
    <span>All quizzes</span>
 </a>
 
-<a mat-list-item
-   *ngIf="isLoggedIn"
-   [routerLink]="['/quizzes/create']">
-   <mat-icon  class="icon">create</mat-icon>
+<a mat-list-item *ngIf="isLoggedIn" [routerLink]="['/quizzes/create']">
+   <mat-icon class="icon">create</mat-icon>
    <span>Create</span>
 </a>
 
-<a mat-list-item
-   [routerLink]="['/about']">
+<a mat-list-item [routerLink]="['/about']">
    <mat-icon class="icon">group</mat-icon>
    <span>About</span>
 </a>
 
-<a mat-list-item
-   *ngIf="!isLoggedIn"
-   [routerLink]="['/users/register']">
+<a mat-list-item *ngIf="!isLoggedIn" [routerLink]="['/users/register']">
    <mat-icon class="icon">person_add</mat-icon>
    <span class="nav-label">Register</span>
 </a>
 
-<a mat-list-item
-   *ngIf="!isLoggedIn"
-   [routerLink]="['/users/login']">
-   <mat-icon  class="icon">input</mat-icon>
+<a mat-list-item *ngIf="!isLoggedIn" [routerLink]="['/users/login']">
+   <mat-icon class="icon">input</mat-icon>
    <span>Login</span>
 </a>
 
-<a mat-list-item
-   *ngIf="isLoggedIn"
-   [routerLink]="['/users/profile']">
+<a mat-list-item *ngIf="isLoggedIn" [routerLink]="['/users/profile']">
    <mat-icon class="icon">face</mat-icon>
    <span>Profile</span>
 </a>
 
-<a mat-list-item
-   *ngIf="isLoggedIn"
-   [routerLink]="null"
-   (click)="logOut()">
+<a mat-list-item *ngIf="isLoggedIn" [routerLink]="null" (click)="logOut()">
    <mat-icon class="icon">input</mat-icon>
    <span>Logout</span>
 </a>

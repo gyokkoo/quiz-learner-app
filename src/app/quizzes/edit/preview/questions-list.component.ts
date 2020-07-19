@@ -4,36 +4,36 @@ import { Router } from '@angular/router';
 import { QuizzesService } from '../../quizzes.service';
 import { ServerResponse } from 'src/app/shared/models/server-response.model';
 import { ToastrService } from 'ngx-toastr';
-import { IQuestion } from 'src/app/shared/models/question.model';
+import { Question } from 'src/app/shared/models/question.model';
 
 @Component({
-    selector: 'app-questions-list',
-    templateUrl: './questions-list.component.html'
+  selector: 'app-questions-list',
+  templateUrl: './questions-list.component.html',
 })
 export class QuestionsListComponent implements OnInit {
+  quizId: string;
 
-    quizId: string;
+  get questions(): Question[] {
+    return this.quizBuilder.questions;
+  }
 
-    get questions(): IQuestion[] {
-        return this.quizBuilder.questions;
-    }
+  get selectedQuestion(): Question {
+    return this.quizBuilder.currentQuestion;
+  }
 
-    get selectedQuestion(): IQuestion {
-        return this.quizBuilder.currentQuestion;
-    }
+  constructor(
+    private quizBuilder: QuizBuilderService,
+    private toastr: ToastrService,
+    private router: Router
+  ) {}
 
-    constructor(private quizBuilder: QuizBuilderService,
-                private toastr: ToastrService,
-                private router: Router) {
-    }
+  ngOnInit() {
+    this.quizId = this.router.url.split('/')[3];
+    console.log(this.quizId);
+    this.quizBuilder.loadQuestions(this.quizId);
+  }
 
-    ngOnInit() {
-        this.quizId = this.router.url.split('/')[3];
-        console.log(this.quizId);
-        this.quizBuilder.loadQuestions(this.quizId);
-    }
-
-    onSelected(question: IQuestion): void {
-        this.quizBuilder.currentQuestion = question;
-    }
+  onSelected(question: Question): void {
+    this.quizBuilder.currentQuestion = question;
+  }
 }

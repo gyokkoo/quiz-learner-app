@@ -1,7 +1,6 @@
 <ul class="navigation-items">
    <li>
-      <a *ngIf="true"
-         [routerLink]="['/welcome']">
+      <a *ngIf="true" [routerLink]="['/welcome']">
          <mat-icon [inline]="true" class="icon">home</mat-icon>
          <span>Home</span>
       </a>
@@ -51,8 +50,7 @@
    </li>
 
    <li *ngIf="isLoggedIn">
-      <a [routerLink]="null"
-         (click)="logOut()">
+      <a [routerLink]="null" (click)="logOut()">
          <mat-icon [inline]="true" class="icon">input</mat-icon>
          <span>Logout</span>
       </a>

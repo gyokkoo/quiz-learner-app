@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { QuizzesService, CreateQuizData } from '../quizzes.service';
 import { NotificationService } from 'src/app/core/services/notification.service';
+import { filter } from 'rxjs/operators';
+import { QuizDetailsComponent } from '../details/quiz-details.component';
 
 const minQuizTitleLength = 5;
 const maxQuizTitleLength = 100;
@@ -60,22 +62,12 @@ export class CreateQuizComponent implements OnInit {
     }
 
     const quiz: CreateQuizData = this.formGroup.value;
-    this.quizzesService.createQuiz(quiz).subscribe(
-      (data) => this.handleQuizCreation(data),
-      (error) => this.handleError(error)
-    );
-  }
-
-  private handleQuizCreation(data: any): void {
-    if (data.success) {
-      this.notificationService.success(data.message);
-      this.router.navigate(['/quizzes/edit/' + data.quiz._id + '/add']);
-    } else {
-      this.notificationService.error(data.message);
-    }
-  }
-
-  private handleError(error: any): void {
-    this.notificationService.error(error.message);
+    this.quizzesService
+      .createQuiz(quiz)
+      .pipe(filter((quizId) => quizId !== null))
+      .subscribe((quizId: string) => {
+        // Redirect to add questions page.
+        this.router.navigate(['/quizzes/edit/' + quizId + '/add']);
+      });
   }
 }

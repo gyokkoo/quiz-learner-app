@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, Validators, AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { IQuestion } from 'src/app/shared/models/question.model';
+import { Question } from 'src/app/shared/models/question.model';
 import { QuizBuilderService } from '../quiz-builder.service';
-import { Toast, ToastrService } from 'ngx-toastr';
+import { ToastrService } from 'ngx-toastr';
 import { ServerResponse } from 'src/app/shared/models/server-response.model';
 
 @Component({
@@ -13,7 +13,7 @@ import { ServerResponse } from 'src/app/shared/models/server-response.model';
 })
 export class QuestionsAddComponent implements OnInit {
   questionForm: FormGroup;
-  questionModel: IQuestion;
+  questionModel: Question;
 
   get answers(): FormArray {
     return <FormArray> this.questionForm.get('answers');
@@ -32,7 +32,8 @@ export class QuestionsAddComponent implements OnInit {
       question: '',
       answers: [{
         answer: '',
-        isCorrect: false
+        isCorrect: false,
+        isSelected: false,
       }],
       shouldShuffle: false
     };
@@ -51,7 +52,6 @@ export class QuestionsAddComponent implements OnInit {
 
     this.quizBuilder.createQuestion(this.questionModel);
 
-    // TODO find another way
     this.questionForm.reset();
   }
 

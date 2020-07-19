@@ -1,26 +1,26 @@
 import {
   ChangeDetectionStrategy,
-  Component, EventEmitter,
+  Component,
+  EventEmitter,
   Input,
-  OnInit, Output
+  OnInit,
+  Output,
 } from '@angular/core';
 
 @Component({
   selector: 'app-nav-list-items',
-  templateUrl: './nav-list-items.component.html',
-  styleUrls: ['./nav-list-items.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  templateUrl: 'nav-list-items.component.html',
+  styleUrls: ['nav-list-items.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavListItemsComponent implements OnInit {
-
   @Input() isLoggedIn: boolean;
 
   @Output() logoutClick = new EventEmitter<any>();
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   logOut(): void {
     this.logoutClick.next();

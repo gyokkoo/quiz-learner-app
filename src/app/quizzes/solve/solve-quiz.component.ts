@@ -10,8 +10,8 @@ import { ServerResponse } from 'src/app/shared/models/server-response.model';
 import { ToastrService } from 'ngx-toastr';
 import {
    Answer,
-   IQuestion,
-   ISolvedQuestion
+   Question,
+   SolvedQuestion
 } from 'src/app/shared/models/question.model';
 
 @Component({
@@ -29,7 +29,7 @@ export class SolveQuizComponent implements OnInit, OnDestroy {
 
    selectedAnswer: Answer;
 
-   get question(): IQuestion | null {
+   get question(): Question | null {
       if (this.quizSolver.questions) {
          return this.quizSolver.questions[this.quizSolver.index];
       }
@@ -45,7 +45,7 @@ export class SolveQuizComponent implements OnInit, OnDestroy {
       return this.quizSolver.isLastQuestion;
    }
 
-   get solvedQuestions(): Array<ISolvedQuestion> {
+   get solvedQuestions(): Array<SolvedQuestion> {
       return this.quizSolver.questions;
    }
 

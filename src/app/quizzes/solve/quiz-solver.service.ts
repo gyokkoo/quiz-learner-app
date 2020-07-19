@@ -5,18 +5,18 @@ import { Observable } from 'rxjs';
 
 import { ServerResponse } from 'src/app/shared/models/server-response.model';
 import { AuthService } from 'src/app/user/auth.service';
-import { IQuestion, ISolvedQuestion } from 'src/app/shared/models/question.model';
+import { Question, SolvedQuestion } from 'src/app/shared/models/question.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class QuizSolverService {
-  questions: Array<ISolvedQuestion>;
+  questions: Array<SolvedQuestion>;
   index: number;
   isFirstQuestion: boolean;
   isLastQuestion: boolean;
 
-  constructor() { }
+  constructor() {}
 
   clearCache(): void {
     this.questions = null;

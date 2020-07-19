@@ -3,11 +3,10 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ErrorsHandler implements ErrorHandler {
-
-  constructor(private injector: Injector) { }
+  constructor(private injector: Injector) {}
 
   // Need to get ToastrService from injector rather than constructor injection to avoid cyclic dependency error
   private get toastrService(): ToastrService {
@@ -23,7 +22,7 @@ export class ErrorsHandler implements ErrorHandler {
           `${error.status} - ${error.message}`,
           'Error',
           {
-            onActivateTick: true
+            onActivateTick: true,
           }
         );
       }

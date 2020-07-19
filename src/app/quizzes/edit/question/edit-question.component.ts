@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { QuizBuilderService } from '../quiz-builder.service';
-import { IQuestion, IAnswer } from 'src/app/shared/models/question.model';
+import { Question, Answer } from 'src/app/shared/models/question.model';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { ServerResponse } from 'src/app/shared/models/server-response.model';
@@ -9,20 +9,19 @@ import { QuizzesService } from '../../quizzes.service';
 
 @Component({
   templateUrl: './edit-question.component.html',
-  styleUrls: ['./edit-question.component.scss']
+  styleUrls: ['./edit-question.component.scss'],
 })
 export class EditQuestionComponent implements OnInit {
-
   editQuestionForm: FormGroup;
-  questionModel: IQuestion;
+  questionModel: Question;
 
   questionId: string;
 
   get answers(): FormArray {
-    return <FormArray> this.editQuestionForm.get('answers');
+    return <FormArray>this.editQuestionForm.get('answers');
   }
 
-  set question(question: IQuestion) {
+  set question(question: Question) {
     this.quizBuilder.currentQuestion = question;
   }
 
@@ -30,16 +29,17 @@ export class EditQuestionComponent implements OnInit {
     return this.quizBuilder.quizId;
   }
 
-  get question(): IQuestion {
+  get question(): Question {
     return this.quizBuilder.currentQuestion;
   }
 
-  constructor(private router: Router,
-              private fb: FormBuilder,
-              private toastr: ToastrService,
-              private quizBuilder: QuizBuilderService,
-              private quizzesService: QuizzesService) {
-  }
+  constructor(
+    private router: Router,
+    private fb: FormBuilder,
+    private toastr: ToastrService,
+    private quizBuilder: QuizBuilderService,
+    private quizzesService: QuizzesService
+  ) {}
 
   ngOnInit() {
     this.questionId = this.router.url.split('/')[5];
@@ -47,14 +47,14 @@ export class EditQuestionComponent implements OnInit {
     this.editQuestionForm = this.fb.group({
       question: ['', [Validators.required, Validators.minLength(10)]],
       answers: this.fb.array([this.initializeAnswer()]),
-      shouldShuffle: false
+      shouldShuffle: false,
     });
 
     // if (typeof this.quizBuilder.currentQuestion === 'undefined' ||
     //     this.quizBuilder.currentQuestion._id !== this.questionId) {
-    this.quizzesService.getQuestionById(this.questionId).subscribe(
-      (res => this.handleQuestionFetching(res))
-    );
+    this.quizzesService
+      .getQuestionById(this.questionId)
+      .subscribe((res) => this.handleQuestionFetching(res));
     // }
   }
 
@@ -79,7 +79,7 @@ export class EditQuestionComponent implements OnInit {
       });
 
       this.removeLastAnswer();
-      this.question.answers.forEach(answer => {
+      this.question.answers.forEach((answer) => {
         this.answers.push(this.buildAnswer(answer));
       });
 
@@ -100,15 +100,15 @@ export class EditQuestionComponent implements OnInit {
   private initializeAnswer(): FormGroup {
     return this.fb.group({
       answer: ['', Validators.required],
-      isCorrect: [false]
+      isCorrect: [false],
     });
   }
 
-  private buildAnswer(answer: IAnswer): FormGroup {
+  private buildAnswer(answer: Answer): FormGroup {
     console.log(answer === null);
     return this.fb.group({
       answer: [answer === null ? '' : answer.answer, Validators.required],
-      isCorrect: [answer === null ? false : answer.isCorrect]
+      isCorrect: [answer === null ? false : answer.isCorrect],
     });
   }
 }

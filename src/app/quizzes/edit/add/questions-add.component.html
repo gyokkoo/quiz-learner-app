@@ -24,7 +24,7 @@
             Please enter question.
           </span>
           <span *ngIf="questionForm.get('question').errors?.minlength">
-            The question be longer than 10 characters.
+            The question should be longer than 10 characters.
           </span>
         </span>
       </div>
@@ -112,11 +112,4 @@
     </div>
   </div>
 </form>
-
-<br>Dirty: {{ questionForm.dirty }}
-<br>Touched: {{ questionForm.touched }}
-<br>Valid: {{ questionForm.valid }}
-<br>Value: {{ questionForm.value | json }}
-<br>&nbsp;
-  
 <hr />

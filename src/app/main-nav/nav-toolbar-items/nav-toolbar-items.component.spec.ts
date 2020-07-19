@@ -8,33 +8,26 @@ import { MatIconModule } from '@angular/material/icon';
 
 // tslint:disable-next-line:component-selector
 @Component({ selector: 'router-outlet', template: '' })
-class RouterOutletStubComponent {
-}
+class RouterOutletStubComponent {}
 
 describe('NavToolbarItemsComponent', () => {
-   let component: NavToolbarItemsComponent;
-   let fixture: ComponentFixture<NavToolbarItemsComponent>;
+  let component: NavToolbarItemsComponent;
+  let fixture: ComponentFixture<NavToolbarItemsComponent>;
 
-   beforeEach(async(() => {
-      TestBed.configureTestingModule({
-         declarations: [
-            NavToolbarItemsComponent,
-            RouterOutletStubComponent],
-         imports: [
-            RouterTestingModule,
-            MatIconModule,
-            BrowserAnimationsModule
-         ]
-      }).compileComponents();
-   }));
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [NavToolbarItemsComponent, RouterOutletStubComponent],
+      imports: [RouterTestingModule, MatIconModule, BrowserAnimationsModule],
+    }).compileComponents();
+  }));
 
-   beforeEach(() => {
-      fixture = TestBed.createComponent(NavToolbarItemsComponent);
-      component = fixture.componentInstance;
-      fixture.detectChanges();
-   });
+  beforeEach(() => {
+    fixture = TestBed.createComponent(NavToolbarItemsComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
 
-   it('should create', () => {
-      expect(component).toBeTruthy();
-   });
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
 });
