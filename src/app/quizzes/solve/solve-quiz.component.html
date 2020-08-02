@@ -43,12 +43,20 @@
                   <div>{{ correctAnswer }}</div>
                </div>
 
-               <button mat-raised-button
+               <button *ngIf="!isLastQuestion"
+                       mat-raised-button
                        class="check-btn"
                        color="primary"
-                       [disabled]="!isAnswerSelected || isLastQuestion"
+                       [disabled]="!isAnswerSelected"
                        (click)="onContinueClick()">
                   Continue
+               </button>
+               <button *ngIf="isLastQuestion"
+                       mat-raised-button
+                       class="check-btn"
+                       color="primary"
+                       (click)="onFinishClick()">
+                  Finish
                </button>
             </div>
          </div>
