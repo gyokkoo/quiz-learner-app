@@ -1,46 +1,27 @@
 <mat-spinner *ngIf="loading">
 </mat-spinner>
 
-<div *ngIf="!loading">
-    <form novalidate
-          [formGroup]="quizInfoForm">
-       <fieldset>
-         <legend>Edit Quiz Basic Information</legend>
-         <div class="form-group row mb-2">
-            <label class="col-md-2 col-form-label"
-                  for="titleId">
-               Quiz title
-            </label>
-            <div class="col-md-8">
-            <input class="form-control"
-                  id="titleId"
-                  type="text"
-                  formControlName="title" />
-            </div>
-         </div>
- 
-         <div class="form-group row">
-            <label class="col-md-2 col-form-label"
-                  for="descriptionId">
-               Description
-            </label>
-            <div class="col-md-8">
-               <textarea class="form-control"
-                         id="descriptionId"
-                         formControlName="description"
-                         rows=3
-                         name="description">
-               </textarea>
-            </div>
-          </div>
-       </fieldset>
-    </form>
+<form *ngIf="!loading" class="container quiz-form" [formGroup]="formGroup">
+   <mat-form-field class="input-field">
+      <mat-label>Quiz title</mat-label>
+      <input matInput formControlName="title" placeholder="Enter quiz title">
+      <mat-error *ngIf="isTitleValid">
+         Required field, must be between 5 and 100 characters.
+      </mat-error>
+   </mat-form-field>
 
-   <button class="btn btn-success mr-3"
-           type="button"
-           (click)="onSave()">
-      Save
-   </button>
+   <mat-form-field class="input-field">
+      <mat-label>Description</mat-label>
+      <textarea matInput formControlName="description" placeholder="Enter quiz description...">
+        </textarea>
+      <mat-error *ngIf="isDescriptionValid">
+         Required field, must be up to 500 characters.
+      </mat-error>
+   </mat-form-field>
 
-   <hr />
- </div>
+   <div>
+      <button mat-raised-button color="primary" class="centered-btn" (click)="onSave()" [disabled]="!formGroup.valid">
+         Edit Quiz
+      </button>
+   </div>
+</form>
