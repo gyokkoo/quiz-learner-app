@@ -1,8 +1,11 @@
-<div>
+<mat-spinner *ngIf="loading">
+</mat-spinner>
+
+<div *ngIf="!loading">
     <form novalidate
           [formGroup]="quizInfoForm">
        <fieldset>
-         <legend>Quiz Info Edit</legend>
+         <legend>Edit Quiz Basic Information</legend>
          <div class="form-group row mb-2">
             <label class="col-md-2 col-form-label"
                   for="titleId">

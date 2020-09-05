@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { QuizzesService, CreateQuizData } from '../quizzes.service';
+import { QuizzesService, QuizDetails } from '../quizzes.service';
 import { NotificationService } from 'src/app/core/services/notification.service';
 import { filter } from 'rxjs/operators';
 import { QuizDetailsComponent } from '../details/quiz-details.component';
@@ -61,7 +61,7 @@ export class CreateQuizComponent implements OnInit {
       return;
     }
 
-    const quiz: CreateQuizData = this.formGroup.value;
+    const quiz: QuizDetails = this.formGroup.value;
     this.quizzesService
       .createQuiz(quiz)
       .pipe(filter((quizId) => quizId !== null))
