@@ -9,51 +9,55 @@ import { QuizSolverService } from '../solve/quiz-solver.service';
 
 @Component({
   templateUrl: './quiz-details.component.html',
-  styleUrls: ['./quiz-details.component.scss']
+  styleUrls: ['./quiz-details.component.scss'],
 })
 export class QuizDetailsComponent implements OnInit, OnDestroy {
-
   quiz: any;
   modalCloseResult: string;
 
   id: string;
   private sub: any;
 
-  constructor(private quizzesService: QuizzesService,
-              private quizSolver: QuizSolverService,
-              private toastr: ToastrService,
-              private route: ActivatedRoute,
-              private router: Router,
-              private modalService: NgbModal) {
+  constructor(
+    private quizzesService: QuizzesService,
+    private quizSolver: QuizSolverService,
+    private toastr: ToastrService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private modalService: NgbModal
+  ) {
     this.quiz = this.getInitialQuizValues();
   }
 
   open(content: any): void {
     this.modalService
-      .open(content, { ariaLabelledBy: 'modal-basic-title-delete' }).result
-      .then(
+      .open(content, { ariaLabelledBy: 'modal-basic-title-delete' })
+      .result.then(
         (result) => {
-        // Deletion is confirmed by the user, so do it!
-        // Warning it will delete also all questions attached to the quiz
-        this.quizzesService.deleteQuizById(this.id).subscribe(
-          (res: ServerResponse) => this.handleQuizDeletion(res)
-        );
-        this.modalCloseResult = `Closed with: ${result}`;
-      }, (reason) => {
-        this.modalCloseResult = `Dismissed ${this.getDismissReason(reason)}`;
-      });
+          // Deletion is confirmed by the user, so do it!
+          // Warning it will delete also all questions attached to the quiz
+          this.quizzesService
+            .deleteQuizById(this.id)
+            .subscribe((res: ServerResponse) => this.handleQuizDeletion(res));
+          this.modalCloseResult = `Closed with: ${result}`;
+        },
+        (reason) => {
+          this.modalCloseResult = `Dismissed ${this.getDismissReason(reason)}`;
+        }
+      );
   }
 
   ngOnInit(): void {
-    this.sub = this.route.params.subscribe(params => {
+    this.sub = this.route.params.subscribe((params) => {
       this.id = params['id'];
     });
 
     if (this.id) {
-      this.quizzesService.getQuizById(this.id).subscribe(
-        (data => this.handleQuizDetailsFetching(data)),
-        (error => this.handleQuizDetailsError(error)),
-      );
+      this.quizzesService.getQuizById(this.id).subscribe((quizInfo: any) => {
+        this.quiz = quizInfo;
+        this.quizzesService.currentQuiz = quizInfo;
+        this.quizSolver.questions = quizInfo.questions;
+      });
     }
   }
 
@@ -62,24 +66,13 @@ export class QuizDetailsComponent implements OnInit, OnDestroy {
   }
 
   private handleQuizDetailsFetching(res): void {
-    if (res.success) {
-      // TODO: map properly the data
-      const quizData = res.quiz;
-      this.quiz.id = quizData._id;
-      this.quiz.name = quizData.name;
-      this.quiz.description = quizData.description;
-      this.quiz.dateCreated = new Date(quizData.dateCreated);
-      this.quiz.questionsCount = quizData.questions.length;
-      this.quiz.creator = res.creator;
+    this.quiz = res.quiz;
 
-      this.quizzesService.currentQuiz = this.quiz;
-      console.log(this.quiz);
-      this.quizSolver.questions = res.data;
+    this.quizzesService.currentQuiz = this.quiz;
+    console.log(this.quiz);
+    this.quizSolver.questions = res.data;
 
-      this.toastr.success(res.message);
-    } else {
-      this.toastr.error(res.message);
-    }
+    this.toastr.success(res.message);
   }
 
   private handleQuizDeletion(res: ServerResponse): void {
@@ -91,11 +84,6 @@ export class QuizDetailsComponent implements OnInit, OnDestroy {
     }
   }
 
-  private handleQuizDetailsError(error): any {
-    // TODO: Handle better
-    this.toastr.error(error.message);
-  }
-
   private getInitialQuizValues(): any {
     // Return an initialized object
     return {
@@ -105,8 +93,8 @@ export class QuizDetailsComponent implements OnInit, OnDestroy {
       description: null,
       dateCreated: null,
       rating: null,
-      questionsCount: 0
-   };
+      questionsCount: 0,
+    };
   }
 
   private getDismissReason(reason: any): string {
@@ -115,7 +103,7 @@ export class QuizDetailsComponent implements OnInit, OnDestroy {
     } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
       return 'by clicking on a backdrop';
     } else {
-      return  `with: ${reason}`;
+      return `with: ${reason}`;
     }
   }
 }

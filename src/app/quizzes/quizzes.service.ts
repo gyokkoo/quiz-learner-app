@@ -10,7 +10,8 @@ import { ServerResponse } from '../shared/models/server-response.model';
 import { SolvedQuestion, Question } from '../shared/models/question.model';
 import { NotificationService } from '../core/services/notification.service';
 
-export interface CreateQuizData {
+export interface QuizDetails {
+  id: string;
   title: string;
   description: string;
 }
@@ -36,7 +37,7 @@ export class QuizzesService {
    * Required authentication.
    * @return quizId if success, null otherwise
    */
-  createQuiz(quiz: CreateQuizData): Observable<string | null> {
+  createQuiz(quiz: QuizDetails): Observable<string | null> {
     if (!quiz) {
       this.notificationService.error('Quiz data is required!');
       return of(null);
@@ -79,14 +80,49 @@ export class QuizzesService {
     );
   }
 
-  getQuizById(id: string): Observable<ServerResponse> {
+   /**
+   * Edit quiz info in the system.
+   * Required authentication.
+   * @return quizId if success, null otherwise
+   */
+  editQuizBasicInfo(quizEditInfo: QuizDetails): Observable<string | null> {
+    const url = `${this.baseUrl}/edit`;
+    const headers = this.getRequestHeaders(true);
+
+    return this.httpPostInternal(url, quizEditInfo, headers).pipe(
+      map((response: ServerResponse) => {
+        if (response.success && response.message) {
+          this.notificationService.success(response.message);
+        }
+
+        const quizId: string = response.data?.quizId || '';
+        return quizId ? quizId : null;
+      }),
+      catchError((err: any) => {
+        const errorMessage = err?.error?.message;
+        if (errorMessage) {
+          this.notificationService.error(errorMessage);
+        }
+
+        return of(null);
+      })
+    );
+  }
+
+  getQuizById(id: string, showNotification: boolean = true): Observable<any | null> {
     const url = `${this.baseUrl}/getQuizById/${id}`;
 
     const headers = this.getRequestHeaders(false);
 
-    return this.http
-      .get(url, { headers })
-      .pipe(tap((data: ServerResponse) => console.log(data)));
+    return this.httpGetInternal(url, headers).pipe(
+      map((response: ServerResponse) => {
+        if (response.success && response.message && showNotification) {
+          this.notificationService.success(response.message);
+        }
+
+        return response.data;
+      })
+    );
   }
 
   /**

@@ -4,7 +4,7 @@ import {
   CreateQuizComponent,
   QuizzesListComponent,
   QuizDetailsComponent,
-  EditInfoComponent,
+  EditQuizInfoComponent,
   EditQuestionsComponent,
   QuestionsAddComponent,
   QuizEditComponent,
@@ -36,7 +36,7 @@ export const quizzesRoutes: Routes = [
       },
       {
         path: 'info',
-        component: EditInfoComponent,
+        component: EditQuizInfoComponent,
       },
       {
         path: 'add',

@@ -30,6 +30,14 @@ export class QuizSolverService {
     console.log(this.questions);
   }
 
+  moveToNextQuestion(): void {
+    if (this.index >= this.questions.length - 1) {
+      this.isLastQuestion = true;
+    } else {
+      this.index++;
+    }
+  }
+
   checkQuiz(): void {
     const totalPoints = this.questions.length;
     let yourPoints = 0;

@@ -2,7 +2,7 @@ export * from './create/create-quiz.component';
 export * from './all/quizzes-list.component';
 export * from './details/quiz-details.component';
 export * from './edit/quiz-edit.component';
-export * from './edit/basic-info/edit-info.component';
+export * from './edit/basic-info/edit-quiz-info.component';
 export * from './edit/preview/edit-questions.component';
 export * from './edit/preview/questions-list.component';
 export * from './edit/preview/questions-detail.component';

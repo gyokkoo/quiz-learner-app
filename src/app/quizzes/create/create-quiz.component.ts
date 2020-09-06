@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { QuizzesService, CreateQuizData } from '../quizzes.service';
-import { NotificationService } from 'src/app/core/services/notification.service';
+import { QuizzesService, QuizDetails } from '../quizzes.service';
 import { filter } from 'rxjs/operators';
-import { QuizDetailsComponent } from '../details/quiz-details.component';
 
 const minQuizTitleLength = 5;
 const maxQuizTitleLength = 100;
@@ -13,7 +11,7 @@ const maxQuizDescriptionLength = 500;
 @Component({
   selector: 'app-create-quiz',
   templateUrl: 'create-quiz.component.html',
-  styleUrls: ['create-quiz.component.scss'],
+  styleUrls: ['../quiz-form.style.scss'],
 })
 export class CreateQuizComponent implements OnInit {
   formGroup: FormGroup;
@@ -34,7 +32,6 @@ export class CreateQuizComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private notificationService: NotificationService,
     private router: Router,
     private quizzesService: QuizzesService
   ) {}
@@ -61,7 +58,7 @@ export class CreateQuizComponent implements OnInit {
       return;
     }
 
-    const quiz: CreateQuizData = this.formGroup.value;
+    const quiz: QuizDetails = this.formGroup.value;
     this.quizzesService
       .createQuiz(quiz)
       .pipe(filter((quizId) => quizId !== null))
